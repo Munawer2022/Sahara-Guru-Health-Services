@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
-import '../../constants/colors.dart';
-
 class SearchTextFieldComponent extends StatelessWidget {
   final text;
-
+  final controller;
   const SearchTextFieldComponent({
     super.key,
     required this.text,
+    this.controller,
   });
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return TextFormField(
+      controller: controller,
       style: theme.textTheme.subtitle2,
       decoration: InputDecoration(
         // filled: false,

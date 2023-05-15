@@ -19,13 +19,13 @@ class Routes {
     switch (settings.name) {
       case RoutesName.allspeciallzations:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const AllSpeciallzations());
+            builder: (BuildContext context) =>  AllSpeciallzations());
       case RoutesName.signupscreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => SignUpScreen());
       case RoutesName.skinspecialists:
         return MaterialPageRoute(
-            builder: (BuildContext context) => const SkinSpecialists());
+            builder: (BuildContext context) => SkinSpecialists());
       case RoutesName.loginscreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => LoginScreen());

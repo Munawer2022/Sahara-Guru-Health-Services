@@ -8,8 +8,10 @@ import 'features/presentation/provider/appointments_controller.dart';
 import 'features/presentation/provider/bookappointment_controller.dart';
 import 'features/presentation/provider/passwordhide_controller.dart';
 import 'features/presentation/provider/theme_controller.dart';
+import 'package:get_storage/get_storage.dart';
 
-void main() {
+void main() async {
+  await GetStorage.init();
   runApp(const MyApp());
 }
 
