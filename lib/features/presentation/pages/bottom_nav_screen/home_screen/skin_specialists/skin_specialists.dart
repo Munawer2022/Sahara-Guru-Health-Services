@@ -118,7 +118,8 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                         child: ListView.builder(
                             physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
-                            itemCount: snapshot.data!.departments!.length,
+                            itemCount: snapshot
+                                .data!.departments!.first.doctors!.length,
                             itemBuilder: (context, index) => Padding(
                                   padding: screen_padding,
                                   child: Card(
@@ -129,8 +130,11 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                           padding: card_padding,
                                           child: ListTile(
                                             title: Text(
-                                                snapshot.data!
-                                                    .departments![index].name
+                                                snapshot
+                                                    .data!
+                                                    .departments![index]
+                                                    .doctors![index]
+                                                    .firstName
                                                     .toString(),
                                                 style: theme
                                                     .textTheme.headline6!

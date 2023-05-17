@@ -78,17 +78,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         SlideHorizontalList(
-                          text: 'Skin Specialist',
-                          ontap: () {
-                            Navigator.pushNamed(
-                                context, RoutesName.skinspecialists);
-                          },
-                        ),
-                        SizedBox(
-                          height: mediaQuery.height * 0.02,
-                        ),
-                        SlideHorizontalList(
-                          text: 'Skin Specialist',
                           ontap: () {
                             Navigator.pushNamed(
                                 context, RoutesName.skinspecialists);
@@ -118,7 +107,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         SlideHorizontalList(
-                          text: 'Skin Specialist',
                           ontap: () {
                             Navigator.pushNamed(
                                 context, RoutesName.skinspecialists);
@@ -142,7 +130,6 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         SlideHorizontalList(
-                          text: 'Skin Specialist',
                           ontap: () {
                             Navigator.pushNamed(
                                 context, RoutesName.skinspecialists);

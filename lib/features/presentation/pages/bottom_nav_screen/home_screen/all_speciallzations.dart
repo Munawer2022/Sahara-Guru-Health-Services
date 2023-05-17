@@ -12,9 +12,16 @@ import 'package:sahara_guru_health_services/features/presentation/pages/bottom_n
 import '../../../../../config/routes/routes_names.dart';
 import '../../../widgets/slide_horizontal_list.dart';
 
-class AllSpeciallzations extends StatelessWidget {
+class AllSpeciallzations extends StatefulWidget {
   AllSpeciallzations({super.key});
+
+  @override
+  State<AllSpeciallzations> createState() => _AllSpeciallzationsState();
+}
+
+class _AllSpeciallzationsState extends State<AllSpeciallzations> {
   TextEditingController searchTermController = TextEditingController();
+
   final box = GetStorage();
 
   Future getsearchdoctor() async {
@@ -39,6 +46,41 @@ class AllSpeciallzations extends StatelessWidget {
         return data;
       } else {
         throw Exception('Error');
+      }
+    } catch (e) {
+      if (kDebugMode) {
+        print(e.toString());
+      }
+    }
+    throw {};
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getlistdoctor();
+  }
+
+  Future<Getlistdoctor> getlistdoctor() async {
+    try {
+      Response response = await get(
+        Uri.parse(
+            'https://saharadigitalhealth.in/sahara_digital_health/public/api/department/doctors/list'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${box.read('token')}'
+        },
+      );
+      var data = jsonDecode(response.body.toString());
+      if (response.statusCode == 200) {
+        if (kDebugMode) {
+          print(data);
+        }
+
+        return Getlistdoctor.fromJson(data);
+      } else {
+        return Getlistdoctor.fromJson(data);
       }
     } catch (e) {
       if (kDebugMode) {
@@ -97,7 +139,6 @@ class AllSpeciallzations extends StatelessWidget {
                             ),
                           ),
                           SlideHorizontalList(
-                            text: 'Skin Specialist',
                             ontap: () {
                               Navigator.pushNamed(
                                   context, RoutesName.skinspecialists);
@@ -111,27 +152,38 @@ class AllSpeciallzations extends StatelessWidget {
                             child: Text('Search by specialty',
                                 style: theme.textTheme.subtitle2),
                           ),
-                          Padding(
-                            padding: screen_padding,
-                            child: GridView.builder(
-                              physics: const NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              gridDelegate:
-                                  const SliverGridDelegateWithFixedCrossAxisCount(
-                                      childAspectRatio: 2.5, crossAxisCount: 2),
-                              itemBuilder: (_, index) => Card(
-                                elevation: 0,
-                                child: Center(
-                                  child: ListTile(
-                                    title: Text('Urologist',
-                                        style: theme.textTheme.subtitle2),
-                                    leading: const CircleAvatar(),
-                                  ),
-                                ),
-                              ),
-                              itemCount: 20,
-                            ),
-                          )
+                          FutureBuilder<Getlistdoctor>(
+                              future: getlistdoctor(),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return GridView.builder(
+                                    physics:
+                                        const NeverScrollableScrollPhysics(),
+                                    shrinkWrap: true,
+                                    gridDelegate:
+                                        const SliverGridDelegateWithFixedCrossAxisCount(
+                                            childAspectRatio: 2.8,
+                                            crossAxisCount: 2),
+                                    itemBuilder: (_, index) => Card(
+                                      elevation: 0,
+                                      child: Center(
+                                        child: ListTile(
+                                          // onTap: () {},
+                                          title: Text(
+                                              snapshot.data!.departments![index]
+                                                  .name
+                                                  .toString(),
+                                              style: theme.textTheme.subtitle2),
+                                          leading: const CircleAvatar(),
+                                        ),
+                                      ),
+                                    ),
+                                    itemCount:
+                                        snapshot.data!.departments!.length,
+                                  );
+                                }
+                                return Container();
+                              })
                         ],
                       );
                     } else if (searchTermController.text.isNotEmpty) {
