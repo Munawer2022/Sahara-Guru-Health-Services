@@ -10,7 +10,7 @@ class BottomNavDashboard extends StatelessWidget {
   BottomNavDashboard({Key? key}) : super(key: key);
 
   static final List<Widget> _pages = <Widget>[
-    const HomeScreen(),
+     HomeScreen(),
     const MyAppointment(),
     const MyAppointment(),
     const MyAppointment(),

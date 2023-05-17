@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sahara_guru_health_services/features/presentation/pages/auth/login_screen.dart';
-import 'package:sahara_guru_health_services/features/presentation/pages/auth/otp_screen.dart';
-import 'package:sahara_guru_health_services/features/presentation/pages/auth/signup_screen.dart';
-import 'package:sahara_guru_health_services/features/presentation/pages/auth/user_detail.dart';
+
 import 'package:sahara_guru_health_services/features/presentation/pages/bottom_nav_screen/appointments/appointments_details.dart';
 import 'package:sahara_guru_health_services/features/presentation/pages/bottom_nav_screen/bottom_nav_dashboard.dart';
 import 'package:sahara_guru_health_services/features/presentation/pages/bottom_nav_screen/home_screen/all_speciallzations.dart';
@@ -19,22 +17,19 @@ class Routes {
     switch (settings.name) {
       case RoutesName.allspeciallzations:
         return MaterialPageRoute(
-            builder: (BuildContext context) =>  AllSpeciallzations());
-      case RoutesName.signupscreen:
-        return MaterialPageRoute(
-            builder: (BuildContext context) => SignUpScreen());
+            builder: (BuildContext context) => AllSpeciallzations());
+      // case RoutesName.signupscreen:
+      //   return MaterialPageRoute(
+      //       builder: (BuildContext context) => SignUpScreen());
       case RoutesName.skinspecialists:
         return MaterialPageRoute(
-            builder: (BuildContext context) => SkinSpecialists());
+            builder: (BuildContext context) => SkinSpecialists(
+                  data: settings.arguments as Map,
+                ));
       case RoutesName.loginscreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => LoginScreen());
-      case RoutesName.otpscreen:
-        return MaterialPageRoute(
-            builder: (BuildContext context) => OtpScreen());
-      case RoutesName.userdetail:
-        return MaterialPageRoute(
-            builder: (BuildContext context) => UserDetail());
+
       case RoutesName.bookappointment:
         return MaterialPageRoute(
             builder: (BuildContext context) => BookAppointment());

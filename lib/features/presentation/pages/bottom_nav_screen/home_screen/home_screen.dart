@@ -10,7 +10,6 @@ import '../../../../../config/routes/routes_names.dart';
 
 import '../../../../../core/utils/resources/components/button.dart';
 import '../../../../../core/utils/resources/components/search_text_field_component.dart';
-import '../../../provider/theme_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -78,11 +77,13 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         SlideHorizontalList(
-                          ontap: () {
-                            Navigator.pushNamed(
-                                context, RoutesName.skinspecialists);
-                          },
-                        ),
+                            // ontap: () {
+                            //   Navigator.pushNamed(
+                            //     context,
+                            //     RoutesName.skinspecialists,
+                            //   );
+                            // },
+                            ),
                         Padding(
                             padding: card_padding,
                             child: Button(
@@ -106,12 +107,7 @@ class HomeScreen extends StatelessWidget {
                             style: theme.textTheme.headline6,
                           ),
                         ),
-                        SlideHorizontalList(
-                          ontap: () {
-                            Navigator.pushNamed(
-                                context, RoutesName.skinspecialists);
-                          },
-                        ),
+                        SlideHorizontalList(),
                         SizedBox(
                           height: mediaQuery.height * 0.03,
                         ),
@@ -129,12 +125,7 @@ class HomeScreen extends StatelessWidget {
                             style: theme.textTheme.headline6,
                           ),
                         ),
-                        SlideHorizontalList(
-                          ontap: () {
-                            Navigator.pushNamed(
-                                context, RoutesName.skinspecialists);
-                          },
-                        ),
+                        SlideHorizontalList(),
                         SizedBox(
                           height: mediaQuery.height * 0.03,
                         ),

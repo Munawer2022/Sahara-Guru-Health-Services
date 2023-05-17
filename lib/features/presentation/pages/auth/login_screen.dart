@@ -14,12 +14,37 @@ import '../../../../config/routes/routes_names.dart';
 import '../../../../core/utils/resources/components/button.dart';
 import '../../provider/passwordhide_controller.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
+
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  // void check() {
+  //   if (box.read('token') == null) {
+  //     Navigator.pushNamed(context, RoutesName.homescreen);
+  //   } else {
+  //     Navigator.pushNamed(context, RoutesName.loginscreen);
+  //   }
+  // }
+
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   check();
+  // }
+
   bool loading = false;
+
   final _formKey = GlobalKey<FormState>();
+
   TextEditingController emailController = TextEditingController();
+
   TextEditingController passwordController = TextEditingController();
+
   final box = GetStorage();
 
   void login() async {
@@ -38,9 +63,21 @@ class LoginScreen extends StatelessWidget {
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
         box.write('token', data['token']);
+        box.write('id', data['id']);
+        box.write('first_name', data['first_name']);
+        box.write('last_name', data['last_name']);
 
         if (kDebugMode) {
           print(data['token']);
+        }
+        if (kDebugMode) {
+          print(data['id']);
+        }
+        if (kDebugMode) {
+          print(data['first_name']);
+        }
+        if (kDebugMode) {
+          print(data['last_name']);
         }
         if (kDebugMode) {
           print('Login successfully');
@@ -72,19 +109,6 @@ class LoginScreen extends StatelessWidget {
                 height: mediaQuery.height * 0.1,
               ),
               Text("Sign In", style: theme.textTheme.headline2),
-              Row(
-                children: [
-                  Text("Don't have an account?",
-                      style: theme.textTheme.subtitle2),
-                  TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, RoutesName.signupscreen);
-                      },
-                      child: const Text(
-                        'Sign up!',
-                      ))
-                ],
-              ),
               SizedBox(
                 height: mediaQuery.height * 0.050,
               ),
@@ -167,7 +191,7 @@ class LoginScreen extends StatelessWidget {
                   loading: loading,
                   title: 'Continue',
                   onTap: () {
-                    // Navigator.pushNamed(context, RoutesName.otpscreen);
+                    Navigator.pushNamed(context, RoutesName.homescreen);
                     if (_formKey.currentState!.validate()) {
                       login();
                     }

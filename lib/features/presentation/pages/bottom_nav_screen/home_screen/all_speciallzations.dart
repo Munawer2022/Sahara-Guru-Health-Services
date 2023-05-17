@@ -138,12 +138,7 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
                               ],
                             ),
                           ),
-                          SlideHorizontalList(
-                            ontap: () {
-                              Navigator.pushNamed(
-                                  context, RoutesName.skinspecialists);
-                            },
-                          ),
+                          SlideHorizontalList(),
                           SizedBox(
                             height: mediaQuery.height * 0.02,
                           ),
