@@ -10,6 +10,7 @@ import 'package:sahara_guru_health_services/features/presentation/pages/bottom_n
 
 import '../../features/presentation/pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/appointment_corfirmation/appointment_confirmation.dart';
 import '../../features/presentation/pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/appointment_corfirmation/appointment_detail/appointment_detail.dart';
+import '../../features/presentation/pages/splesh_screen.dart';
 import 'routes_names.dart';
 
 class Routes {
@@ -48,6 +49,10 @@ class Routes {
       case RoutesName.appointmentDetail:
         return MaterialPageRoute(
             builder: (BuildContext context) => AppointmentDetail());
+            case RoutesName.splashScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => SplashScreen());
+            
 
       default:
         return MaterialPageRoute(builder: (_) {

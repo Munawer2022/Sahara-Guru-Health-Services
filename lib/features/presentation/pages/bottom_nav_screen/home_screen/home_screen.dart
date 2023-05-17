@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
@@ -12,17 +13,25 @@ import '../../../../../core/utils/resources/components/button.dart';
 import '../../../../../core/utils/resources/components/search_text_field_component.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
-
+  HomeScreen({super.key});
+  final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     debugPrint('home');
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
     return Scaffold(
-      appBar: const MyAppBarWidget(
-        arrow_back: true,
+      appBar: MyAppBarWidget(
+        arrow_back: false,
         title: 'Sara Health',
+        actions: [
+          IconButton(
+              onPressed: () {
+                box.remove('token');
+                Navigator.pushNamed(context, RoutesName.loginscreen);
+              },
+              icon: Icon(Icons.logout_rounded))
+        ],
         // actions: [
         //   Consumer<ThemeController>(
         //     builder: (context, value, child) {

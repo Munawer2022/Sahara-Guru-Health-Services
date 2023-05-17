@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -14,28 +15,8 @@ import '../../../../config/routes/routes_names.dart';
 import '../../../../core/utils/resources/components/button.dart';
 import '../../provider/passwordhide_controller.dart';
 
-class LoginScreen extends StatefulWidget {
+class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
-
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
-
-class _LoginScreenState extends State<LoginScreen> {
-  // void check() {
-  //   if (box.read('token') == null) {
-  //     Navigator.pushNamed(context, RoutesName.homescreen);
-  //   } else {
-  //     Navigator.pushNamed(context, RoutesName.loginscreen);
-  //   }
-  // }
-
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   check();
-  // }
 
   bool loading = false;
 

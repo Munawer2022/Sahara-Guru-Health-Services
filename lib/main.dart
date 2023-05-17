@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/config/themes.dart';
@@ -33,7 +35,7 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         darkTheme: Themes.dark,
         theme: Themes.light,
-        initialRoute: RoutesName.loginscreen,
+        initialRoute: RoutesName.splashScreen,
         onGenerateRoute: Routes.generateRoute,
       ),
     );

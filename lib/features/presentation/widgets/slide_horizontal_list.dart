@@ -34,7 +34,7 @@ class _SlideHorizontalListState extends State<SlideHorizontalList> {
             'https://saharadigitalhealth.in/sahara_digital_health/public/api/department/doctors/list'),
         headers: {
           'Accept': 'application/json',
-          'Authorization': 'Bearer ${box.read('token')}'
+          'Authorization': 'Bearer ' + box.read('token')
         },
       );
       var data = jsonDecode(response.body.toString());
