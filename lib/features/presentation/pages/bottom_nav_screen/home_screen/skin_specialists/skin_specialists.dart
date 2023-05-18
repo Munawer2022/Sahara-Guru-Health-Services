@@ -78,7 +78,6 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Text('a'),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -119,11 +118,11 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                   future: getlistdoctor(),
                   //AsyncSnapshot<Getlistdoctor>
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    }
+                    // if (!snapshot.hasData) {
+                    //   return Center(
+                    //     child: CircularProgressIndicator(),
+                    //   );
+                    // }
 
                     if (snapshot.hasData) {
                       return Flexible(
@@ -151,20 +150,23 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                                         fontWeight:
                                                             FontWeight.bold)),
                                             leading: CircleAvatar(
-                                              backgroundColor: Colors.blue,
-                                              radius: 27,
-                                              child: CircleAvatar(
-                                                backgroundImage: NetworkImage(
-                                                    department_doctors_profiles +
-                                                        snapshot
-                                                            .data!
-                                                            .departments![0]
-                                                            .doctors![index]
-                                                            .profile
-                                                            .toString()),
-                                                radius: 25,
-                                              ),
-                                            ),
+                                                backgroundColor: Colors.blue,
+                                                radius: 27,
+                                                child: CircleAvatar(
+                                                  backgroundColor: Colors.white,
+                                                  onBackgroundImageError:
+                                                      (exception,
+                                                          stackTrace) {},
+                                                  backgroundImage: NetworkImage(
+                                                      department_doctors_profiles +
+                                                          snapshot
+                                                              .data!
+                                                              .departments![0]
+                                                              .doctors![index]
+                                                              .profile
+                                                              .toString()),
+                                                  radius: 25,
+                                                )),
                                             subtitle: Text(
                                                 snapshot.data!.departments![0]
                                                     .doctors![index].lastName
@@ -191,11 +193,11 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                                   children: <TextSpan>[
                                                     TextSpan(
                                                       text: snapshot
-                                                          .data!
-                                                          .departments![0]
-                                                          .doctors![index]
-                                                          .fees
-                                                          .toString(),
+                                                              .data!
+                                                              .departments![0]
+                                                              .doctors![index]
+                                                              .fees ??
+                                                          'N/A',
                                                       style: theme
                                                           .textTheme.subtitle2!
                                                           .copyWith(
@@ -255,11 +257,11 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                                 padding: card_padding,
                                                 child: Text(
                                                     snapshot
-                                                        .data!
-                                                        .departments![0]
-                                                        .doctors![index]
-                                                        .bio
-                                                        .toString(),
+                                                            .data!
+                                                            .departments![0]
+                                                            .doctors![index]
+                                                            .bio ??
+                                                        'N/A',
                                                     textAlign: TextAlign.center,
                                                     // '"Dr. Salman is one of the top doctors, He is highly qulaified, intelligent and very punctual, Really satisfi...',
                                                     style: theme
@@ -407,7 +409,40 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                                   Navigator.pushNamed(
                                                       context,
                                                       RoutesName
-                                                          .bookappointment);
+                                                          .bookappointment,
+                                                      arguments: {
+                                                        'fees': snapshot
+                                                            .data!
+                                                            .departments![0]
+                                                            .doctors[index]
+                                                            .fees,
+                                                        'bio': snapshot
+                                                                .data!
+                                                                .departments![0]
+                                                                .doctors[index]
+                                                                .bio ??
+                                                            'N/A',
+                                                        'id': snapshot
+                                                            .data!
+                                                            .departments![0]
+                                                            .doctors[index]
+                                                            .id,
+                                                        'firstName': snapshot
+                                                            .data!
+                                                            .departments![0]
+                                                            .doctors[index]
+                                                            .firstName,
+                                                        'lastName': snapshot
+                                                            .data!
+                                                            .departments![0]
+                                                            .doctors[index]
+                                                            .lastName,
+                                                        'profile': snapshot
+                                                            .data!
+                                                            .departments![0]
+                                                            .doctors[index]
+                                                            .profile,
+                                                      });
                                                 },
                                                 child: const Center(
                                                     child: Text(
@@ -424,11 +459,164 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                   ),
                                 )),
                       );
-                    } else {
-                      return Center(
-                        child: Text('no data'),
-                      );
                     }
+                    return Flexible(
+                      child: ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemCount: 4,
+                          itemBuilder: (context, index) => Padding(
+                                padding: screen_padding,
+                                child: Card(
+                                  color: Colors.grey.shade300,
+                                  elevation: 0,
+                                  child: Padding(
+                                    padding: card_padding,
+                                    child: Column(
+                                      children: [
+                                        ListTile(
+                                            title: Container(
+                                              height: 20,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade400,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          12)),
+                                            ),
+                                            leading: CircleAvatar(
+                                              backgroundColor:
+                                                  Colors.grey.shade400,
+                                              radius: 27,
+                                            ),
+                                            subtitle: Container(
+                                              height: 12,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade400,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          12)),
+                                            )),
+                                        SizedBox(
+                                            height: mediaQuery.height * 0.02),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  height: 10,
+                                                  width: 30,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                ),
+                                                SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.01,
+                                                ),
+                                                Container(
+                                                  height: 10,
+                                                  width: 40,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  height: 10,
+                                                  width: 30,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                ),
+                                                SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.01,
+                                                ),
+                                                Container(
+                                                  height: 10,
+                                                  width: 40,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                ),
+                                              ],
+                                            ),
+                                            Column(
+                                              children: [
+                                                Container(
+                                                  height: 10,
+                                                  width: 30,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                ),
+                                                SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.01,
+                                                ),
+                                                Container(
+                                                  height: 10,
+                                                  width: 40,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                ),
+                                              ],
+                                            )
+                                          ],
+                                        ),
+                                        SizedBox(
+                                            height: mediaQuery.height * 0.02),
+                                        SizedBox(
+                                          width: double.infinity,
+                                          height: mediaQuery.height * 0.08,
+                                          child: Card(
+                                            elevation: 0,
+                                            color: Colors.grey.shade400,
+                                          ),
+                                        ),
+                                        SizedBox(
+                                            height: mediaQuery.height * 0.02),
+                                        Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Container(
+                                            height: 40,
+                                            width: 150,
+                                            decoration: BoxDecoration(
+                                                color: Colors.grey.shade400,
+                                                borderRadius:
+                                                    BorderRadius.circular(20)),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              )),
+                    );
                   },
                 ),
 

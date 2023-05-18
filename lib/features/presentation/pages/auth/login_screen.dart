@@ -15,9 +15,14 @@ import '../../../../config/routes/routes_names.dart';
 import '../../../../core/utils/resources/components/button.dart';
 import '../../provider/passwordhide_controller.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
   bool loading = false;
 
   final _formKey = GlobalKey<FormState>();
@@ -28,7 +33,10 @@ class LoginScreen extends StatelessWidget {
 
   final box = GetStorage();
 
-  void login() async {
+  void login(BuildContext context) async {
+    setState(() {
+      loading = true;
+    });
     try {
       Response response = await post(
           Uri.parse(
@@ -43,10 +51,15 @@ class LoginScreen extends StatelessWidget {
 
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
+        setState(() {
+          loading = true;
+        });
+
+        Navigator.pushNamed(context, RoutesName.bottomnavdashboard);
         box.write('token', data['token']);
-        box.write('id', data['id']);
-        box.write('first_name', data['first_name']);
-        box.write('last_name', data['last_name']);
+        box.write('id', data['user']['id']);
+        box.write('first_name', data['user']['first_name']);
+        box.write('last_name', data['user']['last_name']);
 
         if (kDebugMode) {
           print(data['token']);
@@ -64,6 +77,9 @@ class LoginScreen extends StatelessWidget {
           print('Login successfully');
         }
       } else {
+        setState(() {
+          loading = false;
+        });
         if (kDebugMode) {
           print('failed');
         }
@@ -172,9 +188,8 @@ class LoginScreen extends StatelessWidget {
                   loading: loading,
                   title: 'Continue',
                   onTap: () {
-                    Navigator.pushNamed(context, RoutesName.homescreen);
                     if (_formKey.currentState!.validate()) {
-                      login();
+                      login(context);
                     }
                   }),
             ],

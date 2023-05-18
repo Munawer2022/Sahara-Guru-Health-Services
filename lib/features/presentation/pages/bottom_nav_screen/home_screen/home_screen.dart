@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:provider/provider.dart';
 
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 
@@ -27,8 +26,11 @@ class HomeScreen extends StatelessWidget {
         actions: [
           IconButton(
               onPressed: () {
-                box.remove('token');
-                Navigator.pushNamed(context, RoutesName.loginscreen);
+                box.remove('token').then((value) {
+                  Navigator.pushNamed(context, RoutesName.loginscreen);
+                }).onError((error, stackTrace) {
+                  throw {error};
+                });
               },
               icon: Icon(Icons.logout_rounded))
         ],

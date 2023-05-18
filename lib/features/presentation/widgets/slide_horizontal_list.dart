@@ -68,7 +68,7 @@ class _SlideHorizontalListState extends State<SlideHorizontalList> {
               height: 80,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: snapshot.data!.departments!.length,
+                itemCount: snapshot.data?.departments?.length,
                 itemBuilder: (context, index) => Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: InkWell(
@@ -101,7 +101,43 @@ class _SlideHorizontalListState extends State<SlideHorizontalList> {
               ),
             );
           }
-          return Container();
+          return SizedBox(
+            width: double.infinity,
+            height: 80,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: snapshot.data?.departments?.length,
+              itemBuilder: (context, index) => Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: InkWell(
+                  onTap: () {},
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Container(
+                        height: 50,
+                        width: 50,
+                        decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(50)),
+                      ),
+                      SizedBox(
+                        height: mediaQuery.height * 0.01,
+                      ),
+                      Container(
+                        height: 15,
+                        width: 70,
+                        decoration: BoxDecoration(
+                            color: Colors.grey.shade200,
+                            borderRadius: BorderRadius.circular(12)),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          );
         });
   }
 }

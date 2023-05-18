@@ -33,7 +33,9 @@ class Routes {
 
       case RoutesName.bookappointment:
         return MaterialPageRoute(
-            builder: (BuildContext context) => BookAppointment());
+            builder: (BuildContext context) => BookAppointment(
+                  routeData: settings.arguments as Map,
+                ));
       case RoutesName.homescreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => HomeScreen());
@@ -49,10 +51,9 @@ class Routes {
       case RoutesName.appointmentDetail:
         return MaterialPageRoute(
             builder: (BuildContext context) => AppointmentDetail());
-            case RoutesName.splashScreen:
+      case RoutesName.splashScreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => SplashScreen());
-            
 
       default:
         return MaterialPageRoute(builder: (_) {

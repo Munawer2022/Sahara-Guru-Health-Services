@@ -22,6 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     splashScreen.check(context);
+
+    // Timer(const Duration(seconds: 2),
+    //     () => Navigator.pushNamed(context, RoutesName.loginscreen));
   }
 
   @override
@@ -41,10 +44,10 @@ class SplashServices {
   final box = GetStorage();
   void check(BuildContext context) {
     if (box.read('token') != null) {
-      Timer(const Duration(seconds: 3),
+      Timer(const Duration(seconds: 2),
           () => Navigator.pushNamed(context, RoutesName.bottomnavdashboard));
     } else {
-      Timer(const Duration(seconds: 3),
+      Timer(const Duration(seconds: 2),
           () => Navigator.pushNamed(context, RoutesName.loginscreen));
     }
   }

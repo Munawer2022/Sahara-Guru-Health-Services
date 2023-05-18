@@ -1,13 +1,56 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:get_storage/get_storage.dart';
+import 'package:http/http.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 
 import '../../../../../../../../config/routes/routes_names.dart';
 import '../../../../../../widgets/list_tile.dart';
+import '../get_list_doctor_model.dart';
 
 class AppointmentConfirmation extends StatelessWidget {
-  const AppointmentConfirmation({super.key});
+  AppointmentConfirmation({super.key});
+  final box = GetStorage();
+
+  // Future doctorAppointmnet() async {
+  //   try {
+  //     Response response = await post(
+  //       Uri.parse(
+  //           'https://saharadigitalhealth.in/sahara_digital_health/public/api/save-appointment'),
+  //       headers: {
+  //         'Accept': 'application/json',
+  //         'Authorization': 'Bearer ${box.read('token')}'
+  //       },
+  //       body: {
+  //         'patientId':
+  //         'doctorId':
+  //         'fees':
+  //         'appointmentDate':
+  //       }
+  //     );
+  //     var data = jsonDecode(response.body.toString());
+  //     if (response.statusCode == 400) {
+  //       if (kDebugMode) {
+  //         print(data);
+  //       }
+
+  //     }else {
+
+  //       if (kDebugMode) {
+  //         print('failed');
+  //       }
+  //     }
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       print(e.toString());
+  //     }
+  //   }
+  //   throw {};
+  // }
 
   @override
   Widget build(BuildContext context) {
