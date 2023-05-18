@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
@@ -58,7 +59,24 @@ class BookAppointment extends StatelessWidget {
     }
   }
 
-  final day = ['Today', 'Yesterday', 'Tomorrow'];
+  // dynamic formatter =
+  //     DateFormat('d').format(DateTime.now().add(const Duration(days: 1)));
+
+  // dynamic formatter = DateFormat('d').format(DateTime.now());
+
+  dynamic day = [
+    // 'Today',
+    DateFormat("EEEE").format(DateTime.now()),
+    // 'Tomorrow',
+    DateFormat("EEEE").format(DateTime.now().add(Duration(days: 1))),
+    DateFormat("EEEE").format(DateTime.now().add(Duration(days: 2))),
+  ];
+  dynamic date = [
+    DateFormat("d").format(DateTime.now()),
+    DateFormat("d").format(DateTime.now().add(Duration(days: 1))),
+    DateFormat("d").format(DateTime.now().add(Duration(days: 2))),
+  ];
+
   @override
   Widget build(BuildContext context) {
     debugPrint('BookAppointment');
@@ -182,30 +200,29 @@ class BookAppointment extends StatelessWidget {
                               scrollDirection: Axis.horizontal,
                               itemCount: 3,
                               itemBuilder: (context, index) => Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                child: ChoiceChip(
-                                  label: SizedBox(
-                                    height: 50,
-                                    width: 70,
-                                    child: Center(
-                                        child: Column(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.center,
-                                      children: [
-                                        Text(day[index],
-                                            style: theme.textTheme.subtitle2),
-                                        Text('',
-                                            style: theme.textTheme.subtitle2),
-                                      ],
-                                    )),
-                                  ),
-                                  selected: value.value == index,
-                                  onSelected: (bool selected) {
-                                    value.changeTabIndex(index);
-                                  },
-                                ),
-                              ),
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: ChoiceChip(
+                                    label: SizedBox(
+                                      height: 50,
+                                      width: 70,
+                                      child: Center(
+                                          child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Text(day[index],
+                                              style: theme.textTheme.subtitle2),
+                                          Text(date[index].toString(),
+                                              style: theme.textTheme.subtitle2),
+                                        ],
+                                      )),
+                                    ),
+                                    selected: value.value == index,
+                                    onSelected: (bool selected) {
+                                      value.changeTabIndex(index);
+                                    },
+                                  )),
                             ),
                           ),
 
@@ -302,7 +319,8 @@ class BookAppointment extends StatelessWidget {
                       SizedBox(
                         width: mediaQuery.width * 0.01,
                       ),
-                      Text('Mar 15', style: theme.textTheme.subtitle2)
+                      Text(value.value.toString(),
+                          style: theme.textTheme.subtitle2)
                     ],
                   ),
                   SizedBox(

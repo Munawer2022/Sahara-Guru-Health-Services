@@ -36,6 +36,7 @@ dependencies:
   http:
   fluttertoast:
   get_storage: ^2.1.1
+  intl:
 
   
   

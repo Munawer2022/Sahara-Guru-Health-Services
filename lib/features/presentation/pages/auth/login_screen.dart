@@ -96,103 +96,105 @@ class _LoginScreenState extends State<LoginScreen> {
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
     return Scaffold(
-      body: Padding(
-        padding: screen_padding,
-        child: Center(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: mediaQuery.height * 0.1,
-              ),
-              Text("Sign In", style: theme.textTheme.headline2),
-              SizedBox(
-                height: mediaQuery.height * 0.050,
-              ),
-              Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    TypeTextFieldComponent(
-                      textInputAction: TextInputAction.done,
-                      validator: (value) {
-                        if (value!.isEmpty ||
-                            !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
-                                .hasMatch(value)) {
-                          return 'Enter email or mobile';
-                        } else {
-                          null;
-                        }
-                      },
-                      controller: emailController,
-                      keyboardType: TextInputType.emailAddress,
-                      hintText: 'Email or Mobile*',
-                    ),
-                    SizedBox(
-                      height: mediaQuery.height * 0.02,
-                    ),
-                    Consumer<PasswordHideController>(
-                      builder: (context, value, child) {
-                        print('hideicon');
-                        return TextFormField(
-                          style: theme.textTheme.subtitle2,
-                          textInputAction: TextInputAction.done,
-                          validator: (value) {
-                            if (value!.isEmpty
-                                //  ||
-                                //     !RegExp(r'^[a-zA-Z0-9]{6,16}')
-                                //         .hasMatch(value)
-                                ) {
-                              return 'Enter Password';
-                            } else
-                              null;
-                          },
-                          controller: passwordController,
-                          keyboardType: TextInputType.text,
-                          obscureText: value.isVisible,
-                          decoration: InputDecoration(
-                            contentPadding: const EdgeInsets.all(10),
-                            border: const OutlineInputBorder(),
-                            suffixIcon: IconButton(
-                              onPressed: () {
-                                value.hideicon();
-                              },
-                              icon: value.isVisible
-                                  ? const Icon(Icons.visibility)
-                                  : const Icon(Icons.visibility_off),
-                            ),
-                            hintStyle: theme.textTheme.subtitle2!
-                                .copyWith(color: Colors.grey),
-                            // enabledBorder: InputBorder.none,
-                            // filled: true,
-                            hintText: 'Password*',
-                          ),
-                        );
-                      },
-                    )
-                  ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: screen_padding,
+          child: Center(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: mediaQuery.height * 0.1,
                 ),
-              ),
-              SizedBox(
-                height: mediaQuery.height * 0.01,
-              ),
-              TextButton(
-                  onPressed: () {},
-                  child: const Text(
-                    'Forgot your password?',
-                  )),
-              SizedBox(
-                height: mediaQuery.height * 0.01,
-              ),
-              Button(
-                  loading: loading,
-                  title: 'Continue',
-                  onTap: () {
-                    if (_formKey.currentState!.validate()) {
-                      login(context);
-                    }
-                  }),
-            ],
+                Text("Sign In", style: theme.textTheme.headline2),
+                SizedBox(
+                  height: mediaQuery.height * 0.050,
+                ),
+                Form(
+                  key: _formKey,
+                  child: Column(
+                    children: [
+                      TypeTextFieldComponent(
+                        textInputAction: TextInputAction.done,
+                        validator: (value) {
+                          if (value!.isEmpty ||
+                              !RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w]{2,4}')
+                                  .hasMatch(value)) {
+                            return 'Enter email or mobile';
+                          } else {
+                            null;
+                          }
+                        },
+                        controller: emailController,
+                        keyboardType: TextInputType.emailAddress,
+                        hintText: 'Email or Mobile*',
+                      ),
+                      SizedBox(
+                        height: mediaQuery.height * 0.02,
+                      ),
+                      Consumer<PasswordHideController>(
+                        builder: (context, value, child) {
+                          print('hideicon');
+                          return TextFormField(
+                            style: theme.textTheme.subtitle2,
+                            textInputAction: TextInputAction.done,
+                            validator: (value) {
+                              if (value!.isEmpty
+                                  //  ||
+                                  //     !RegExp(r'^[a-zA-Z0-9]{6,16}')
+                                  //         .hasMatch(value)
+                                  ) {
+                                return 'Enter Password';
+                              } else
+                                null;
+                            },
+                            controller: passwordController,
+                            keyboardType: TextInputType.text,
+                            obscureText: value.isVisible,
+                            decoration: InputDecoration(
+                              contentPadding: const EdgeInsets.all(10),
+                              border: const OutlineInputBorder(),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  value.hideicon();
+                                },
+                                icon: value.isVisible
+                                    ? const Icon(Icons.visibility)
+                                    : const Icon(Icons.visibility_off),
+                              ),
+                              hintStyle: theme.textTheme.subtitle2!
+                                  .copyWith(color: Colors.grey),
+                              // enabledBorder: InputBorder.none,
+                              // filled: true,
+                              hintText: 'Password*',
+                            ),
+                          );
+                        },
+                      )
+                    ],
+                  ),
+                ),
+                SizedBox(
+                  height: mediaQuery.height * 0.01,
+                ),
+                TextButton(
+                    onPressed: () {},
+                    child: const Text(
+                      'Forgot your password?',
+                    )),
+                SizedBox(
+                  height: mediaQuery.height * 0.01,
+                ),
+                Button(
+                    loading: loading,
+                    title: 'Continue',
+                    onTap: () {
+                      if (_formKey.currentState!.validate()) {
+                        login(context);
+                      }
+                    }),
+              ],
+            ),
           ),
         ),
       ),
