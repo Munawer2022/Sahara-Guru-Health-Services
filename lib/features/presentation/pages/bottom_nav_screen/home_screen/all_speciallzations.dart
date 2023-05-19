@@ -24,9 +24,9 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
 
   final box = GetStorage();
 
-  Future getsearchdoctor() async {
+  Future<List<SearchDoctor>> getsearchdoctor() async {
+    var data;
     try {
-      var data;
       Response response = await get(
         Uri.parse(
             'https://saharadigitalhealth.in/sahara_digital_health/public/api/search/department/doctors'),
@@ -37,29 +37,28 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
         },
       );
 
+      print(response.body.toString());
       if (response.statusCode == 200) {
         data = jsonDecode(response.body.toString());
         if (kDebugMode) {
           print(data);
         }
-
         return data;
-      } else {
-        throw Exception('Error');
       }
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());
       }
     }
-    throw {};
+    return data;
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    getlistdoctor();
+    searchTermController.addListener(() {});
+    getsearchdoctor();
   }
 
   Future<Getlistdoctor> getlistdoctor() async {
@@ -74,9 +73,9 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
       );
       var data = jsonDecode(response.body.toString());
       if (response.statusCode == 200) {
-        if (kDebugMode) {
-          print(data);
-        }
+        // if (kDebugMode) {
+        //   print(data);
+        // }
 
         return Getlistdoctor.fromJson(data);
       } else {
@@ -115,8 +114,10 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
             ),
             FutureBuilder(
                 future: getsearchdoctor(),
-                builder: (context, snapshot) {
+                builder: (context, AsyncSnapshot<List<SearchDoctor>> snapshot) {
                   if (snapshot.hasData) {
+                    return Center(child: CircularProgressIndicator());
+                  } else {
                     if (searchTermController.text.isEmpty) {
                       return Column(
                         mainAxisSize: MainAxisSize.min,
@@ -181,23 +182,37 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
                               })
                         ],
                       );
-                    } else if (searchTermController.text.isNotEmpty) {
-                      return SizedBox(
-                          height: mediaQuery.height * 0.01,
-                          width: double.infinity,
-                          child: Card(
-                              child: Center(
-                                  child: Text(snapshot.data.toString()))));
                     } else {
-                      return Container();
+                      ListView.builder(
+                          itemCount: snapshot.data?.length,
+                          itemBuilder: (context, index) {
+                            return Text(snapshot.data![index].name.toString());
+                          });
                     }
-                  } else {
-                    return const Center(child: Text('loading'));
                   }
+                  return Container();
                 }),
           ],
         ),
       ),
     );
   }
+}
+
+class SearchDoctor {
+  String? name;
+  String? departmentName;
+
+  SearchDoctor({this.name, this.departmentName});
+
+  SearchDoctor.fromJson(Map<dynamic, dynamic> json) {
+    name = json['name'];
+    departmentName = json['departmentName'];
+  }
+  // Map<String, dynamic> toJson() {
+  //   final Map<String, dynamic> data = Map<String, dynamic>();
+  //   data['name'] = this.name;
+  //   data['departmentName'] = this.departmentName;
+  //   return data;
+  // }
 }

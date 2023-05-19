@@ -2,10 +2,11 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
+
 import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
@@ -20,7 +21,7 @@ class BookAppointment extends StatelessWidget {
   dynamic routeData;
   BookAppointment({super.key, this.routeData});
   final box = GetStorage();
-  String selectedDate = "";
+  String selectedDate = DateFormat("d/M/y").format(DateTime.now()).toString();
 
   Future saveAppoitment(BuildContext context) async {
     try {
@@ -59,11 +60,8 @@ class BookAppointment extends StatelessWidget {
     }
   }
 
-  // dynamic formatter =
-  //     DateFormat('d').format(DateTime.now().add(const Duration(days: 1)));
-
-  // dynamic formatter = DateFormat('d').format(DateTime.now());
-
+  dynamic month = DateFormat("M").format(DateTime.now());
+  dynamic year = DateFormat("y").format(DateTime.now());
   dynamic day = [
     // 'Today',
     DateFormat("EEEE").format(DateTime.now()),
@@ -72,9 +70,9 @@ class BookAppointment extends StatelessWidget {
     DateFormat("EEEE").format(DateTime.now().add(Duration(days: 2))),
   ];
   dynamic date = [
-    DateFormat("d").format(DateTime.now()),
-    DateFormat("d").format(DateTime.now().add(Duration(days: 1))),
-    DateFormat("d").format(DateTime.now().add(Duration(days: 2))),
+    DateFormat("d/M/y").format(DateTime.now()),
+    DateFormat("d/M/y").format(DateTime.now().add(Duration(days: 1))),
+    DateFormat("d/M/y").format(DateTime.now().add(Duration(days: 2))),
   ];
 
   @override
@@ -105,18 +103,32 @@ class BookAppointment extends StatelessWidget {
                         ),
                         ListTile(
                           leading: CircleAvatar(
-                              backgroundColor: Colors.blue,
-                              radius: 27,
-                              child: CircleAvatar(
-                                backgroundColor: Colors.white,
-                                onBackgroundImageError:
-                                    (exception, stackTrace) {},
-                                backgroundImage: NetworkImage(
-                                  department_doctors_profiles +
-                                      routeData['profile'].toString(),
-                                ),
-                                radius: 25,
-                              )),
+                            backgroundColor: Colors.blue,
+                            radius: 27,
+                            child:
+                                //  department_doctors_profiles +
+                                routeData['profile'] != null
+                                    ? CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        onBackgroundImageError:
+                                            (exception, stackTrace) {},
+                                        backgroundImage: NetworkImage(
+                                            department_doctors_profiles +
+                                                routeData['profile']
+                                                    .toString()),
+                                        radius: 25,
+                                      )
+                                    : const CircleAvatar(
+                                        radius: 25,
+                                        backgroundColor: Colors.white,
+                                        child: Center(
+                                            child: Icon(
+                                          Icons.person,
+                                          size: 40,
+                                          color: Colors.grey,
+                                        )),
+                                      ),
+                          ),
                           trailing: TextButton(
                               onPressed: () {
                                 Navigator.pop(context);
@@ -124,10 +136,11 @@ class BookAppointment extends StatelessWidget {
                               child: const Text(
                                 'Change',
                               )),
-                          title: Text(routeData['fees'].toString(),
+                          title: Text(routeData['firstName'].toString(),
                               style: theme.textTheme.headline6!
                                   .copyWith(fontWeight: FontWeight.bold)),
-                          subtitle: Text(box.read('id').toString(),
+                          subtitle: Text(routeData['fees'].toString(),
+                              // box.read('fees').toString(),
                               style: theme.textTheme.subtitle2),
                         ),
 
@@ -161,28 +174,6 @@ class BookAppointment extends StatelessWidget {
                       ],
                     ),
                   ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Card(
-                        elevation: 0,
-                        child: Padding(
-                          padding: card_padding,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('About Doctor',
-                                  style: theme.textTheme.headline6!
-                                      .copyWith(fontWeight: FontWeight.bold)),
-                              Text(routeData['bio'].toString(),
-                                  style: theme.textTheme.subtitle2),
-                            ],
-                          ),
-                        )),
-                  ),
-                  // TimePickerDialog(
-                  //   initialTime: TimeOfDay.now(),
-                  // ),
                   Card(
                     elevation: 0,
                     child: Center(
@@ -205,7 +196,7 @@ class BookAppointment extends StatelessWidget {
                                   child: ChoiceChip(
                                     label: SizedBox(
                                       height: 50,
-                                      width: 70,
+                                      width: 80,
                                       child: Center(
                                           child: Column(
                                         mainAxisAlignment:
@@ -220,7 +211,10 @@ class BookAppointment extends StatelessWidget {
                                     ),
                                     selected: value.value == index,
                                     onSelected: (bool selected) {
+                                      debugPrint(selectedDate);
                                       value.changeTabIndex(index);
+                                      selectedDate =
+                                          date[value.value].toString();
                                     },
                                   )),
                             ),
@@ -290,6 +284,29 @@ class BookAppointment extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
+                    width: double.infinity,
+                    child: Card(
+                        elevation: 0,
+                        child: Padding(
+                          padding: card_padding,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text('About Doctor',
+                                  style: theme.textTheme.headline6!
+                                      .copyWith(fontWeight: FontWeight.bold)),
+                              Text(routeData['bio'].toString(),
+                                  style: theme.textTheme.subtitle2),
+                            ],
+                          ),
+                        )),
+                  ),
+                  // TimePickerDialog(
+                  //   initialTime: TimeOfDay.now(),
+                  // ),
+
+                  SizedBox(
                     height: mediaQuery.height * 0.2,
                   )
                 ],
@@ -319,7 +336,12 @@ class BookAppointment extends StatelessWidget {
                       SizedBox(
                         width: mediaQuery.width * 0.01,
                       ),
-                      Text(value.value.toString(),
+                      // selectedDate = Text(date[value.value]),
+                      // selectedDate =
+                      //     //  year[value.value]
+                      //     //     month[value.value]
+                      //     date[value.value],
+                      Text("${day[value.value]} ${date[value.value]}",
                           style: theme.textTheme.subtitle2)
                     ],
                   ),
@@ -331,7 +353,23 @@ class BookAppointment extends StatelessWidget {
                     onTap: () {
                       // Navigator.pushNamed(
                       //     context, RoutesName.appointmentConfirmation);
-                      saveAppoitment(context);
+                      // saveAppoitment(context);
+                      // DateTime tempDate =  DateFormat().parse(selectedDate);
+
+                      var a = '';
+                      // Jiffy.parse("2019-10-18").yMMMMd;
+                      final scaffold = ScaffoldMessenger.of(context);
+                      scaffold.showSnackBar(
+                        SnackBar(
+                          content: Text(
+                            a.toString(),
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          action: SnackBarAction(
+                              label: 'OK',
+                              onPressed: scaffold.hideCurrentSnackBar),
+                        ),
+                      );
                     },
                   )
                 ],

@@ -150,23 +150,44 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                                         fontWeight:
                                                             FontWeight.bold)),
                                             leading: CircleAvatar(
-                                                backgroundColor: Colors.blue,
-                                                radius: 27,
-                                                child: CircleAvatar(
-                                                  backgroundColor: Colors.white,
-                                                  onBackgroundImageError:
-                                                      (exception,
-                                                          stackTrace) {},
-                                                  backgroundImage: NetworkImage(
-                                                      department_doctors_profiles +
-                                                          snapshot
-                                                              .data!
-                                                              .departments![0]
-                                                              .doctors![index]
-                                                              .profile
-                                                              .toString()),
-                                                  radius: 25,
-                                                )),
+                                              backgroundColor: Colors.blue,
+                                              radius: 27,
+                                              child: snapshot
+                                                          .data!
+                                                          .departments![0]
+                                                          .doctors![index]
+                                                          .profile !=
+                                                      null
+                                                  ? CircleAvatar(
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      onBackgroundImageError:
+                                                          (exception,
+                                                              stackTrace) {},
+                                                      backgroundImage: NetworkImage(
+                                                          department_doctors_profiles +
+                                                              snapshot
+                                                                  .data!
+                                                                  .departments![
+                                                                      0]
+                                                                  .doctors![
+                                                                      index]
+                                                                  .profile
+                                                                  .toString()),
+                                                      radius: 25,
+                                                    )
+                                                  : const CircleAvatar(
+                                                      radius: 25,
+                                                      backgroundColor:
+                                                          Colors.white,
+                                                      child: Center(
+                                                          child: Icon(
+                                                        Icons.person,
+                                                        size: 40,
+                                                        color: Colors.grey,
+                                                      )),
+                                                    ),
+                                            ),
                                             subtitle: Text(
                                                 snapshot.data!.departments![0]
                                                     .doctors![index].lastName

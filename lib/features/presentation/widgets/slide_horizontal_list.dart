@@ -82,6 +82,11 @@ class _SlideHorizontalListState extends State<SlideHorizontalList> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
+                        // CircleAvatar(
+                        //   backgroundImage: NetworkImage(
+                        //     snapshot.data!.departments![index].profile.toString(),
+                        //   ),
+                        // ),
                         Container(
                           height: 50,
                           width: 50,
