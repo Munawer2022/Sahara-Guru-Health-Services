@@ -1,4 +1,3 @@
-import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
@@ -7,13 +6,12 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 
-import 'package:sahara_guru_health_services/core/utils/resources/components/type_text_field_component.dart';
-import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
-
 import '../../../../config/routes/routes_names.dart';
 
+import '../../../../core/utils/constants/padding.dart';
 import '../../../../core/utils/resources/components/button.dart';
-import '../../provider/passwordhide_controller.dart';
+import '../../../../core/utils/resources/components/type_text_field_component.dart';
+import '../provider/login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
   LoginScreen({super.key});
@@ -60,22 +58,6 @@ class _LoginScreenState extends State<LoginScreen> {
         box.write('id', data['user']['id']);
         box.write('first_name', data['user']['first_name']);
         box.write('last_name', data['user']['last_name']);
-
-        if (kDebugMode) {
-          print(data['token']);
-        }
-        if (kDebugMode) {
-          print(data['id']);
-        }
-        if (kDebugMode) {
-          print(data['first_name']);
-        }
-        if (kDebugMode) {
-          print(data['last_name']);
-        }
-        if (kDebugMode) {
-          print('Login successfully');
-        }
       } else {
         setState(() {
           loading = false;
@@ -132,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(
                         height: mediaQuery.height * 0.02,
                       ),
-                      Consumer<PasswordHideController>(
+                      Consumer<LoginController>(
                         builder: (context, value, child) {
                           print('hideicon');
                           return TextFormField(

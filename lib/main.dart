@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/config/themes.dart';
@@ -8,13 +6,22 @@ import 'config/routes/routes.dart';
 import 'config/routes/routes_names.dart';
 import 'features/presentation/provider/appointments_controller.dart';
 import 'features/presentation/provider/bookappointment_controller.dart';
-import 'features/presentation/provider/passwordhide_controller.dart';
+import 'features/auth/presentation/provider/login_controller.dart';
 import 'features/presentation/provider/theme_controller.dart';
 import 'package:get_storage/get_storage.dart';
 
+// GetIt getIt = GetIt.instance;
+
 void main() async {
   await GetStorage.init();
-  runApp(const MyApp());
+  // getIt.registerLazySingleton<UsersRepository>(() => RestApiUsersRepository());
+  runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => LoginController()),
+    ChangeNotifierProvider(create: (_) => LandingPageController()),
+    ChangeNotifierProvider(create: (_) => BookAppointmentController()),
+    ChangeNotifierProvider(create: (_) => ThemeController()),
+    ChangeNotifierProvider(create: (_) => AppointmentController()),
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -23,21 +30,12 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(create: (_) => PasswordHideController()),
-        ChangeNotifierProvider(create: (_) => LandingPageController()),
-        ChangeNotifierProvider(create: (_) => BookAppointmentController()),
-        ChangeNotifierProvider(create: (_) => ThemeController()),
-        ChangeNotifierProvider(create: (_) => AppointmentController()),
-      ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        darkTheme: Themes.dark,
-        theme: Themes.light,
-        initialRoute: RoutesName.splashScreen,
-        onGenerateRoute: Routes.generateRoute,
-      ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      darkTheme: Themes.dark,
+      theme: Themes.light,
+      initialRoute: RoutesName.splashScreen,
+      onGenerateRoute: Routes.generateRoute,
     );
   }
 }

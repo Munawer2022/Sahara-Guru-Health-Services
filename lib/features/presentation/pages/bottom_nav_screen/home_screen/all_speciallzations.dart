@@ -10,6 +10,8 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/sear
 import 'package:sahara_guru_health_services/features/presentation/pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
 
 import '../../../../../config/routes/routes_names.dart';
+import '../../../../../core/utils/constants/app_url.dart';
+import '../../../../data/repositories/get_list_doctor_respository.dart';
 import '../../../widgets/slide_horizontal_list.dart';
 
 class AllSpeciallzations extends StatefulWidget {
@@ -23,72 +25,49 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
   TextEditingController searchTermController = TextEditingController();
 
   final box = GetStorage();
-
+  List<SearchDoctor> getsearchdoctorlist = [];
   Future<List<SearchDoctor>> getsearchdoctor() async {
-    var data;
     try {
       Response response = await get(
         Uri.parse(
-            'https://saharadigitalhealth.in/sahara_digital_health/public/api/search/department/doctors'),
+            'https://saharadigitalhealth.in/sahara_digital_health/public/api/search/department/doctors?searchTerm=$searchTermController'),
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer ${box.read('token')}',
-          "searchTerm": searchTermController.text,
+          // "searchTerm": searchTermController.text,
         },
       );
 
-      print(response.body.toString());
+      // print(response.body.toString());
       if (response.statusCode == 200) {
-        data = jsonDecode(response.body.toString());
-        if (kDebugMode) {
-          print(data);
+        var data = jsonDecode(response.body.toString());
+
+        for (Map i in data) {
+          // print(i['name']);
+          getsearchdoctorlist.add(SearchDoctor.fromJson(i));
         }
-        return data;
+        return getsearchdoctorlist;
       }
     } catch (e) {
       if (kDebugMode) {
         print(e.toString());
       }
     }
-    return data;
+    return getsearchdoctorlist;
   }
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    searchTermController.addListener(() {});
-    getsearchdoctor();
+    searchTermController.addListener(() {
+      getsearchdoctor();
+    });
   }
 
-  Future<Getlistdoctor> getlistdoctor() async {
-    try {
-      Response response = await get(
-        Uri.parse(
-            'https://saharadigitalhealth.in/sahara_digital_health/public/api/department/doctors/list'),
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer ${box.read('token')}'
-        },
-      );
-      var data = jsonDecode(response.body.toString());
-      if (response.statusCode == 200) {
-        // if (kDebugMode) {
-        //   print(data);
-        // }
+  GetListDoctorRespository demoRespository = GetListDoctorRespository();
 
-        return Getlistdoctor.fromJson(data);
-      } else {
-        return Getlistdoctor.fromJson(data);
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print(e.toString());
-      }
-    }
-    throw {};
-  }
-
+  String? name;
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -112,86 +91,158 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
                         'Doctors, hospitals, specialties, services, diseases'),
               ),
             ),
-            FutureBuilder(
-                future: getsearchdoctor(),
-                builder: (context, AsyncSnapshot<List<SearchDoctor>> snapshot) {
-                  if (snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator());
-                  } else {
-                    if (searchTermController.text.isEmpty) {
-                      return Column(
-                        mainAxisSize: MainAxisSize.min,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: screen_padding,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text('Recent searches',
-                                    style: theme.textTheme.subtitle2),
-                                TextButton(
-                                    onPressed: () {},
-                                    child: const Text(
-                                      'Clear all',
-                                    ))
-                              ],
-                            ),
-                          ),
-                          SlideHorizontalList(),
-                          SizedBox(
-                            height: mediaQuery.height * 0.02,
-                          ),
-                          Padding(
-                            padding: screen_padding,
-                            child: Text('Search by specialty',
-                                style: theme.textTheme.subtitle2),
-                          ),
-                          FutureBuilder<Getlistdoctor>(
-                              future: getlistdoctor(),
-                              builder: (context, snapshot) {
-                                if (snapshot.hasData) {
-                                  return GridView.builder(
-                                    physics:
-                                        const NeverScrollableScrollPhysics(),
-                                    shrinkWrap: true,
-                                    gridDelegate:
-                                        const SliverGridDelegateWithFixedCrossAxisCount(
-                                            childAspectRatio: 2.8,
-                                            crossAxisCount: 2),
-                                    itemBuilder: (_, index) => Card(
-                                      elevation: 0,
-                                      child: Center(
-                                        child: ListTile(
-                                          // onTap: () {},
-                                          title: Text(
-                                              snapshot.data!.departments![index]
-                                                  .name
-                                                  .toString(),
-                                              style: theme.textTheme.subtitle2),
-                                          leading: const CircleAvatar(),
-                                        ),
-                                      ),
-                                    ),
-                                    itemCount:
-                                        snapshot.data!.departments!.length,
-                                  );
-                                }
-                                return Container();
-                              })
-                        ],
-                      );
-                    } else {
-                      ListView.builder(
-                          itemCount: snapshot.data?.length,
-                          itemBuilder: (context, index) {
-                            return Text(snapshot.data![index].name.toString());
-                          });
-                    }
-                  }
-                  return Container();
-                }),
+
+            Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: screen_padding,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text('Recent searches', style: theme.textTheme.subtitle2),
+                      TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            'Clear all',
+                          ))
+                    ],
+                  ),
+                ),
+                SlideHorizontalList(),
+                SizedBox(
+                  height: mediaQuery.height * 0.02,
+                ),
+                Padding(
+                  padding: screen_padding,
+                  child: Text('Search by specialty',
+                      style: theme.textTheme.subtitle2),
+                ),
+                FutureBuilder<Getlistdoctor>(
+                    future: demoRespository.getlistdoctor(),
+                    builder: (context, snapshot) {
+                      if (snapshot.hasData) {
+                        return GridView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  childAspectRatio: 2.8, crossAxisCount: 2),
+                          itemBuilder: (_, index) {
+                            name = snapshot.data?.departments![index].name;
+
+                            return Card(
+                              elevation: 0,
+                              child: Center(
+                                child: ListTile(
+                                  // onTap: () {},
+                                  title: Text(
+                                      snapshot.data!.departments![index].name
+                                          .toString(),
+                                      style: theme.textTheme.subtitle2),
+                                  leading: const CircleAvatar(),
+                                ),
+                              ),
+                            );
+                          },
+                          itemCount: snapshot.data!.departments!.length,
+                        );
+                      }
+                      return Container();
+                    })
+              ],
+            ),
+
+            // FutureBuilder(
+            //     future: getsearchdoctor(),
+            //     builder: (context, AsyncSnapshot<List<SearchDoctor>> snapshot) {
+            //       if (!snapshot.hasData) {
+            //         return Center(child: CircularProgressIndicator());
+            //       } else {
+            //         if (searchTermController.text.isEmpty) {
+            //           return Column(
+            //             mainAxisSize: MainAxisSize.min,
+            //             crossAxisAlignment: CrossAxisAlignment.start,
+            //             mainAxisAlignment: MainAxisAlignment.start,
+            //             children: [
+            //               Padding(
+            //                 padding: screen_padding,
+            //                 child: Row(
+            //                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //                   children: [
+            //                     Text('Recent searches',
+            //                         style: theme.textTheme.subtitle2),
+            //                     TextButton(
+            //                         onPressed: () {},
+            //                         child: const Text(
+            //                           'Clear all',
+            //                         ))
+            //                   ],
+            //                 ),
+            //               ),
+            //               SlideHorizontalList(),
+            //               SizedBox(
+            //                 height: mediaQuery.height * 0.02,
+            //               ),
+            //               Padding(
+            //                 padding: screen_padding,
+            //                 child: Text('Search by specialty',
+            //                     style: theme.textTheme.subtitle2),
+            //               ),
+            //               FutureBuilder<Getlistdoctor>(
+            //                   future: getlistdoctor(),
+            //                   builder: (context, snapshot) {
+            //                     if (snapshot.hasData) {
+            //                       return GridView.builder(
+            //                         physics:
+            //                             const NeverScrollableScrollPhysics(),
+            //                         shrinkWrap: true,
+            //                         gridDelegate:
+            //                             const SliverGridDelegateWithFixedCrossAxisCount(
+            //                                 childAspectRatio: 2.8,
+            //                                 crossAxisCount: 2),
+            //                         itemBuilder: (_, index) {
+            //                           name = snapshot
+            //                               .data!.departments![index].name
+            //                               .toString();
+            //                           return Card(
+            //                             elevation: 0,
+            //                             child: Center(
+            //                               child: ListTile(
+            //                                 // onTap: () {},
+            //                                 title: Text(
+            //                                     snapshot.data!
+            //                                         .departments![index].name
+            //                                         .toString(),
+            //                                     style:
+            //                                         theme.textTheme.subtitle2),
+            //                                 leading: const CircleAvatar(),
+            //                               ),
+            //                             ),
+            //                           );
+            //                         },
+            //                         itemCount:
+            //                             snapshot.data!.departments!.length,
+            //                       );
+            //                     }
+            //                     return Container();
+            //                   })
+            //             ],
+            //           );
+            //         } else if (name!
+            //             .toLowerCase()
+            //             .contains(searchTermController.text.toLowerCase())) {
+            //           return ListView.builder(
+            //               itemCount: snapshot.data?.length,
+            //               itemBuilder: (context, index) {
+            //                 return Text(snapshot.data![index].name.toString());
+            //               });
+            //         }
+            //       }
+            //       return Container();
+            //     }),
           ],
         ),
       ),
@@ -209,10 +260,4 @@ class SearchDoctor {
     name = json['name'];
     departmentName = json['departmentName'];
   }
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = Map<String, dynamic>();
-  //   data['name'] = this.name;
-  //   data['departmentName'] = this.departmentName;
-  //   return data;
-  // }
 }

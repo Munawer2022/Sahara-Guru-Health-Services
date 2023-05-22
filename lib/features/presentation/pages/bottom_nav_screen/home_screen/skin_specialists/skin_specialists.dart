@@ -11,6 +11,8 @@ import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/features/presentation/widgets/slide_horizontal_list.dart';
 
 import '../../../../../../config/routes/routes_names.dart';
+import '../../../../../../core/utils/constants/app_url.dart';
+import '../../../../../data/repositories/get_list_doctor_respository.dart';
 import 'book_appointment/get_list_doctor_model.dart';
 
 class SkinSpecialists extends StatefulWidget {
@@ -22,21 +24,13 @@ class SkinSpecialists extends StatefulWidget {
 }
 
 class _SkinSpecialistsState extends State<SkinSpecialists> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    getlistdoctor();
-  }
-
   final box = GetStorage();
 
   Future<Getlistdoctor> getlistdoctor() async {
     try {
       Response response = await get(
         Uri.parse(
-            'https://saharadigitalhealth.in/sahara_digital_health/public/api/department/doctors/list?departmentId=' +
-                widget.data['department_id'].toString()),
+            'https://saharadigitalhealth.in/sahara_digital_health/public/api/department/doctors/list?departmentId=${widget.data['department_id'].toString()}'),
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer ${box.read('token')}'
@@ -48,8 +42,6 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
           print(data);
         }
 
-        return Getlistdoctor.fromJson(data);
-      } else {
         return Getlistdoctor.fromJson(data);
       }
     } catch (e) {

@@ -1,9 +1,8 @@
-
+import 'package:flutter/cupertino.dart';
 
 abstract class BaseApiServices {
+  // Future<dynamic> getGetApiResponse(String url);
 
-  Future<dynamic> getGetApiResponse(String url);
-
-  Future<dynamic> getPostApiResponse(String url , dynamic data);
-
+  Future<dynamic> getLoginPostApiResponse(
+      BuildContext context, String url, dynamic data);
 }
