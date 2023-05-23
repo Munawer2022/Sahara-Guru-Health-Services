@@ -1,18 +1,13 @@
 import 'dart:convert';
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/search_text_field_component.dart';
-import 'package:sahara_guru_health_services/features/presentation/pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
 
-import '../../../../../config/routes/routes_names.dart';
-import '../../../../../core/utils/constants/app_url.dart';
 import '../../../../data/repositories/get_list_doctor_respository.dart';
-import '../../../widgets/slide_horizontal_list.dart';
 
 class AllSpeciallzations extends StatefulWidget {
   AllSpeciallzations({super.key});
@@ -170,6 +165,7 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
                                 //   },
                                 //   child:
                                 ListTile(
+                                  onTap: () {},
                                   title: Text(getsearchdoctorlist[index]['name']
                                       .toString()),
                                 ),

@@ -4,6 +4,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
+import 'package:sahara_guru_health_services/core/utils/utils.dart';
 import 'package:sahara_guru_health_services/features/presentation/widgets/slide_horizontal_list.dart';
 
 import '../../../../../config/routes/routes_names.dart';
@@ -28,11 +29,12 @@ class HomeScreen extends StatelessWidget {
               onPressed: () {
                 box.remove('token').then((value) {
                   Navigator.pushNamed(context, RoutesName.loginscreen);
+                  Utils().snackBarMessage('Logged out successfully', context);
                 }).onError((error, stackTrace) {
-                  throw {error};
+                  Utils().errorSnackBarMessage(error.toString(), context);
                 });
               },
-              icon: Icon(Icons.logout_rounded))
+              icon: const Icon(Icons.logout_rounded))
         ],
         // actions: [
         //   Consumer<ThemeController>(
