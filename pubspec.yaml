@@ -34,9 +34,9 @@ dependencies:
   flutter_otp_text_field:
   provider:
   http:
-  fluttertoast:
   get_storage: ^2.1.1
   intl:
+  get_it: ^7.6.0
   
 
 

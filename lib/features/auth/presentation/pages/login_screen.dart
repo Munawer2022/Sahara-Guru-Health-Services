@@ -1,12 +1,6 @@
-import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:http/http.dart';
-import 'package:provider/provider.dart';
 
-import '../../../../config/routes/routes_names.dart';
+import 'package:provider/provider.dart';
 
 import '../../../../core/utils/constants/padding.dart';
 import '../../../../core/utils/resources/components/button.dart';
@@ -21,60 +15,23 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool loading = false;
-
   final _formKey = GlobalKey<FormState>();
 
   TextEditingController emailController = TextEditingController();
-
   TextEditingController passwordController = TextEditingController();
 
-  final box = GetStorage();
-
-  void login(BuildContext context) async {
-    setState(() {
-      loading = true;
-    });
-    try {
-      Response response = await post(
-          Uri.parse(
-              'https://saharadigitalhealth.in/sahara_digital_health/public/api/login'),
-          headers: {
-            'Accept': 'application/json',
-          },
-          body: {
-            'email': emailController.text,
-            'password': passwordController.text,
-          });
-
-      if (response.statusCode == 200) {
-        var data = jsonDecode(response.body.toString());
-        setState(() {
-          loading = true;
-        });
-
-        Navigator.pushNamed(context, RoutesName.bottomnavdashboard);
-        box.write('token', data['token']);
-        box.write('id', data['user']['id']);
-        box.write('first_name', data['user']['first_name']);
-        box.write('last_name', data['user']['last_name']);
-      } else {
-        setState(() {
-          loading = false;
-        });
-        if (kDebugMode) {
-          print('failed');
-        }
-      }
-    } catch (e) {
-      if (kDebugMode) {
-        print(e.toString());
-      }
-    }
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    debugPrint('login');
+    final loginController = Provider.of<LoginController>(context);
+
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
     return Scaffold(
@@ -116,19 +73,15 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       Consumer<LoginController>(
                         builder: (context, value, child) {
-                          print('hideicon');
                           return TextFormField(
                             style: theme.textTheme.subtitle2,
                             textInputAction: TextInputAction.done,
                             validator: (value) {
-                              if (value!.isEmpty
-                                  //  ||
-                                  //     !RegExp(r'^[a-zA-Z0-9]{6,16}')
-                                  //         .hasMatch(value)
-                                  ) {
+                              if (value!.isEmpty) {
                                 return 'Enter Password';
-                              } else
-                                null;
+                              } else {
+                                return null;
+                              }
                             },
                             controller: passwordController,
                             keyboardType: TextInputType.text,
@@ -168,11 +121,13 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: mediaQuery.height * 0.01,
                 ),
                 Button(
-                    loading: loading,
+                    loading: loginController.loading,
                     title: 'Continue',
                     onTap: () {
                       if (_formKey.currentState!.validate()) {
-                        login(context);
+                        // login(context);
+                        loginController.login(
+                            context, emailController, passwordController);
                       }
                     }),
               ],
@@ -183,3 +138,51 @@ class _LoginScreenState extends State<LoginScreen> {
     );
   }
 }
+ // bool loading = false;
+  // TextEditingController emailController = TextEditingController();
+
+  // TextEditingController passwordController = TextEditingController();
+
+  // final box = GetStorage();
+
+  // void login(BuildContext context) async {
+  //   setState(() {
+  //     loading = true;
+  //   });
+  //   try {
+  //     Response response = await post(
+  //         Uri.parse(
+  //             'https://saharadigitalhealth.in/sahara_digital_health/public/api/login'),
+  //         headers: {
+  //           'Accept': 'application/json',
+  //         },
+  //         body: {
+  //           'email': emailController.text,
+  //           'password': passwordController.text,
+  //         });
+
+  //     if (response.statusCode == 200) {
+  //       var data = jsonDecode(response.body.toString());
+  //       setState(() {
+  //         loading = true;
+  //       });
+
+  //       Navigator.pushNamed(context, RoutesName.bottomnavdashboard);
+  //       box.write('token', data['token']);
+  //       box.write('id', data['user']['id']);
+  //       box.write('first_name', data['user']['first_name']);
+  //       box.write('last_name', data['user']['last_name']);
+  //     } else {
+  //       setState(() {
+  //         loading = false;
+  //       });
+  //       if (kDebugMode) {
+  //         print('failed');
+  //       }
+  //     }
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       print(e.toString());
+  //     }
+  //   }
+  // }

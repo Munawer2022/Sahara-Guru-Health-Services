@@ -1,15 +1,33 @@
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 
 class Utils {
-  void toastMessage(String message) {
-    Fluttertoast.showToast(
-        msg: message,
-        toastLength: Toast.LENGTH_SHORT,
-        gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
+  void snackBarMessage(String message, BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.green,
+        content: Text(message.toString()),
+        action: SnackBarAction(
+          textColor: Colors.white,
+          label: 'OK',
+          onPressed: () {},
+          // onPressed: scaffold.hideCurrentSnackBar
+        ),
+      ),
+    );
+  }
+
+  void errorSnackBarMessage(String message, BuildContext context) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
         backgroundColor: Colors.red,
-        textColor: Colors.white,
-        fontSize: 16.0);
+        content: Text(message.toString()),
+        action: SnackBarAction(
+          textColor: Colors.white,
+          label: 'OK',
+          onPressed: () {},
+          // onPressed: scaffold.hideCurrentSnackBar
+        ),
+      ),
+    );
   }
 }

@@ -1,20 +1,15 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 
-import '../../config/routes/routes_names.dart';
 import '../error/app_excaptions.dart';
 import 'BaseApiServices.dart';
 
 class NetworkApiService extends BaseApiServices {
-  final box = GetStorage();
   @override
-  Future getLoginPostApiResponse(
-      BuildContext context, String url, dynamic data) async {
+  Future getLoginPostApiResponse(String url, dynamic data) async {
     dynamic responseJson;
 
     try {
@@ -25,15 +20,7 @@ class NetworkApiService extends BaseApiServices {
           'Accept': 'application/json',
         },
       ).timeout(const Duration(seconds: 10));
-      if (response.statusCode == 200) {
-        Navigator.pushNamed(context, RoutesName.bottomnavdashboard);
-        box.write('token', data['token']);
-        box.write('id', data['user']['id']);
-        box.write('first_name', data['user']['first_name']);
-        box.write('last_name', data['user']['last_name']);
-      } else {
-        return const Text('error');
-      }
+
       responseJson = returnResponse(response);
     } on SocketException {
       throw FetchDataException('No Internet Connection');
@@ -60,8 +47,9 @@ class NetworkApiService extends BaseApiServices {
     switch (response.statusCode) {
       case 200:
         dynamic responseJson = jsonDecode(response.body);
+
         return responseJson;
-      case 400:
+      case 401:
         throw BadRequestException(response.body.toString());
       case 500:
       case 404:
