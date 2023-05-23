@@ -13,8 +13,8 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/app_
 
 import 'package:sahara_guru_health_services/core/utils/resources/components/button.dart';
 
-import '../../../../../../../config/routes/routes_names.dart';
-import '../../../../../../../core/utils/constants/images.dart';
+import '../../../../../../../../config/routes/routes_names.dart';
+import '../../../../../../../../core/utils/constants/images.dart';
 import '../../../../../provider/bookappointment_controller.dart';
 
 class BookAppointment extends StatelessWidget {

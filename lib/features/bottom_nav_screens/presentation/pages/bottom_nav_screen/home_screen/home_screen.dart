@@ -5,12 +5,12 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/app_
 
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/utils.dart';
-import 'package:sahara_guru_health_services/features/presentation/widgets/slide_horizontal_list.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/widgets/slide_horizontal_list.dart';
 
-import '../../../../../config/routes/routes_names.dart';
+import '../../../../../../config/routes/routes_names.dart';
 
-import '../../../../../core/utils/resources/components/button.dart';
-import '../../../../../core/utils/resources/components/search_text_field_component.dart';
+import '../../../../../../core/utils/resources/components/button.dart';
+import '../../../../../../core/utils/resources/components/search_text_field_component.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -36,19 +36,6 @@ class HomeScreen extends StatelessWidget {
               },
               icon: const Icon(Icons.logout_rounded))
         ],
-        // actions: [
-        //   Consumer<ThemeController>(
-        //     builder: (context, value, child) {
-        //       debugPrint('toggleDarkMode');
-
-        //       return IconButton(
-        //           icon: Icon(
-        //             value.isDarkMode ? Icons.dark_mode : Icons.light_mode,
-        //           ),
-        //           onPressed: () => value.toggleDarkMode());
-        //     },
-        //   ),
-        // ],
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -89,14 +76,7 @@ class HomeScreen extends StatelessWidget {
                             style: theme.textTheme.headline6,
                           ),
                         ),
-                        SlideHorizontalList(
-                            // ontap: () {
-                            //   Navigator.pushNamed(
-                            //     context,
-                            //     RoutesName.skinspecialists,
-                            //   );
-                            // },
-                            ),
+                        SlideHorizontalList(),
                         Padding(
                             padding: card_padding,
                             child: Button(

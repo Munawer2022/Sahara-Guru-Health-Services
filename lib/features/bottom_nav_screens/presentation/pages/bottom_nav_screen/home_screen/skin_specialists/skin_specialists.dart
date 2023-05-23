@@ -8,10 +8,10 @@ import 'package:sahara_guru_health_services/core/utils/constants/images.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/search_text_field_component.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
-import 'package:sahara_guru_health_services/features/presentation/widgets/slide_horizontal_list.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/widgets/slide_horizontal_list.dart';
 
-import '../../../../../../config/routes/routes_names.dart';
-import '../../../../../../core/utils/constants/app_url.dart';
+import '../../../../../../../config/routes/routes_names.dart';
+import '../../../../../../../core/utils/constants/app_url.dart';
 import '../../../../../data/repositories/get_list_doctor_respository.dart';
 import 'book_appointment/get_list_doctor_model.dart';
 

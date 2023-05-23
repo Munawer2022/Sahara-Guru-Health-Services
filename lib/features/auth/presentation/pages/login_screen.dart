@@ -8,7 +8,7 @@ import '../../../../core/utils/resources/components/type_text_field_component.da
 import '../provider/login_controller.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();

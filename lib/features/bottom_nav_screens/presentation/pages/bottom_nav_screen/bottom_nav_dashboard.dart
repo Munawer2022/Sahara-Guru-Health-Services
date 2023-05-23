@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sahara_guru_health_services/features/presentation/pages/bottom_nav_screen/appointments/appointments.dart';
 
-import '../../provider/landingpage_controller.dart';
+import '../../provider/bottom_nav_dashboard_controller.dart';
 import 'appointments/my_appointment.dart';
 import 'home_screen/home_screen.dart';
 
 class BottomNavDashboard extends StatelessWidget {
-  BottomNavDashboard({Key? key}) : super(key: key);
+  const BottomNavDashboard({Key? key}) : super(key: key);
 
   static final List<Widget> _pages = <Widget>[
     HomeScreen(),
@@ -18,9 +17,9 @@ class BottomNavDashboard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('BottomNavDashboard');
+    debugPrint('BottomNavDashboard');
 
-    return Consumer<LandingPageController>(
+    return Consumer<BottomNavDashboardController>(
       builder: (context, value, child) {
         return Scaffold(
           bottomNavigationBar: NavigationBar(

@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 
-import '../../../core/utils/constants/app_url.dart';
+import '../../../../core/utils/constants/app_url.dart';
 import '../../presentation/pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
 
 class GetListDoctorRespository {
