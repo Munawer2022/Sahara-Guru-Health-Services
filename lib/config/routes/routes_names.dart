@@ -1,5 +1,5 @@
 class RoutesName {
-  static const String allspeciallzations = 'allspeciallzations';
+  static const String searchdoctor = 'searchdoctor';
 
   static const String skinspecialists = 'skinspecialists';
   static const String loginscreen = 'loginscreen';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/colors.dart';
+import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 
 class TypeTextFieldComponent extends StatelessWidget {
   final textInputAction;
@@ -34,7 +35,10 @@ class TypeTextFieldComponent extends StatelessWidget {
       keyboardType: keyboardType,
       decoration: InputDecoration(
         contentPadding: const EdgeInsets.all(10),
-        border: const OutlineInputBorder(),
+        border: OutlineInputBorder(
+          borderRadius: borderRadius
+        ),
+        // border: const OutlineInputBorder(),
         suffixIcon: suffixIcon,
         prefixIcon: prefixIcon,
         hintStyle: theme.textTheme.subtitle2!.copyWith(color: Colors.grey),
@@ -45,3 +49,5 @@ class TypeTextFieldComponent extends StatelessWidget {
     );
   }
 }
+
+

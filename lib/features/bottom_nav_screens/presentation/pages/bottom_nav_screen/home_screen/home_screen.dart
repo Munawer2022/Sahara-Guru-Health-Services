@@ -22,6 +22,12 @@ class HomeScreen extends StatelessWidget {
     var theme = Theme.of(context);
     return Scaffold(
       appBar: MyAppBarWidget(
+        readOnly: true,
+        ontap: () {
+          Navigator.pushNamed(context, RoutesName.searchdoctor);
+        },
+        bottom: true,
+        bottomText: 'Find Dectors, Specialities, Disease and Hospital',
         arrow_back: false,
         title: 'Sara Health',
         actions: [
@@ -34,7 +40,10 @@ class HomeScreen extends StatelessWidget {
                   Utils().errorSnackBarMessage(error.toString(), context);
                 });
               },
-              icon: const Icon(Icons.logout_rounded))
+              icon: const Icon(
+                Icons.logout_rounded,
+                color: Colors.white,
+              ))
         ],
       ),
       body: SingleChildScrollView(
@@ -42,27 +51,28 @@ class HomeScreen extends StatelessWidget {
           padding: screen_padding,
           child: Column(
             children: [
-              Card(
-                elevation: 0,
-                child: Padding(
-                  padding: card_padding,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Search for Dector',
-                        style: theme.textTheme.headline6,
-                      ),
-                      SizedBox(
-                        height: mediaQuery.height * 0.02,
-                      ),
-                      const SearchTextFieldComponent(
-                          text: 'Find Dectors, Specialities, Disease and...'),
-                    ],
-                  ),
-                ),
-              ),
+              // Card(
+              //   elevation: 0,
+              //   child: Padding(
+              //     padding: card_padding,
+              //     child: Column(
+              //       mainAxisAlignment: MainAxisAlignment.start,
+              //       crossAxisAlignment: CrossAxisAlignment.start,
+              //       children: [
+              //         Text(
+              //           'Search for Dector',
+              //           style: theme.textTheme.headline6,
+              //         ),
+              //         SizedBox(
+              //           height: mediaQuery.height * 0.02,
+              //         ),
+              //         const SearchTextFieldComponent(
+              //             text:
+              //                 'Find Dectors, Specialities, Disease and Hospital'),
+              //       ],
+              //     ),
+              //   ),
+              // ),
               Card(
                   elevation: 0,
                   child: Column(
@@ -81,8 +91,8 @@ class HomeScreen extends StatelessWidget {
                             padding: card_padding,
                             child: Button(
                               onTap: () {
-                                Navigator.pushNamed(
-                                    context, RoutesName.allspeciallzations);
+                                // Navigator.pushNamed(
+                                //     context, RoutesName.searchdoctor);
                               },
                               title: 'All Speciallzations',
                             )),

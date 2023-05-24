@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 import '../../../../core/utils/constants/app_url.dart';
 import '../../presentation/pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
 
-class GetListDoctorRespository {
+class ListDoctorRespository {
   final box = GetStorage();
 
   Future<Getlistdoctor> getlistdoctor() async {

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../../../core/utils/constants/padding.dart';
+import '../../../../core/utils/resources/components/app_bar.dart';
 import '../../../../core/utils/resources/components/button.dart';
 import '../../../../core/utils/resources/components/type_text_field_component.dart';
 import '../provider/login_controller.dart';
@@ -88,7 +89,9 @@ class _LoginScreenState extends State<LoginScreen> {
                             obscureText: value.isVisible,
                             decoration: InputDecoration(
                               contentPadding: const EdgeInsets.all(10),
-                              border: const OutlineInputBorder(),
+                              border: OutlineInputBorder(
+                                  borderRadius: borderRadius),
+                              // border: const OutlineInputBorder(),
                               suffixIcon: IconButton(
                                 onPressed: () {
                                   value.hideicon();

@@ -1,30 +1,43 @@
 import 'package:flutter/material.dart';
+import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
+import 'package:sahara_guru_health_services/core/utils/resources/components/type_text_field_component.dart';
 
 class SearchTextFieldComponent extends StatelessWidget {
   final text;
   final controller;
+  final ontap;
+  final readOnly;
   const SearchTextFieldComponent({
     super.key,
     required this.text,
     this.controller,
+    this.ontap,
+    this.readOnly,
   });
 
   @override
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return TextFormField(
-      controller: controller,
-      style: theme.textTheme.subtitle2,
-      decoration: InputDecoration(
-        // filled: false,
-        // enabledBorder: InputBorder.none,
-        contentPadding: EdgeInsets.all(10),
-        border: OutlineInputBorder(),
-        // prefixIcon: Icon(Icons.search),
-        // hintStyle: theme.textTheme.subtitle2,
-        hintStyle: theme.textTheme.subtitle2!.copyWith(color: Colors.grey),
-        hintText: text,
-      ),
-    );
+        readOnly: readOnly,
+        onTap: ontap,
+        controller: controller,
+        style: theme.textTheme.subtitle2,
+        decoration: InputDecoration(
+          fillColor: Colors.white,
+          filled: true,
+          // enabledBorder: InputBorder.none,
+          contentPadding: const EdgeInsets.all(10),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(color: Colors.white),
+            borderRadius: borderRadius,
+          ),
+
+          // border: OutlineInputBorder(),
+          prefixIcon: const Icon(Icons.search),
+          // hintStyle: theme.textTheme.subtitle2,
+          hintStyle: theme.textTheme.subtitle2!.copyWith(color: Colors.grey),
+          hintText: text,
+        ));
   }
 }

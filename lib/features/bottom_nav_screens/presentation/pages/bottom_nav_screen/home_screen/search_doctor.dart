@@ -3,20 +3,19 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
-import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
+
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
-import 'package:sahara_guru_health_services/core/utils/resources/components/search_text_field_component.dart';
 
-import '../../../../data/repositories/get_list_doctor_respository.dart';
+import '../../../../data/repositories/list_doctor_respository.dart';
 
-class AllSpeciallzations extends StatefulWidget {
-  const AllSpeciallzations({super.key});
+class SearchDoctor extends StatefulWidget {
+  const SearchDoctor({super.key});
 
   @override
-  State<AllSpeciallzations> createState() => _AllSpeciallzationsState();
+  State<SearchDoctor> createState() => _SearchDoctorState();
 }
 
-class _AllSpeciallzationsState extends State<AllSpeciallzations> {
+class _SearchDoctorState extends State<SearchDoctor> {
   TextEditingController searchTermController = TextEditingController();
 
   final box = GetStorage();
@@ -36,7 +35,7 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
         getsearchdoctorlist = jsonDecode(response.body.toString());
       });
     } else {
-      throw Exception('failed');
+      Exception('failed');
     }
   }
 
@@ -48,7 +47,7 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
     });
   }
 
-  GetListDoctorRespository demoRespository = GetListDoctorRespository();
+  ListDoctorRespository demoRespository = ListDoctorRespository();
   bool _isShow = true;
   @override
   Widget build(BuildContext context) {
@@ -56,23 +55,27 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
     var theme = Theme.of(context);
     debugPrint('object');
     return Scaffold(
-      appBar: const MyAppBarWidget(
+      appBar: MyAppBarWidget(
+        readOnly: false,
+        controller: searchTermController,
+        bottom: true,
+        bottomText: 'Doctors, hospitals, specialties, services, diseases',
         arrow_back: true,
         title: 'Find a Doctor',
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Card(
-              elevation: 0,
-              child: Padding(
-                padding: card_padding,
-                child: SearchTextFieldComponent(
-                    controller: searchTermController,
-                    text:
-                        'Doctors, hospitals, specialties, services, diseases'),
-              ),
-            ),
+            // Card(
+            //   elevation: 0,
+            //   child: Padding(
+            //     padding: card_padding,
+            //     child: SearchTextFieldComponent(
+            //         controller: searchTermController,
+            //         text:
+            //             'Doctors, hospitals, specialties, services, diseases'),
+            //   ),
+            // ),
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -157,8 +160,7 @@ class _AllSpeciallzationsState extends State<AllSpeciallzations> {
                               const Divider()
                             ],
                           );
-                        },
-                      ),
+                        }),
               ],
             ),
           ],

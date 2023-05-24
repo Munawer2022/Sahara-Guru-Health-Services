@@ -5,12 +5,15 @@ import 'package:sahara_guru_health_services/features/bottom_nav_screens/presenta
 import 'config/routes/routes.dart';
 import 'config/routes/routes_names.dart';
 
+import 'features/bottom_nav_screens/presentation/pages/bottom_nav_screen/home_screen/search_doctor.dart';
 import 'features/bottom_nav_screens/presentation/provider/appointments_controller.dart';
 import 'features/bottom_nav_screens/presentation/provider/bookappointment_controller.dart';
 import 'features/auth/presentation/provider/login_controller.dart';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:get_it/get_it.dart';
+
+import 'features/bottom_nav_screens/presentation/provider/search_doctor_controller.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -22,6 +25,7 @@ void main() async {
     ChangeNotifierProvider(create: (_) => BottomNavDashboardController()),
     ChangeNotifierProvider(create: (_) => BookAppointmentController()),
     ChangeNotifierProvider(create: (_) => AppointmentController()),
+    // ChangeNotifierProvider(create: (_) => SearchDoctorController()),
   ], child: const MyApp()));
 }
 

@@ -7,7 +7,7 @@ class LoginRespository {
   Future<dynamic> loginApi(dynamic data) async {
     try {
       dynamic response =
-          await _apiService.getLoginPostApiResponse(AppUrl.login, data);
+          await _apiService.loginPostApiResponse(AppUrl.login, data);
       return response;
     } catch (e) {
       rethrow;

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../config/routes/routes_names.dart';
 import '../../../../core/utils/constants/app_url.dart';
-import '../../data/repositories/get_list_doctor_respository.dart';
+import '../../data/repositories/list_doctor_respository.dart';
 import '../pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
 
 class SlideHorizontalList extends StatelessWidget {
@@ -10,7 +10,7 @@ class SlideHorizontalList extends StatelessWidget {
     super.key,
   });
 
-  GetListDoctorRespository demoRespository = GetListDoctorRespository();
+  ListDoctorRespository demoRespository = ListDoctorRespository();
 
   @override
   Widget build(BuildContext context) {

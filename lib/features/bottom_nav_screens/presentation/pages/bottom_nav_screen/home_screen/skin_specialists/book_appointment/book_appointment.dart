@@ -85,6 +85,7 @@ class BookAppointment extends StatelessWidget {
       debugPrint('ChoiceChip');
       return Scaffold(
           appBar: const MyAppBarWidget(
+            bottom: false,
             arrow_back: true,
             title: 'Select a Time Slot',
           ),

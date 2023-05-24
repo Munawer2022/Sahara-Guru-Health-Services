@@ -12,6 +12,7 @@ class MyAppointment extends StatelessWidget {
     var theme = Theme.of(context);
     return Scaffold(
       appBar: const MyAppBarWidget(
+        bottom: false,
         arrow_back: false,
         title: 'My Appointments',
       ),

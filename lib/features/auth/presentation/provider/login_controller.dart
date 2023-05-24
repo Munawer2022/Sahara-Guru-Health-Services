@@ -29,7 +29,7 @@ class LoginController extends ChangeNotifier {
 
   Future<void> login(
       BuildContext context, dynamic emailController, passwordController) async {
-    final scaffold = ScaffoldMessenger.of(context);
+    var scaffold = ScaffoldMessenger.of(context);
     loadingBotton(true);
     Map data = {
       'email': emailController.text,
