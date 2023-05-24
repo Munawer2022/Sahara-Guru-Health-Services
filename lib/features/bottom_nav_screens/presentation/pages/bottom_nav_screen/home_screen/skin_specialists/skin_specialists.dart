@@ -97,415 +97,476 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                 //     ),
                 //   ),
                 // ),
-                Padding(
-                  padding: screen_padding,
-                  child: FutureBuilder<Getlistdoctor>(
-                      future: getlistdoctor(),
-                      builder: (BuildContext context, AsyncSnapshot snapshot) {
-                        if (snapshot.hasData) {
-                          return Text(
-                              'Top ${snapshot.data?.departments![0].doctors?.length.toString()} Dermatogists',
-                              style: theme.textTheme.subtitle2);
-                        }
-                        return Container(
-                          width: mediaQuery.width * 0.40,
-                          height: mediaQuery.height * 0.02,
-                          decoration: BoxDecoration(
-                              color: Colors.grey.shade300,
-                              borderRadius: BorderRadius.circular(12)),
-                        );
-                      }),
-                ),
+                // Padding(
+                //   padding: screen_padding,
+                //   child: FutureBuilder<Getlistdoctor>(
+                //       future: getlistdoctor(),
+                //       builder: (BuildContext context, AsyncSnapshot snapshot) {
+                //         if (snapshot.hasData) {
+                //           return Text(
+                //               'Top ${snapshot.data?.departments![0].doctors?.length.toString()} Dermatogists',
+                //               style: theme.textTheme.subtitle2);
+                //         }
+                //         return Container(
+                //           width: mediaQuery.width * 0.40,
+                //           height: mediaQuery.height * 0.02,
+                //           decoration: BoxDecoration(
+                //               color: Colors.grey.shade300,
+                //               borderRadius: BorderRadius.circular(12)),
+                //         );
+                //       }),
+                // ),
                 FutureBuilder<Getlistdoctor>(
                   future: getlistdoctor(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
                       return Flexible(
-                        child: ListView.builder(
-                            physics: const NeverScrollableScrollPhysics(),
-                            shrinkWrap: true,
-                            itemCount:
-                                snapshot.data!.departments![0].doctors?.length,
-                            itemBuilder: (context, index) => Padding(
-                                  padding: screen_padding,
-                                  child: Card(
-                                    elevation: 0,
-                                    child: Padding(
-                                      padding: card_padding,
-                                      child: Column(
-                                        children: [
-                                          ListTile(
-                                            title: Text(
-                                                snapshot.data!.departments![0]
-                                                    .doctors![index].firstName
-                                                    .toString(),
-                                                style: theme
-                                                    .textTheme.headline6!
-                                                    .copyWith(
+                        child: Padding(
+                          padding: screen_padding,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                  'Top ${snapshot.data?.departments![0].doctors?.length.toString()} Dermatogists',
+                                  style: theme.textTheme.subtitle2),
+                              SizedBox(
+                                height: mediaQuery.height * 0.02,
+                              ),
+                              ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: snapshot
+                                      .data!.departments![0].doctors?.length,
+                                  itemBuilder: (context, index) => Card(
+                                        elevation: 0,
+                                        child: Padding(
+                                          padding: card_padding,
+                                          child: Column(
+                                            children: [
+                                              ListTile(
+                                                title: Text(
+                                                    snapshot
+                                                        .data!
+                                                        .departments![0]
+                                                        .doctors![index]
+                                                        .firstName
+                                                        .toString(),
+                                                    style: theme
+                                                        .textTheme.headline6!
+                                                        .copyWith(
+                                                            fontWeight:
+                                                                FontWeight
+                                                                    .bold)),
+                                                leading: CircleAvatar(
+                                                  backgroundColor: Colors.blue,
+                                                  radius: 27,
+                                                  child: snapshot
+                                                              .data!
+                                                              .departments![0]
+                                                              .doctors![index]
+                                                              .profile !=
+                                                          null
+                                                      ? CircleAvatar(
+                                                          backgroundColor:
+                                                              Colors.white,
+                                                          onBackgroundImageError:
+                                                              (exception,
+                                                                  stackTrace) {},
+                                                          backgroundImage: NetworkImage(
+                                                              department_doctors_profiles +
+                                                                  snapshot
+                                                                      .data!
+                                                                      .departments![
+                                                                          0]
+                                                                      .doctors![
+                                                                          index]
+                                                                      .profile
+                                                                      .toString()),
+                                                          radius: 25,
+                                                        )
+                                                      : const CircleAvatar(
+                                                          radius: 25,
+                                                          backgroundColor:
+                                                              Colors.white,
+                                                          child: Center(
+                                                              child: Icon(
+                                                            Icons.person,
+                                                            size: 40,
+                                                            color: Colors.grey,
+                                                          )),
+                                                        ),
+                                                ),
+                                                subtitle: Text(
+                                                    snapshot
+                                                        .data!
+                                                        .departments![0]
+                                                        .doctors![index]
+                                                        .lastName
+                                                        .toString(),
+                                                    maxLines: 2,
+                                                    style: theme
+                                                        .textTheme.subtitle2),
+                                              ),
+                                              SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.02),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  RichText(
+                                                    textAlign: TextAlign.center,
+                                                    text: TextSpan(
+                                                      text: 'Fees\n',
+                                                      style: theme
+                                                          .textTheme.subtitle2!
+                                                          .copyWith(
                                                         fontWeight:
-                                                            FontWeight.bold)),
-                                            leading: CircleAvatar(
-                                              backgroundColor: Colors.blue,
-                                              radius: 27,
-                                              child: snapshot
-                                                          .data!
-                                                          .departments![0]
-                                                          .doctors![index]
-                                                          .profile !=
-                                                      null
-                                                  ? CircleAvatar(
-                                                      backgroundColor:
-                                                          Colors.white,
-                                                      onBackgroundImageError:
-                                                          (exception,
-                                                              stackTrace) {},
-                                                      backgroundImage: NetworkImage(
-                                                          department_doctors_profiles +
-                                                              snapshot
+                                                            FontWeight.bold,
+                                                      ),
+                                                      children: <TextSpan>[
+                                                        TextSpan(
+                                                          text: snapshot
                                                                   .data!
                                                                   .departments![
                                                                       0]
                                                                   .doctors![
                                                                       index]
-                                                                  .profile
-                                                                  .toString()),
-                                                      radius: 25,
-                                                    )
-                                                  : const CircleAvatar(
-                                                      radius: 25,
-                                                      backgroundColor:
-                                                          Colors.white,
-                                                      child: Center(
-                                                          child: Icon(
-                                                        Icons.person,
-                                                        size: 40,
-                                                        color: Colors.grey,
-                                                      )),
+                                                                  .fees ??
+                                                              'N/A',
+                                                          style: theme.textTheme
+                                                              .subtitle2!
+                                                              .copyWith(
+                                                                  fontSize: 12),
+                                                        ),
+                                                      ],
                                                     ),
-                                            ),
-                                            subtitle: Text(
-                                                snapshot.data!.departments![0]
-                                                    .doctors![index].lastName
-                                                    .toString(),
-                                                maxLines: 2,
-                                                style:
-                                                    theme.textTheme.subtitle2),
-                                          ),
-                                          SizedBox(
-                                              height: mediaQuery.height * 0.02),
-                                          Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              RichText(
-                                                textAlign: TextAlign.center,
-                                                text: TextSpan(
-                                                  text: 'Fees\n',
-                                                  style: theme
-                                                      .textTheme.subtitle2!
-                                                      .copyWith(
-                                                    fontWeight: FontWeight.bold,
                                                   ),
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: snapshot
-                                                              .data!
-                                                              .departments![0]
-                                                              .doctors![index]
-                                                              .fees ??
-                                                          'N/A',
-                                                      style: theme
-                                                          .textTheme.subtitle2!
-                                                          .copyWith(
-                                                              fontSize: 12),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              RichText(
-                                                textAlign: TextAlign.center,
-                                                text: TextSpan(
-                                                  text: '22 Years\n',
-                                                  style: theme
-                                                      .textTheme.subtitle2!
-                                                      .copyWith(
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: 'Experience',
-                                                      style: theme
-                                                          .textTheme.subtitle2!
-                                                          .copyWith(
-                                                              fontSize: 12),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                              RichText(
-                                                textAlign: TextAlign.center,
-                                                text: TextSpan(
-                                                  text: '95% (4161)\n',
-                                                  style: theme
-                                                      .textTheme.subtitle2!
-                                                      .copyWith(
-                                                    fontWeight: FontWeight.bold,
-                                                  ),
-                                                  children: <TextSpan>[
-                                                    TextSpan(
-                                                      text: 'Satisfied',
-                                                      style: theme
-                                                          .textTheme.subtitle2!
-                                                          .copyWith(
-                                                              fontSize: 12),
-                                                    ),
-                                                  ],
-                                                ),
-                                              ),
-                                            ],
-                                          ),
-                                          SizedBox(
-                                              height: mediaQuery.height * 0.02),
-                                          SizedBox(
-                                            width: double.infinity,
-                                            child: Card(
-                                              child: Padding(
-                                                padding: card_padding,
-                                                child: Text(
-                                                    snapshot
-                                                            .data!
-                                                            .departments![0]
-                                                            .doctors![index]
-                                                            .bio ??
-                                                        'N/A',
+                                                  RichText(
                                                     textAlign: TextAlign.center,
-                                                    // '"Dr. Salman is one of the top doctors, He is highly qulaified, intelligent and very punctual, Really satisfi...',
-                                                    style: theme
-                                                        .textTheme.subtitle2),
+                                                    text: TextSpan(
+                                                      text: '22 Years\n',
+                                                      style: theme
+                                                          .textTheme.subtitle2!
+                                                          .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      children: <TextSpan>[
+                                                        TextSpan(
+                                                          text: 'Experience',
+                                                          style: theme.textTheme
+                                                              .subtitle2!
+                                                              .copyWith(
+                                                                  fontSize: 12),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                  RichText(
+                                                    textAlign: TextAlign.center,
+                                                    text: TextSpan(
+                                                      text: '95% (4161)\n',
+                                                      style: theme
+                                                          .textTheme.subtitle2!
+                                                          .copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                      children: <TextSpan>[
+                                                        TextSpan(
+                                                          text: 'Satisfied',
+                                                          style: theme.textTheme
+                                                              .subtitle2!
+                                                              .copyWith(
+                                                                  fontSize: 12),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                  ),
+                                                ],
                                               ),
-                                            ),
-                                          ),
-                                          SizedBox(
-                                              height: mediaQuery.height * 0.02),
-                                          Row(
-                                            children: [
-                                              ElevatedButton(
-                                                style: ButtonStyle(
-                                                    backgroundColor:
-                                                        MaterialStateProperty
-                                                            .all(Colors.blue
-                                                                .shade800)),
-                                                onPressed: () {
-                                                  Navigator.pushNamed(
-                                                      context,
-                                                      RoutesName
-                                                          .bookappointment,
-                                                      arguments: {
-                                                        'fees': snapshot
-                                                            .data!
-                                                            .departments![0]
-                                                            .doctors[index]
-                                                            .fees,
-                                                        'bio': snapshot
+                                              SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.02),
+                                              SizedBox(
+                                                width: double.infinity,
+                                                child: Card(
+                                                  child: Padding(
+                                                    padding: card_padding,
+                                                    child: Text(
+                                                        snapshot
+                                                                .data!
+                                                                .departments![0]
+                                                                .doctors![index]
+                                                                .bio ??
+                                                            'N/A',
+                                                        textAlign:
+                                                            TextAlign.center,
+                                                        // '"Dr. Salman is one of the top doctors, He is highly qulaified, intelligent and very punctual, Really satisfi...',
+                                                        style: theme.textTheme
+                                                            .subtitle2),
+                                                  ),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.02),
+                                              Row(
+                                                children: [
+                                                  ElevatedButton(
+                                                    style: ButtonStyle(
+                                                        backgroundColor:
+                                                            MaterialStateProperty
+                                                                .all(Colors.blue
+                                                                    .shade800)),
+                                                    onPressed: () {
+                                                      Navigator.pushNamed(
+                                                          context,
+                                                          RoutesName
+                                                              .bookappointment,
+                                                          arguments: {
+                                                            'fees': snapshot
                                                                 .data!
                                                                 .departments![0]
                                                                 .doctors[index]
-                                                                .bio ??
-                                                            'N/A',
-                                                        'id': snapshot
-                                                            .data!
-                                                            .departments![0]
-                                                            .doctors[index]
-                                                            .id,
-                                                        'firstName': snapshot
-                                                            .data!
-                                                            .departments![0]
-                                                            .doctors[index]
-                                                            .firstName,
-                                                        'lastName': snapshot
-                                                            .data!
-                                                            .departments![0]
-                                                            .doctors[index]
-                                                            .lastName,
-                                                        'profile': snapshot
-                                                            .data!
-                                                            .departments![0]
-                                                            .doctors[index]
-                                                            .profile,
-                                                      });
-                                                },
-                                                child: const Center(
-                                                    child: Text(
-                                                  'Book Appointment',
-                                                  style: TextStyle(
-                                                      color: Colors.white),
-                                                )),
-                                              ),
+                                                                .fees,
+                                                            'bio': snapshot
+                                                                    .data!
+                                                                    .departments![
+                                                                        0]
+                                                                    .doctors[
+                                                                        index]
+                                                                    .bio ??
+                                                                'N/A',
+                                                            'id': snapshot
+                                                                .data!
+                                                                .departments![0]
+                                                                .doctors[index]
+                                                                .id,
+                                                            'firstName': snapshot
+                                                                .data!
+                                                                .departments![0]
+                                                                .doctors[index]
+                                                                .firstName,
+                                                            'lastName': snapshot
+                                                                .data!
+                                                                .departments![0]
+                                                                .doctors[index]
+                                                                .lastName,
+                                                            'profile': snapshot
+                                                                .data!
+                                                                .departments![0]
+                                                                .doctors[index]
+                                                                .profile,
+                                                          });
+                                                    },
+                                                    child: const Center(
+                                                        child: Text(
+                                                      'Book Appointment',
+                                                      style: TextStyle(
+                                                          color: Colors.white),
+                                                    )),
+                                                  ),
+                                                ],
+                                              )
                                             ],
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                )),
+                                          ),
+                                        ),
+                                      )),
+                            ],
+                          ),
+                        ),
                       );
                     }
                     return Flexible(
-                      child: ListView.builder(
-                          physics: const NeverScrollableScrollPhysics(),
-                          shrinkWrap: true,
-                          itemCount: 4,
-                          itemBuilder: (context, index) => Padding(
-                                padding: screen_padding,
-                                child: Card(
+                      child: Padding(
+                        padding: screen_padding,
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: mediaQuery.width * 0.40,
+                              height: mediaQuery.height * 0.02,
+                              decoration: BoxDecoration(
                                   color: Colors.grey.shade300,
-                                  elevation: 0,
-                                  child: Padding(
-                                    padding: card_padding,
-                                    child: Column(
-                                      children: [
-                                        ListTile(
-                                            title: Container(
-                                              height: 20,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.grey.shade400,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12)),
-                                            ),
-                                            leading: CircleAvatar(
-                                              backgroundColor:
-                                                  Colors.grey.shade400,
-                                              radius: 27,
-                                            ),
-                                            subtitle: Container(
-                                              height: 12,
-                                              decoration: BoxDecoration(
-                                                  color: Colors.grey.shade400,
-                                                  borderRadius:
-                                                      BorderRadius.circular(
-                                                          12)),
-                                            )),
-                                        SizedBox(
-                                            height: mediaQuery.height * 0.02),
-                                        Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
+                                  borderRadius: BorderRadius.circular(12)),
+                            ),
+                            SizedBox(
+                              height: mediaQuery.height * 0.02,
+                            ),
+                            ListView.builder(
+                                physics: const NeverScrollableScrollPhysics(),
+                                shrinkWrap: true,
+                                itemCount: 4,
+                                itemBuilder: (context, index) => Card(
+                                      color: Colors.grey.shade300,
+                                      elevation: 0,
+                                      child: Padding(
+                                        padding: card_padding,
+                                        child: Column(
                                           children: [
-                                            Column(
+                                            ListTile(
+                                                title: Container(
+                                                  height: 20,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                ),
+                                                leading: CircleAvatar(
+                                                  backgroundColor:
+                                                      Colors.grey.shade400,
+                                                  radius: 27,
+                                                ),
+                                                subtitle: Container(
+                                                  height: 12,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                )),
+                                            SizedBox(
+                                                height:
+                                                    mediaQuery.height * 0.02),
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
                                               children: [
-                                                Container(
-                                                  height: 10,
-                                                  width: 30,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade400,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12)),
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 10,
+                                                      width: 30,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade400,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12)),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          mediaQuery.height *
+                                                              0.01,
+                                                    ),
+                                                    Container(
+                                                      height: 10,
+                                                      width: 40,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade400,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12)),
+                                                    ),
+                                                  ],
                                                 ),
-                                                SizedBox(
-                                                  height:
-                                                      mediaQuery.height * 0.01,
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 10,
+                                                      width: 30,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade400,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12)),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          mediaQuery.height *
+                                                              0.01,
+                                                    ),
+                                                    Container(
+                                                      height: 10,
+                                                      width: 40,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade400,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12)),
+                                                    ),
+                                                  ],
                                                 ),
-                                                Container(
-                                                  height: 10,
-                                                  width: 40,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade400,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12)),
-                                                ),
+                                                Column(
+                                                  children: [
+                                                    Container(
+                                                      height: 10,
+                                                      width: 30,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade400,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12)),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          mediaQuery.height *
+                                                              0.01,
+                                                    ),
+                                                    Container(
+                                                      height: 10,
+                                                      width: 40,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade400,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12)),
+                                                    ),
+                                                  ],
+                                                )
                                               ],
                                             ),
-                                            Column(
-                                              children: [
-                                                Container(
-                                                  height: 10,
-                                                  width: 30,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade400,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12)),
-                                                ),
-                                                SizedBox(
-                                                  height:
-                                                      mediaQuery.height * 0.01,
-                                                ),
-                                                Container(
-                                                  height: 10,
-                                                  width: 40,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade400,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12)),
-                                                ),
-                                              ],
+                                            SizedBox(
+                                                height:
+                                                    mediaQuery.height * 0.02),
+                                            SizedBox(
+                                              width: double.infinity,
+                                              height: mediaQuery.height * 0.08,
+                                              child: Card(
+                                                elevation: 0,
+                                                color: Colors.grey.shade400,
+                                              ),
                                             ),
-                                            Column(
-                                              children: [
-                                                Container(
-                                                  height: 10,
-                                                  width: 30,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade400,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12)),
-                                                ),
-                                                SizedBox(
-                                                  height:
-                                                      mediaQuery.height * 0.01,
-                                                ),
-                                                Container(
-                                                  height: 10,
-                                                  width: 40,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade400,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12)),
-                                                ),
-                                              ],
+                                            SizedBox(
+                                                height:
+                                                    mediaQuery.height * 0.02),
+                                            Align(
+                                              alignment: Alignment.centerLeft,
+                                              child: Container(
+                                                height: 40,
+                                                width: 150,
+                                                decoration: BoxDecoration(
+                                                    color: Colors.grey.shade400,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            20)),
+                                              ),
                                             )
                                           ],
                                         ),
-                                        SizedBox(
-                                            height: mediaQuery.height * 0.02),
-                                        SizedBox(
-                                          width: double.infinity,
-                                          height: mediaQuery.height * 0.08,
-                                          child: Card(
-                                            elevation: 0,
-                                            color: Colors.grey.shade400,
-                                          ),
-                                        ),
-                                        SizedBox(
-                                            height: mediaQuery.height * 0.02),
-                                        Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Container(
-                                            height: 40,
-                                            width: 150,
-                                            decoration: BoxDecoration(
-                                                color: Colors.grey.shade400,
-                                                borderRadius:
-                                                    BorderRadius.circular(20)),
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              )),
+                                      ),
+                                    )),
+                          ],
+                        ),
+                      ),
                     );
                   },
                 ),
