@@ -37,6 +37,7 @@ dependencies:
   get_storage: ^2.1.1
   intl:
   get_it: ^7.6.0
+  awesome_snackbar_content: 
   
 
 
@@ -74,6 +75,7 @@ flutter:
   assets:
     - assets/images/medical_record.png
     - assets/images/google-maps-icon.png
+    - assets/images/category.png
 
   #   - images/a_dot_ham.jpeg
 

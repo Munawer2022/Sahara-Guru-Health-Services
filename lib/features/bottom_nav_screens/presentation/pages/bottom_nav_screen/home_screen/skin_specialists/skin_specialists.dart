@@ -157,9 +157,21 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                                             fontWeight:
                                                                 FontWeight
                                                                     .bold)),
-                                                leading: CircleAvatar(
-                                                  backgroundColor: Colors.blue,
-                                                  radius: 27,
+                                                leading: DecoratedBox(
+                                                  decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50),
+                                                      boxShadow: <BoxShadow>[
+                                                        BoxShadow(
+                                                          color: Colors.black
+                                                              .withOpacity(.2),
+                                                          blurRadius: 10,
+                                                        )
+                                                      ]),
+
+                                                  // backgroundColor: Colors.white,
+                                                  // radius: 27,
                                                   child: snapshot
                                                               .data!
                                                               .departments![0]

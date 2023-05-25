@@ -12,8 +12,8 @@ import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 
 import 'package:sahara_guru_health_services/core/utils/resources/components/button.dart';
+import 'package:sahara_guru_health_services/core/utils/utils.dart';
 
-import '../../../../../../../../config/routes/routes_names.dart';
 import '../../../../../../../../core/utils/constants/images.dart';
 import '../../../../../provider/bookappointment_controller.dart';
 
@@ -21,37 +21,36 @@ class BookAppointment extends StatelessWidget {
   dynamic routeData;
   BookAppointment({super.key, this.routeData});
   final box = GetStorage();
-  String selectedDate = DateFormat("d/M/y").format(DateTime.now()).toString();
+  String selectedDate = DateFormat("y-MM-d").format(DateTime.now()).toString();
 
   Future saveAppoitment(BuildContext context) async {
     try {
       Response response = await post(
-          Uri.parse(
-              'https://saharadigitalhealth.in/sahara_digital_health/public/api/save-appointment'),
-          headers: {
-            'Accept': 'application/json',
-            'Authorization': 'Bearer ${box.read('token')}'
-          },
-          body: {
-            'patientId': box.read('id').toString(),
-            'doctorId': routeData['id'].toString(),
-            'fees': routeData['fees'].toString(),
-            'appointmentDate': selectedDate
-            // '2023-05-18',
-          });
+        Uri.parse(
+            'https://saharadigitalhealth.in/sahara_digital_health/public/api/save-appointment?patientId=${box.read('id').toString()}&doctorId=${routeData['id'].toString()}&fees=${routeData['fees'].toString()}&appointmentDate=${selectedDate.toString()}'),
+        headers: {
+          'Accept': 'application/json',
+          'Authorization': 'Bearer ${box.read('token')}'
+        },
+        // body: {
+        //   'patientId': box.read('id').toString(),
+        //   'doctorId': routeData['id'].toString(),
+        //   'fees': routeData['fees'].toString(),
+        //   'appointmentDate': selectedDate
+        //   // '2023-05-18',
+        // }
+      );
       var data = jsonDecode(response.body.toString());
+      debugPrint(data['message']);
+      debugPrint(selectedDate);
+      print(response.body);
       box.read('key');
       if (data['success'] == true) {
-        Navigator.pushNamed(context, RoutesName.appointmentConfirmation);
+        Utils().snackBarMessage(data['message'], context);
+
+        // Navigator.pushNamed(context, RoutesName.appointmentConfirmation);
       } else if (data['success'] == false) {
-        final scaffold = ScaffoldMessenger.of(context);
-        scaffold.showSnackBar(
-          SnackBar(
-            content: Text(data['message']),
-            action: SnackBarAction(
-                label: 'OK', onPressed: scaffold.hideCurrentSnackBar),
-          ),
-        );
+        Utils().errorSnackBarMessage(data['message'], context);
       }
     } catch (e) {
       if (kDebugMode) {
@@ -70,9 +69,9 @@ class BookAppointment extends StatelessWidget {
     DateFormat("EEEE").format(DateTime.now().add(Duration(days: 2))),
   ];
   dynamic date = [
-    DateFormat("d/M/y").format(DateTime.now()),
-    DateFormat("d/M/y").format(DateTime.now().add(Duration(days: 1))),
-    DateFormat("d/M/y").format(DateTime.now().add(Duration(days: 2))),
+    DateFormat("y-MM-d").format(DateTime.now()),
+    DateFormat("y-MM-d").format(DateTime.now().add(Duration(days: 1))),
+    DateFormat("y-MM-d").format(DateTime.now().add(Duration(days: 2))),
   ];
 
   @override
@@ -103,9 +102,15 @@ class BookAppointment extends StatelessWidget {
                           height: mediaQuery.height * 0.01,
                         ),
                         ListTile(
-                          leading: CircleAvatar(
-                            backgroundColor: Colors.blue,
-                            radius: 27,
+                          leading: DecoratedBox(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                boxShadow: <BoxShadow>[
+                                  BoxShadow(
+                                    color: Colors.black.withOpacity(.2),
+                                    blurRadius: 10,
+                                  )
+                                ]),
                             child:
                                 //  department_doctors_profiles +
                                 routeData['profile'] != null
@@ -197,9 +202,11 @@ class BookAppointment extends StatelessWidget {
                                   child: ChoiceChip(
                                     label: SizedBox(
                                       height: 50,
-                                      width: 80,
+                                      width: mediaQuery.width * 0.3,
                                       child: Center(
                                           child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
                                         mainAxisAlignment:
                                             MainAxisAlignment.center,
                                         children: [
@@ -356,21 +363,22 @@ class BookAppointment extends StatelessWidget {
                       //     context, RoutesName.appointmentConfirmation);
                       // saveAppoitment(context);
                       // DateTime tempDate =  DateFormat().parse(selectedDate);
+                      saveAppoitment(context);
+                      // var a = '';
+                      // // Jiffy.parse("2019-10-18").yMMMMd;
 
-                      var a = '';
-                      // Jiffy.parse("2019-10-18").yMMMMd;
-                      final scaffold = ScaffoldMessenger.of(context);
-                      scaffold.showSnackBar(
-                        SnackBar(
-                          content: Text(
-                            a.toString(),
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          action: SnackBarAction(
-                              label: 'OK',
-                              onPressed: scaffold.hideCurrentSnackBar),
-                        ),
-                      );
+                      // final scaffold = ScaffoldMessenger.of(context);
+                      // scaffold.showSnackBar(
+                      //   SnackBar(
+                      //     content: Text(
+                      //       a.toString(),
+                      //       style: TextStyle(color: Colors.white),
+                      //     ),
+                      //     action: SnackBarAction(
+                      //         label: 'OK',
+                      //         onPressed: scaffold.hideCurrentSnackBar),
+                      //   ),
+                      // );
                     },
                   )
                 ],

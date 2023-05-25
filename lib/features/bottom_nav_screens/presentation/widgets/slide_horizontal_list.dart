@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:sahara_guru_health_services/core/utils/constants/images.dart';
 
 import '../../../../config/routes/routes_names.dart';
-import '../../../../core/utils/constants/app_url.dart';
+
 import '../../data/repositories/list_doctor_respository.dart';
 import '../pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
 
@@ -40,12 +41,19 @@ class SlideHorizontalList extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Container(
-                          height: 50,
-                          width: 50,
-                          decoration: BoxDecoration(
-                              color: Colors.amber,
-                              borderRadius: BorderRadius.circular(50)),
-                        ),
+                            height: 50,
+                            width: 50,
+                            decoration: BoxDecoration(
+                              boxShadow: <BoxShadow>[
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(.2),
+                                  blurRadius: 10,
+                                ),
+                              ],
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(50),
+                            ),
+                            child: Image(image: AssetImage(category))),
                         SizedBox(
                           height: mediaQuery.height * 0.01,
                         ),

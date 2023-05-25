@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      themeMode: ThemeMode.light,
       darkTheme: Themes.dark,
       theme: Themes.light,
       initialRoute: RoutesName.splashScreen,

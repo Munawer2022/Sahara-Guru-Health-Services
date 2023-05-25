@@ -6,6 +6,7 @@ import 'package:http/http.dart';
 
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 
+import '../../../../../../config/routes/routes_names.dart';
 import '../../../../data/repositories/list_doctor_respository.dart';
 
 class SearchDoctor extends StatefulWidget {
@@ -29,7 +30,7 @@ class _SearchDoctorState extends State<SearchDoctor> {
         'Authorization': 'Bearer ${box.read('token')}',
       },
     );
-
+    print(response.body);
     if (response.statusCode == 200) {
       setState(() {
         getsearchdoctorlist = jsonDecode(response.body.toString());
@@ -66,16 +67,6 @@ class _SearchDoctorState extends State<SearchDoctor> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            // Card(
-            //   elevation: 0,
-            //   child: Padding(
-            //     padding: card_padding,
-            //     child: SearchTextFieldComponent(
-            //         controller: searchTermController,
-            //         text:
-            //             'Doctors, hospitals, specialties, services, diseases'),
-            //   ),
-            // ),
             Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -146,15 +137,27 @@ class _SearchDoctorState extends State<SearchDoctor> {
                           return Column(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              // InkWell(
-                              //   onTap: () {
-                              //     status = placesList[index]['description'];
-                              //     _willPopCallback();
-                              //   },
-                              //   child:
                               ListTile(
-                                onTap: () {},
-                                title: Text(getsearchdoctorlist[index]['name']
+                                onTap: () {
+                                  Navigator.pushNamed(
+                                      context, RoutesName.bookappointment,
+                                      arguments: {
+                                        'id': getsearchdoctorlist[index]['id'],
+                                        'fees': getsearchdoctorlist[index]
+                                            ['fees'],
+                                        'bio': getsearchdoctorlist[index]
+                                                ['bio'] ??
+                                            'N/A',
+                                        'profile': getsearchdoctorlist[index]
+                                            ['profile'],
+                                        'firstName': getsearchdoctorlist[index]
+                                            ['first_name'],
+                                        'lastName': getsearchdoctorlist[index]
+                                            ['last_name']
+                                      });
+                                },
+                                title: Text(getsearchdoctorlist[index]
+                                        ['first_name']
                                     .toString()),
                               ),
                               const Divider()
