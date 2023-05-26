@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
+import 'package:material_dialogs/material_dialogs.dart';
+import 'package:material_dialogs/shared/types.dart';
+import 'package:material_dialogs/widgets/buttons/icon_button.dart';
+import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 
 import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
@@ -17,17 +21,29 @@ import 'package:sahara_guru_health_services/core/utils/utils.dart';
 import '../../../../../../../../core/utils/constants/images.dart';
 import '../../../../../provider/bookappointment_controller.dart';
 
-class BookAppointment extends StatelessWidget {
+class BookAppointment extends StatefulWidget {
   dynamic routeData;
   BookAppointment({super.key, this.routeData});
+
+  @override
+  State<BookAppointment> createState() => _BookAppointmentState();
+}
+
+class _BookAppointmentState extends State<BookAppointment> {
   final box = GetStorage();
+
   String selectedDate = DateFormat("y-MM-d").format(DateTime.now()).toString();
 
+  bool loading = false;
+
   Future saveAppoitment(BuildContext context) async {
+    setState(() {
+      loading = true;
+    });
     try {
       Response response = await post(
         Uri.parse(
-            'https://saharadigitalhealth.in/sahara_digital_health/public/api/save-appointment?patientId=${box.read('id').toString()}&doctorId=${routeData['id'].toString()}&fees=${routeData['fees'].toString()}&appointmentDate=${selectedDate.toString()}'),
+            'https://saharadigitalhealth.in/sahara_digital_health/public/api/save-appointment?patientId=${box.read('id').toString()}&doctorId=${widget.routeData['id'].toString()}&fees=${widget.routeData['fees'].toString()}&appointmentDate=${selectedDate.toString()}'),
         headers: {
           'Accept': 'application/json',
           'Authorization': 'Bearer ${box.read('token')}'
@@ -40,17 +56,44 @@ class BookAppointment extends StatelessWidget {
         //   // '2023-05-18',
         // }
       );
+
       var data = jsonDecode(response.body.toString());
       debugPrint(data['message']);
       debugPrint(selectedDate);
       print(response.body);
       box.read('key');
       if (data['success'] == true) {
-        Utils().snackBarMessage(data['message'], context);
+        setState(() {
+          loading = false;
+        });
+        Dialogs.bottomMaterialDialog(
+            msgStyle: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+            msg:
+                'With Dr. ${widget.routeData['firstName'].toString()} ${widget.routeData['lastName'].toString()}\nFees : ${widget.routeData['fees'].toString()} & Date : ${data['appointment']['appointment_date']} & Time : ${data['appointment']['appointment_time']}',
+            title:
+                'Hey! ${box.read('first_name').toString()}\n Your Appointment Booked Successfully',
+            context: context,
+            actions: [
+              IconsButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                text: 'Okay!',
+                iconData: Icons.done,
+                color: Colors.green,
+                textStyle: TextStyle(color: Colors.white),
+                iconColor: Colors.white,
+              ),
+            ]);
+
+        // Utils().snackBarMessage(data['message'], context);
 
         // Navigator.pushNamed(context, RoutesName.appointmentConfirmation);
       } else if (data['success'] == false) {
-        Utils().errorSnackBarMessage(data['message'], context);
+        setState(() {
+          loading = false;
+        });
+        Utils().warningSnackBarMessage(data['message'], context);
       }
     } catch (e) {
       if (kDebugMode) {
@@ -60,7 +103,9 @@ class BookAppointment extends StatelessWidget {
   }
 
   dynamic month = DateFormat("M").format(DateTime.now());
+
   dynamic year = DateFormat("y").format(DateTime.now());
+
   dynamic day = [
     // 'Today',
     DateFormat("EEEE").format(DateTime.now()),
@@ -68,6 +113,7 @@ class BookAppointment extends StatelessWidget {
     DateFormat("EEEE").format(DateTime.now().add(Duration(days: 1))),
     DateFormat("EEEE").format(DateTime.now().add(Duration(days: 2))),
   ];
+
   dynamic date = [
     DateFormat("y-MM-d").format(DateTime.now()),
     DateFormat("y-MM-d").format(DateTime.now().add(Duration(days: 1))),
@@ -113,14 +159,14 @@ class BookAppointment extends StatelessWidget {
                                 ]),
                             child:
                                 //  department_doctors_profiles +
-                                routeData['profile'] != null
+                                widget.routeData['profile'] != null
                                     ? CircleAvatar(
                                         backgroundColor: Colors.white,
                                         onBackgroundImageError:
                                             (exception, stackTrace) {},
                                         backgroundImage: NetworkImage(
                                             department_doctors_profiles +
-                                                routeData['profile']
+                                                widget.routeData['profile']
                                                     .toString()),
                                         radius: 25,
                                       )
@@ -142,10 +188,10 @@ class BookAppointment extends StatelessWidget {
                               child: const Text(
                                 'Change',
                               )),
-                          title: Text(routeData['firstName'].toString(),
+                          title: Text(widget.routeData['firstName'].toString(),
                               style: theme.textTheme.headline6!
                                   .copyWith(fontWeight: FontWeight.bold)),
-                          subtitle: Text(routeData['fees'].toString(),
+                          subtitle: Text(widget.routeData['fees'].toString(),
                               // box.read('fees').toString(),
                               style: theme.textTheme.subtitle2),
                         ),
@@ -304,7 +350,7 @@ class BookAppointment extends StatelessWidget {
                               Text('About Doctor',
                                   style: theme.textTheme.headline6!
                                       .copyWith(fontWeight: FontWeight.bold)),
-                              Text(routeData['bio'].toString(),
+                              Text(widget.routeData['bio'].toString(),
                                   style: theme.textTheme.subtitle2),
                             ],
                           ),
@@ -357,6 +403,7 @@ class BookAppointment extends StatelessWidget {
                     height: mediaQuery.height * 0.01,
                   ),
                   Button(
+                    loading: loading,
                     title: 'Confirm Booking',
                     onTap: () {
                       // Navigator.pushNamed(

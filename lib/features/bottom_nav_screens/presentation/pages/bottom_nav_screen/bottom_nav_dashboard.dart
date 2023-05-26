@@ -10,9 +10,9 @@ class BottomNavDashboard extends StatelessWidget {
 
   static final List<Widget> _pages = <Widget>[
     HomeScreen(),
-    const MyAppointment(),
-    const MyAppointment(),
-    const MyAppointment(),
+    MyAppointment(),
+    MyAppointment(),
+    MyAppointment(),
   ];
 
   @override

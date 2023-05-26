@@ -19,10 +19,12 @@ class Button extends StatelessWidget {
       child: ElevatedButton(
         style: ButtonStyle(
             //backgroundColor: MaterialStateProperty.all(Colors.grey.shade300)
-            backgroundColor: MaterialStateProperty.all(Colors.blue.shade800)
+            backgroundColor: loading
+                ? MaterialStateProperty.all(const Color.fromARGB(255, 3, 43, 104))
+                : MaterialStateProperty.all(Colors.blue.shade800)
             // elevation: MaterialStateProperty.all(2)
             ),
-        onPressed: onTap,
+        onPressed: loading ? null : onTap,
         child: Center(
             child: loading
                 ? const CircularProgressIndicator(
@@ -31,7 +33,7 @@ class Button extends StatelessWidget {
                   )
                 : Text(
                     title,
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   )),
       ),
     );

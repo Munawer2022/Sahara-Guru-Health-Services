@@ -47,7 +47,9 @@ class Routes {
             builder: (BuildContext context) => AppointmentsDetails());
       case RoutesName.appointmentConfirmation:
         return MaterialPageRoute(
-            builder: (BuildContext context) => AppointmentConfirmation());
+            builder: (BuildContext context) => AppointmentConfirmation(
+                  para: settings.arguments as Map,
+                ));
       case RoutesName.appointmentDetail:
         return MaterialPageRoute(
             builder: (BuildContext context) => AppointmentDetail());
