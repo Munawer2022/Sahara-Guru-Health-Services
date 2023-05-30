@@ -11,8 +11,7 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/app_
 
 import '../../../../../../../../../config/routes/routes_names.dart';
 import '../../../../../../widgets/list_tile.dart';
-import '../../../../appointments/upcoming_my_appointment_model.dart';
-import '../get_list_doctor_model.dart';
+
 import 'appointment_confirmation_model.dart';
 
 class AppointmentConfirmation extends StatelessWidget {
@@ -82,42 +81,42 @@ class AppointmentConfirmation extends StatelessWidget {
                           SizedBox(
                             height: mediaQuery.height * 0.02,
                           ),
-                          SizedBox(
-                            width: double.infinity,
-                            child: Card(
-                              elevation: 0,
-                              child: Padding(
-                                padding: card_padding,
-                                child: Column(
-                                  children: [
-                                    Text(
-                                        'Share your medical records with Assist.\nProf. Dr. ${snapshot.data?.appointmentDetails?.doctor?.firstName.toString()}',
-                                        textAlign: TextAlign.center,
-                                        style: theme.textTheme.subtitle2
-                                            ?.copyWith(
-                                                fontWeight: FontWeight.bold)),
-                                    SizedBox(
-                                      height: mediaQuery.height * 0.01,
-                                    ),
-                                    TextButton.icon(
-                                        style: ButtonStyle(
-                                            backgroundColor:
-                                                MaterialStateProperty.all(
-                                                    Colors.amber.shade600)),
-                                        onPressed: () {},
-                                        icon: const Icon(
-                                          Icons.playlist_add_circle_rounded,
-                                          color: Colors.white,
-                                        ),
-                                        label: const Text(
-                                          'Add Medical Records',
-                                          style: TextStyle(color: Colors.white),
-                                        ))
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
+                          // SizedBox(
+                          //   width: double.infinity,
+                          //   child: Card(
+                          //     elevation: 0,
+                          //     child: Padding(
+                          //       padding: card_padding,
+                          //       child: Column(
+                          //         children: [
+                          //           Text(
+                          //               'Share your medical records with Assist.\nDr. ${snapshot.data?.appointmentDetails?.doctor?.firstName.toString()}',
+                          //               textAlign: TextAlign.center,
+                          //               style: theme.textTheme.subtitle2
+                          //                   ?.copyWith(
+                          //                       fontWeight: FontWeight.bold)),
+                          //           SizedBox(
+                          //             height: mediaQuery.height * 0.01,
+                          //           ),
+                          //           TextButton.icon(
+                          //               style: ButtonStyle(
+                          //                   backgroundColor:
+                          //                       MaterialStateProperty.all(
+                          //                           Colors.amber.shade600)),
+                          //               onPressed: () {},
+                          //               icon: const Icon(
+                          //                 Icons.playlist_add_circle_rounded,
+                          //                 color: Colors.white,
+                          //               ),
+                          //               label: const Text(
+                          //                 'Add Medical Records',
+                          //                 style: TextStyle(color: Colors.white),
+                          //               ))
+                          //         ],
+                          //       ),
+                          //     ),
+                          //   ),
+                          // ),
                           SizedBox(
                             width: double.infinity,
                             child: Card(
@@ -143,17 +142,19 @@ class AppointmentConfirmation extends StatelessWidget {
                                     listTile(
                                         'Appointment Time',
                                         '${snapshot.data?.appointmentDetails?.appointmentDate.toString()}, ${snapshot.data?.appointmentDetails?.appointmentTime.toString()}',
-                                        CupertinoIcons.calendar),
+                                        CupertinoIcons.time),
                                     listTile(
                                         'Doctor Name',
-                                        'Assist. Prof. Dr. Sana Younas at Surgimed Hospital ',
-                                        Icons.medical_information_outlined),
+                                        '${snapshot.data?.appointmentDetails?.doctor?.firstName.toString()} ${snapshot.data?.appointmentDetails?.doctor?.lastName.toString()}',
+                                        //at Surgimed Hospital
+                                        CupertinoIcons.person),
                                     listTile(
                                         'Appointment Fee',
                                         snapshot.data?.appointmentDetails?.fees
                                             .toString(),
                                         // 'Rs. 2300 (To be paid at Clinic)',
-                                        CupertinoIcons.folder_open),
+                                        CupertinoIcons
+                                            .pencil_ellipsis_rectangle),
                                   ],
                                 ),
                               ),
@@ -166,54 +167,54 @@ class AppointmentConfirmation extends StatelessWidget {
                   return const Center(child: CircularProgressIndicator());
                 },
               ),
-              Container(
-                width: double.infinity,
-                height: mediaQuery.height * 0.12,
-                decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                  begin: Alignment.topRight,
-                  end: Alignment.bottomLeft,
-                  colors: [
-                    Colors.deepPurple.shade900,
-                    Colors.blue.shade700,
-                  ],
-                )),
-                child: Padding(
-                  padding: card_padding,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text('Rs.200 OFF on ONLINE PAYMENT',
-                          style: theme.textTheme.subtitle2
-                              ?.copyWith(color: Colors.white)),
-                      SizedBox(
-                        width: mediaQuery.width * 0.03,
-                      ),
-                      SizedBox(
-                        height: 50,
-                        width: 100,
-                        // width: mediaQuery.width * 0.25,
-                        child: TextButton(
-                            style: ButtonStyle(
-                                shape: MaterialStateProperty.all<
-                                        RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(5.0),
-                                        side: const BorderSide(
-                                            color: Colors.white))),
-                                backgroundColor: MaterialStateProperty.all(
-                                    Colors.transparent)),
-                            onPressed: () {},
-                            child: Center(
-                                child: Text('Pay Now',
-                                    style: theme.textTheme.subtitle2
-                                        ?.copyWith(color: Colors.white)))),
-                      )
-                    ],
-                  ),
-                ),
-              )
+              // Container(
+              //   width: double.infinity,
+              //   height: mediaQuery.height * 0.12,
+              //   decoration: BoxDecoration(
+              //       gradient: LinearGradient(
+              //     begin: Alignment.topRight,
+              //     end: Alignment.bottomLeft,
+              //     colors: [
+              //       Colors.deepPurple.shade900,
+              //       Colors.blue.shade700,
+              //     ],
+              //   )),
+              //   child: Padding(
+              //     padding: card_padding,
+              //     child: Row(
+              //       mainAxisAlignment: MainAxisAlignment.center,
+              //       children: [
+              //         Text('Rs.200 OFF on ONLINE PAYMENT',
+              //             style: theme.textTheme.subtitle2
+              //                 ?.copyWith(color: Colors.white)),
+              //         SizedBox(
+              //           width: mediaQuery.width * 0.03,
+              //         ),
+              //         SizedBox(
+              //           height: 50,
+              //           width: 100,
+              //           // width: mediaQuery.width * 0.25,
+              //           child: TextButton(
+              //               style: ButtonStyle(
+              //                   shape: MaterialStateProperty.all<
+              //                           RoundedRectangleBorder>(
+              //                       RoundedRectangleBorder(
+              //                           borderRadius:
+              //                               BorderRadius.circular(5.0),
+              //                           side: const BorderSide(
+              //                               color: Colors.white))),
+              //                   backgroundColor: MaterialStateProperty.all(
+              //                       Colors.transparent)),
+              //               onPressed: () {},
+              //               child: Center(
+              //                   child: Text('Pay Now',
+              //                       style: theme.textTheme.subtitle2
+              //                           ?.copyWith(color: Colors.white)))),
+              //         )
+              //       ],
+              //     ),
+              //   ),
+              // )
             ],
           ),
         ),

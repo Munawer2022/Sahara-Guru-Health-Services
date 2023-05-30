@@ -57,14 +57,6 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
           bottomText: 'Doctors, hospitals, specialties, services, diseases',
           arrow_back: true,
           title: 'Skin Specialists in Karachi',
-          actions: [
-            IconButton(
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.call,
-                  color: Colors.white,
-                ))
-          ],
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -314,6 +306,7 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                                                 .doctors![index]
                                                                 .bio ??
                                                             'N/A',
+                                                        maxLines: 3,
                                                         textAlign:
                                                             TextAlign.center,
                                                         // '"Dr. Salman is one of the top doctors, He is highly qulaified, intelligent and very punctual, Really satisfi...',

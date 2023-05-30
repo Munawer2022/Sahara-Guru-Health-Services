@@ -32,7 +32,7 @@ class BookAppointment extends StatefulWidget {
 class _BookAppointmentState extends State<BookAppointment> {
   final box = GetStorage();
 
-  String selectedDate = DateFormat("y-MM-d").format(DateTime.now()).toString();
+  String selectedDate = DateFormat("y-MM-dd").format(DateTime.now()).toString();
 
   bool loading = false;
 
@@ -115,9 +115,9 @@ class _BookAppointmentState extends State<BookAppointment> {
   ];
 
   dynamic date = [
-    DateFormat("y-MM-d").format(DateTime.now()),
-    DateFormat("y-MM-d").format(DateTime.now().add(Duration(days: 1))),
-    DateFormat("y-MM-d").format(DateTime.now().add(Duration(days: 2))),
+    DateFormat("y-MM-dd").format(DateTime.now()),
+    DateFormat("y-MM-dd").format(DateTime.now().add(Duration(days: 1))),
+    DateFormat("y-MM-dd").format(DateTime.now().add(Duration(days: 2))),
   ];
 
   @override
@@ -265,6 +265,9 @@ class _BookAppointmentState extends State<BookAppointment> {
                                     ),
                                     selected: value.value == index,
                                     onSelected: (bool selected) {
+                                      print(
+                                        date[value.value].toString(),
+                                      );
                                       debugPrint(selectedDate);
                                       value.changeTabIndex(index);
                                       selectedDate =

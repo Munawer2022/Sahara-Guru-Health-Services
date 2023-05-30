@@ -1,5 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/pages/bottom_nav_screen/profile.dart';
 
 import '../../provider/bottom_nav_dashboard_controller.dart';
 import 'appointments/my_appointment.dart';
@@ -12,7 +14,7 @@ class BottomNavDashboard extends StatelessWidget {
     HomeScreen(),
     MyAppointment(),
     MyAppointment(),
-    MyAppointment(),
+    Profile(),
   ];
 
   @override
@@ -29,24 +31,34 @@ class BottomNavDashboard extends StatelessWidget {
             },
             destinations: const <NavigationDestination>[
               NavigationDestination(
-                selectedIcon: Icon(Icons.home),
-                icon: Icon(Icons.home_outlined),
+                selectedIcon: Icon(
+                  CupertinoIcons.house_fill,
+                ),
+                icon: Icon(
+                  CupertinoIcons.home,
+                ),
                 label: 'Home',
               ),
               NavigationDestination(
-                selectedIcon: Icon(Icons.calendar_month),
-                icon: Icon(Icons.calendar_month_outlined),
+                selectedIcon: Icon(
+                  CupertinoIcons.time_solid,
+                ),
+                icon: Icon(CupertinoIcons.time),
                 label: 'Appointments',
               ),
               NavigationDestination(
-                selectedIcon: Icon(Icons.receipt),
-                icon: Icon(Icons.receipt_outlined),
+                selectedIcon: Icon(CupertinoIcons.doc_person_fill),
+                icon: Icon(CupertinoIcons.doc_person),
                 label: 'Records',
               ),
               NavigationDestination(
-                selectedIcon: Icon(Icons.login),
-                icon: Icon(Icons.login_outlined),
-                label: 'Login',
+                selectedIcon: Icon(
+                  CupertinoIcons.person_alt_circle_fill,
+                ),
+                icon: Icon(
+                  CupertinoIcons.person_alt_circle,
+                ),
+                label: 'Profile',
               ),
             ],
           ),

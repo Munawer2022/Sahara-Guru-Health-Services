@@ -126,6 +126,13 @@ class _MyAppointmentState extends State<MyAppointment> {
               FutureBuilder<UpcomingMyAppointmentModel>(
                   future: upcomingMyAppointment(),
                   builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+
+                    if (snapshot.hasError) {
+                      return Center(child: const Text("got error"));
+                    }
                     if (snapshot.hasData) {
                       return ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),
@@ -246,7 +253,7 @@ class _MyAppointmentState extends State<MyAppointment> {
                             );
                           });
                     }
-                    return const Center(child: CircularProgressIndicator());
+                    return const Center(child: Text("NA State"));
                   }),
               Align(
                 alignment: Alignment.centerLeft,
@@ -360,7 +367,7 @@ class _MyAppointmentState extends State<MyAppointment> {
                                                         const EdgeInsets.all(
                                                             5.0),
                                                     child: Text(
-                                                      '${snapshot.data!.appointmentData!.old![index].fees.toString()} Remaning',
+                                                      'Cash',
                                                       // 'Rs. 2300 Remaning',
                                                       style: theme
                                                           .textTheme.subtitle2
@@ -429,6 +436,8 @@ class _MyAppointmentState extends State<MyAppointment> {
                               ),
                             );
                           });
+                    } else if (snapshot.hasError) {
+                      return const Center(child: Text('Error'));
                     }
                     return const Center(child: CircularProgressIndicator());
                   }),

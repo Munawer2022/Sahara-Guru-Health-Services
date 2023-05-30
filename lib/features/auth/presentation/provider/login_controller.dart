@@ -40,9 +40,14 @@ class LoginController extends ChangeNotifier {
       loadingBotton(false);
       Navigator.pushNamed(context, RoutesName.bottomnavdashboard);
       box.write('token', value['token']);
+      debugPrint(value['token']);
       box.write('id', value['user']['id']);
       box.write('first_name', value['user']['first_name']);
       box.write('last_name', value['user']['last_name']);
+      box.write('profile', value['user']['profile']);
+      box.write('email', value['user']['email']);
+      box.write('phone_number', value['user']['phone_number']);
+
       Utils().snackBarMessage('Login Successfully', context);
     }).onError(
       (error, stackTrace) {
