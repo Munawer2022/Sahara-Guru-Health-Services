@@ -66,21 +66,6 @@ class AppointmentConfirmation extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Icon(
-                            Icons.check_circle_outline_sharp,
-                            size: 50,
-                            color: Colors.green.shade700,
-                          ),
-                          SizedBox(
-                            height: mediaQuery.height * 0.01,
-                          ),
-                          Text('Your in-person appointment\nhas been booked!',
-                              textAlign: TextAlign.center,
-                              style: theme.textTheme.headline6
-                                  ?.copyWith(fontWeight: FontWeight.bold)),
-                          SizedBox(
-                            height: mediaQuery.height * 0.02,
-                          ),
                           // SizedBox(
                           //   width: double.infinity,
                           //   child: Card(
@@ -126,19 +111,37 @@ class AppointmentConfirmation extends StatelessWidget {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text('Appointment Details',
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Icon(
+                                        Icons.check_circle_outline_sharp,
+                                        size: 50,
+                                        color: Colors.green.shade700,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: mediaQuery.height * 0.01,
+                                    ),
+                                    Text(
+                                        'Your in-person appointment\nhas been booked!',
+                                        textAlign: TextAlign.center,
                                         style: theme.textTheme.headline6
                                             ?.copyWith(
                                                 fontWeight: FontWeight.bold)),
-                                    const Divider(
-                                      color: Colors.black12,
+                                    SizedBox(
+                                      height: mediaQuery.height * 0.05,
+                                    ),
+                                    Text('Appointment Details',
+                                        style: theme.textTheme.headline6),
+                                    SizedBox(
+                                      height: mediaQuery.height * 0.02,
                                     ),
                                     listTile(
                                         'Patient Name',
                                         snapshot.data?.appointmentDetails
                                             ?.patient?.firstName
                                             .toString(),
-                                        CupertinoIcons.person),
+                                        CupertinoIcons.person_alt_circle),
                                     listTile(
                                         'Appointment Time',
                                         '${snapshot.data?.appointmentDetails?.appointmentDate.toString()}, ${snapshot.data?.appointmentDetails?.appointmentTime.toString()}',
@@ -147,14 +150,13 @@ class AppointmentConfirmation extends StatelessWidget {
                                         'Doctor Name',
                                         '${snapshot.data?.appointmentDetails?.doctor?.firstName.toString()} ${snapshot.data?.appointmentDetails?.doctor?.lastName.toString()}',
                                         //at Surgimed Hospital
-                                        CupertinoIcons.person),
+                                        CupertinoIcons.person_alt_circle),
                                     listTile(
                                         'Appointment Fee',
                                         snapshot.data?.appointmentDetails?.fees
                                             .toString(),
                                         // 'Rs. 2300 (To be paid at Clinic)',
-                                        CupertinoIcons
-                                            .pencil_ellipsis_rectangle),
+                                        Icons.money),
                                   ],
                                 ),
                               ),

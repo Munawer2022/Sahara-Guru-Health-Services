@@ -58,7 +58,7 @@ class Profile extends StatelessWidget {
                             child: Center(
                                 child: Icon(
                               CupertinoIcons.person_alt,
-                              size: 100,
+                              size: 80,
                               color: Colors.grey,
                             )),
                           ),

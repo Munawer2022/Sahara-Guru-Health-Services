@@ -45,8 +45,8 @@ class AllSpeciallzations extends StatelessWidget {
                         itemBuilder: (_, index) => Card(
                           elevation: 0,
                           child: Center(
-                            child: ListTile(
-                              
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(12),
                               onTap: () {
                                 Navigator.pushNamed(
                                     context, RoutesName.skinspecialists,
@@ -55,122 +55,59 @@ class AllSpeciallzations extends StatelessWidget {
                                           snapshot.data!.departments![index].id
                                     });
                               },
-                              leading: Container(
-                                  height: 50,
-                                  width: 50,
-                                  decoration: BoxDecoration(
-                                    boxShadow: <BoxShadow>[
-                                      BoxShadow(
-                                        color: Colors.black.withOpacity(.2),
-                                        blurRadius: 10,
-                                      ),
-                                    ],
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(50),
-                                  ),
-                                  child: Image(image: AssetImage(category))),
-                              title: Text(
-                                  snapshot.data!.departments![index].name
-                                      .toString(),
-                                  style: theme.textTheme.subtitle2),
+                              child: ListTile(
+                                leading: Container(
+                                    height: 50,
+                                    width: 50,
+                                    decoration: BoxDecoration(
+                                      boxShadow: <BoxShadow>[
+                                        BoxShadow(
+                                          color: Colors.black.withOpacity(.2),
+                                          blurRadius: 10,
+                                        ),
+                                      ],
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(50),
+                                    ),
+                                    child: Image(image: AssetImage(category))),
+                                title: Text(
+                                    snapshot.data!.departments![index].name
+                                        .toString(),
+                                    style: theme.textTheme.subtitle2),
+                              ),
                             ),
                           ),
                         ),
                         itemCount: snapshot.data!.departments!.length,
                       );
                     }
-                    return Center(child: LinearProgressIndicator());
+                    return GridView.builder(
+                        physics: const NeverScrollableScrollPhysics(),
+                        shrinkWrap: true,
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                childAspectRatio: 2.8, crossAxisCount: 2),
+                        itemBuilder: (_, index) => Card(
+                              color: Colors.grey.shade300,
+                              elevation: 0,
+                              child: Center(
+                                child: ListTile(
+                                    leading: CircleAvatar(
+                                      backgroundColor: Colors.grey.shade400,
+                                    ),
+                                    title: SizedBox(
+                                      height: 20,
+                                      width: 80,
+                                      child: Card(
+                                        color: Colors.grey.shade400,
+                                      ),
+                                    )),
+                              ),
+                            ),
+                        itemCount: 10
+                        //  snapshot.data?.departments?.length,
+                        );
                   })
-              // FutureBuilder<Getlistdoctor>(
-              //     future: demoRespository.getlistdoctor(),
-              //     builder: (context, snapshot) {
-              //       if (snapshot.hasData) {
-              //         return SizedBox(
-              //           height: double.infinity,
-              //           child: ListView.builder(
-              //               itemCount: snapshot.data?.departments?.length,
-              //               itemBuilder: (context, index) => SizedBox(
-              //                     width: double.infinity,
-              //                     height: 80,
-              //                     child: Card(
-              //                       child: Center(
-              //                         child: ListTile(
-              //                           onTap: () {
-              //                             Navigator.pushNamed(
-              //                                 context, RoutesName.skinspecialists,
-              //                                 arguments: {
-              //                                   'department_id': snapshot
-              //                                       .data!.departments![index].id
-              //                                 });
-              //                           },
-              //                           leading: Container(
-              //                               height: 50,
-              //                               width: 50,
-              //                               decoration: BoxDecoration(
-              //                                 boxShadow: <BoxShadow>[
-              //                                   BoxShadow(
-              //                                     color: Colors.black.withOpacity(.2),
-              //                                     blurRadius: 10,
-              //                                   ),
-              //                                 ],
-              //                                 color: Colors.white,
-              //                                 borderRadius: BorderRadius.circular(50),
-              //                               ),
-              //                               child:
-              //                                   Image(image: AssetImage(category))),
-              //                           title: Text(
-              //                               snapshot.data!.departments![index].name
-              //                                   .toString(),
-              //                               style: theme.textTheme.subtitle2),
-              //                         ),
-              //                       ),
-              //                     ),
-              //                   )
-
-              //               ),
-              //         );
-              //       }
-              //       return SizedBox(
-              //         width: double.infinity,
-              //         height: 80,
-              //         child: ListView.builder(
-              //           scrollDirection: Axis.horizontal,
-              //           itemCount: snapshot.data?.departments?.length,
-              //           itemBuilder: (context, index) => SizedBox(
-              //             width: double.infinity,
-              //             height: 80,
-              //             child: Card(
-              //               child: InkWell(
-              //                 onTap: () {},
-              //                 child: Column(
-              //                   mainAxisAlignment: MainAxisAlignment.center,
-              //                   crossAxisAlignment: CrossAxisAlignment.center,
-              //                   children: [
-              //                     Container(
-              //                       height: 50,
-              //                       width: 50,
-              //                       decoration: BoxDecoration(
-              //                           color: Colors.grey.shade200,
-              //                           borderRadius: BorderRadius.circular(50)),
-              //                     ),
-              //                     SizedBox(
-              //                       height: mediaQuery.height * 0.01,
-              //                     ),
-              //                     Container(
-              //                       height: 15,
-              //                       width: 70,
-              //                       decoration: BoxDecoration(
-              //                           color: Colors.grey.shade200,
-              //                           borderRadius: BorderRadius.circular(12)),
-              //                     )
-              //                   ],
-              //                 ),
-              //               ),
-              //             ),
-              //           ),
-              //         ),
-              //       );
-              //     }),
             ],
           ),
         ));

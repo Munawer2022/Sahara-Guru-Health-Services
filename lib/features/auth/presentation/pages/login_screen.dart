@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
+import 'package:sahara_guru_health_services/core/utils/constants/images.dart';
 
 import '../../../../core/utils/constants/padding.dart';
 import '../../../../core/utils/resources/components/app_bar.dart';
@@ -45,14 +46,13 @@ class _LoginScreenState extends State<LoginScreen> {
         child: Scaffold(
           body: SingleChildScrollView(
             child: Padding(
-              padding: screen_padding,
+              padding: screen_padding.copyWith(right: 30, left: 30),
               child: Center(
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
-                      height: mediaQuery.height * 0.050,
-                    ),
+                    Image.asset(doctor),
                     Text("Sign In", style: theme.textTheme.headline2),
                     SizedBox(
                       height: mediaQuery.height * 0.050,
