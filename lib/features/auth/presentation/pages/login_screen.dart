@@ -8,7 +8,7 @@ import '../../../../core/utils/constants/padding.dart';
 import '../../../../core/utils/resources/components/app_bar.dart';
 import '../../../../core/utils/resources/components/button.dart';
 import '../../../../core/utils/resources/components/type_text_field_component.dart';
-import '../provider/login_controller.dart';
+import '../provider/login_provider.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -33,7 +33,7 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     debugPrint('login');
-    final loginController = Provider.of<LoginController>(context);
+    final loginController = Provider.of<LoginProvider>(context);
 
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
@@ -79,7 +79,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           SizedBox(
                             height: mediaQuery.height * 0.02,
                           ),
-                          Consumer<LoginController>(
+                          Consumer<LoginProvider>(
                             builder: (context, value, child) {
                               return TextFormField(
                                 style: theme.textTheme.subtitle2,

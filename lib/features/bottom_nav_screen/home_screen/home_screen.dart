@@ -6,11 +6,11 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/app_
 
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/utils.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/widgets/slide_horizontal_list.dart';
+import 'package:sahara_guru_health_services/features/widgets/slide_horizontal_list.dart';
 
-import '../../../../../../config/routes/routes_names.dart';
+import '../../../config/routes/routes_names.dart';
 
-import '../../../../../../core/utils/resources/components/button.dart';
+import '../../../core/utils/resources/components/button.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});

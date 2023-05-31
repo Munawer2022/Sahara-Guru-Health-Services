@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/config/themes.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/provider/bottom_nav_dashboard_controller.dart';
+import 'package:sahara_guru_health_services/features/provider/bottom_nav_dashboard_controller.dart';
 import 'config/routes/routes.dart';
 import 'config/routes/routes_names.dart';
 
-import 'features/bottom_nav_screens/presentation/pages/bottom_nav_screen/home_screen/search_doctor.dart';
-import 'features/bottom_nav_screens/presentation/provider/appointments_controller.dart';
-import 'features/bottom_nav_screens/presentation/provider/bookappointment_controller.dart';
-import 'features/auth/presentation/provider/login_controller.dart';
+import 'features/bottom_nav_screen/home_screen/search_doctor.dart';
+import 'features/provider/appointments_controller.dart';
+import 'features/provider/bookappointment_controller.dart';
+import 'features/auth/presentation/provider/login_provider.dart';
 
 import 'package:get_storage/get_storage.dart';
 import 'package:get_it/get_it.dart';
 
-import 'features/bottom_nav_screens/presentation/provider/search_doctor_controller.dart';
+import 'features/provider/search_doctor_controller.dart';
 
 GetIt getIt = GetIt.instance;
 
@@ -21,7 +21,7 @@ void main() async {
   await GetStorage.init();
   // getIt.registerLazySingleton<BaseApiServices>(() => LoginRespository());
   runApp(MultiProvider(providers: [
-    ChangeNotifierProvider(create: (_) => LoginController()),
+    ChangeNotifierProvider(create: (_) => LoginProvider()),
     ChangeNotifierProvider(create: (_) => BottomNavDashboardController()),
     ChangeNotifierProvider(create: (_) => BookAppointmentController()),
     ChangeNotifierProvider(create: (_) => AppointmentController()),

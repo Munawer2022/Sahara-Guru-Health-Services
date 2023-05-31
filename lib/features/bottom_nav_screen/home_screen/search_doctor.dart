@@ -7,8 +7,8 @@ import 'package:http/http.dart';
 
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 
-import '../../../../../../config/routes/routes_names.dart';
-import '../../../../data/repositories/list_doctor_respository.dart';
+import '../../../config/routes/routes_names.dart';
+import '../../data/repositories/list_doctor_respository.dart';
 
 class SearchDoctor extends StatefulWidget {
   const SearchDoctor({super.key});

@@ -8,10 +8,10 @@ import 'package:http/http.dart';
 
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/pages/bottom_nav_screen/appointment/presentation/presentation/my_appointment.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/appointments/presentation/pages/appointments_screen.dart';
 
-import '../../../../../../../../../config/routes/routes_names.dart';
-import '../../../../../../widgets/list_tile.dart';
+import '../../../../../../config/routes/routes_names.dart';
+import '../../../../../widgets/list_tile.dart';
 
 import 'appointment_confirmation_model.dart';
 

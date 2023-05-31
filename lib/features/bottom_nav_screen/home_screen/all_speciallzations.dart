@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/images.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
 
-import '../../../../../../config/routes/routes_names.dart';
-import '../../../../../../core/utils/constants/padding.dart';
-import '../../../../../../core/utils/resources/components/app_bar.dart';
-import '../../../../data/repositories/list_doctor_respository.dart';
+import '../../../config/routes/routes_names.dart';
+import '../../../core/utils/constants/padding.dart';
+import '../../../core/utils/resources/components/app_bar.dart';
+import '../../data/repositories/list_doctor_respository.dart';
 
 class AllSpeciallzations extends StatelessWidget {
   AllSpeciallzations({

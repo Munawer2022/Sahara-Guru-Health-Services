@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/images.dart';
 
-import '../../../../config/routes/routes_names.dart';
+import '../../config/routes/routes_names.dart';
 
-import '../../data/repositories/list_doctor_respository.dart';
-import '../pages/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
+import '../data/repositories/list_doctor_respository.dart';
+import '../bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
 
 class SlideHorizontalList extends StatelessWidget {
   SlideHorizontalList({

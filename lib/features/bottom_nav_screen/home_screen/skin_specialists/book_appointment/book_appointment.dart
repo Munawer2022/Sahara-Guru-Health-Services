@@ -19,8 +19,8 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/app_
 import 'package:sahara_guru_health_services/core/utils/resources/components/button.dart';
 import 'package:sahara_guru_health_services/core/utils/utils.dart';
 
-import '../../../../../../../../core/utils/constants/images.dart';
-import '../../../../../provider/bookappointment_controller.dart';
+import '../../../../../core/utils/constants/images.dart';
+import '../../../../provider/bookappointment_controller.dart';
 
 class BookAppointment extends StatefulWidget {
   dynamic routeData;

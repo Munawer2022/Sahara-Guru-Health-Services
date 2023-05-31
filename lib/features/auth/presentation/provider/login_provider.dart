@@ -6,7 +6,7 @@ import 'package:sahara_guru_health_services/features/auth/data/repositories/logi
 import '../../../../config/routes/routes_names.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 
-class LoginController extends ChangeNotifier {
+class LoginProvider extends ChangeNotifier {
   final box = GetStorage();
   bool _isVisible = false;
   bool get isVisible => _isVisible;

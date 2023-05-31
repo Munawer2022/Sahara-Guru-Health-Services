@@ -1,4 +1,4 @@
-import '../../../../core/network/NetworkApiService.dart';
+import '../../../core/network/NetworkApiService.dart';
 
 class SearchDoctorRespository {
   final _apiService = NetworkApiService();

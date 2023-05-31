@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/pages/bottom_nav_screen/profile.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/profile.dart';
 
-import '../../provider/bottom_nav_dashboard_controller.dart';
-import 'appointment/presentation/presentation/my_appointment.dart';
+import '../provider/bottom_nav_dashboard_controller.dart';
+import 'appointments/presentation/pages/appointments_screen.dart';
 import 'home_screen/home_screen.dart';
 
 class BottomNavDashboard extends StatelessWidget {
@@ -12,7 +12,7 @@ class BottomNavDashboard extends StatelessWidget {
 
   static final List<Widget> _pages = <Widget>[
     HomeScreen(),
-    MyAppointment(),
+    AppointmentScreen(),
     Profile(),
   ];
 

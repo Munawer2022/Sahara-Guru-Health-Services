@@ -5,7 +5,7 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:sahara_guru_health_services/core/utils/utils.dart';
 
-import 'package:sahara_guru_health_services/features/bottom_nav_screens/data/repositories/search_doctor_respository.dart';
+import 'package:sahara_guru_health_services/features/data/repositories/search_doctor_respository.dart';
 
 // class SearchDoctorController extends ChangeNotifier {
 //   List<dynamic> get searchDoctorList => _searchDoctorList;

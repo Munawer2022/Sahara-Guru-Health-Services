@@ -7,18 +7,18 @@ import 'package:sahara_guru_health_services/config/routes/routes_names.dart';
 
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/pages/bottom_nav_screen/appointment/data/models/upcoming_my_appointment_model.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/appointments/data/models/upcoming_my_appointment_model.dart';
 
 import '../../data/models/old_my_appointment_model.dart';
 
-class MyAppointment extends StatefulWidget {
-  MyAppointment({super.key});
+class AppointmentScreen extends StatefulWidget {
+  AppointmentScreen({super.key});
 
   @override
-  State<MyAppointment> createState() => _MyAppointmentState();
+  State<AppointmentScreen> createState() => _AppointmentScreenState();
 }
 
-class _MyAppointmentState extends State<MyAppointment> {
+class _AppointmentScreenState extends State<AppointmentScreen> {
   final box = GetStorage();
   @override
   void initState() {
@@ -61,7 +61,7 @@ class _MyAppointmentState extends State<MyAppointment> {
       return UpcomingMyAppointmentModel.fromJson(data);
     }
 
-    throw {}; 
+    throw {};
   }
 
   @override

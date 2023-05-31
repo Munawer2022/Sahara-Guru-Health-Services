@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get_storage/get_storage.dart';
 
-import '../../../../../core/utils/constants/images.dart';
-import '../../../../../core/utils/constants/padding.dart';
-import '../../../../../core/utils/resources/components/app_bar.dart';
+import '../../core/utils/constants/images.dart';
+import '../../core/utils/constants/padding.dart';
+import '../../core/utils/resources/components/app_bar.dart';
 
 class Profile extends StatelessWidget {
   Profile({super.key});
