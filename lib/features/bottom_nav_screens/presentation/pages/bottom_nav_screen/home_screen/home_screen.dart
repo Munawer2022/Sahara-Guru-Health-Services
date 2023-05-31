@@ -26,8 +26,7 @@ class HomeScreen extends StatelessWidget {
         return true;
       },
       child: Scaffold(
-        appBar:
-         MyAppBarWidget(
+        appBar: MyAppBarWidget(
           readOnly: true,
           ontap: () {
             Navigator.pushNamed(context, RoutesName.searchdoctor);

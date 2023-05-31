@@ -31,10 +31,12 @@ class SlideHorizontalList extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(
-                          context, RoutesName.skinspecialists, arguments: {
-                        'department_id': snapshot.data!.departments![index].id
-                      });
+                      Navigator.pushNamed(context, RoutesName.skinspecialists,
+                          arguments: {
+                            'department_id':
+                                snapshot.data!.departments![index].id,
+                            'name': snapshot.data!.departments![index].name
+                          });
                     },
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +73,7 @@ class SlideHorizontalList extends StatelessWidget {
             height: 80,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: snapshot.data?.departments?.length,
+              itemCount: 5,
               itemBuilder: (context, index) => Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: InkWell(
@@ -84,7 +86,7 @@ class SlideHorizontalList extends StatelessWidget {
                         height: 50,
                         width: 50,
                         decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
+                            color: Colors.grey.shade300,
                             borderRadius: BorderRadius.circular(50)),
                       ),
                       SizedBox(
@@ -94,7 +96,7 @@ class SlideHorizontalList extends StatelessWidget {
                         height: 15,
                         width: 70,
                         decoration: BoxDecoration(
-                            color: Colors.grey.shade200,
+                            color: Colors.grey.shade300,
                             borderRadius: BorderRadius.circular(12)),
                       )
                     ],

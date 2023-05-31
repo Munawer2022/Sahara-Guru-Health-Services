@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -13,15 +14,15 @@ import '../../../../../../../config/routes/routes_names.dart';
 
 import 'book_appointment/get_list_doctor_model.dart';
 
-class SkinSpecialists extends StatefulWidget {
+class CatagoryDoctor extends StatefulWidget {
   dynamic data;
-  SkinSpecialists({super.key, required this.data});
+  CatagoryDoctor({super.key, required this.data});
 
   @override
-  State<SkinSpecialists> createState() => _SkinSpecialistsState();
+  State<CatagoryDoctor> createState() => _CatagoryDoctorState();
 }
 
-class _SkinSpecialistsState extends State<SkinSpecialists> {
+class _CatagoryDoctorState extends State<CatagoryDoctor> {
   final box = GetStorage();
 
   Future<Getlistdoctor> getlistdoctor() async {
@@ -56,7 +57,7 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
           },
           bottomText: 'Doctors, hospitals, specialties, services, diseases',
           arrow_back: true,
-          title: 'Skin Specialists in Karachi',
+          title: '${widget.data['name'].toString()} Catagory',
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -64,50 +65,6 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                // Card(
-                //   elevation: 0,
-                //   child: Padding(
-                //     padding: screen_padding,
-                //     child: InkWell(
-                //       onTap: () {
-                //         Navigator.pushNamed(
-                //             context, RoutesName.allspeciallzations);
-                //       },
-                //       child: Container(
-                //         width: double.infinity,
-                //         height: 45,
-                //         decoration: BoxDecoration(
-                //             border: Border.all(color: Colors.grey)),
-                //         child: Center(
-                //           child: Text(
-                //             'Doctors, hospitals, specialties, services, diseases',
-                //             style: theme.textTheme.subtitle2!
-                //                 .copyWith(color: Colors.grey),
-                //           ),
-                //         ),
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // Padding(
-                //   padding: screen_padding,
-                //   child: FutureBuilder<Getlistdoctor>(
-                //       future: getlistdoctor(),
-                //       builder: (BuildContext context, AsyncSnapshot snapshot) {
-                //         if (snapshot.hasData) {
-                //           return Text(
-                //               'Top ${snapshot.data?.departments![0].doctors?.length.toString()} Dermatogists',
-                //               style: theme.textTheme.subtitle2);
-                //         }
-                //         return Container(
-                //           width: mediaQuery.width * 0.40,
-                //           height: mediaQuery.height * 0.02,
-                //           decoration: BoxDecoration(
-                //               color: Colors.grey.shade300,
-                //               borderRadius: BorderRadius.circular(12)),
-                //         );
-                //       }),
-                // ),
                 FutureBuilder<Getlistdoctor>(
                   future: getlistdoctor(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -194,7 +151,8 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                                               Colors.white,
                                                           child: Center(
                                                               child: Icon(
-                                                            Icons.person,
+                                                            CupertinoIcons
+                                                                .person_alt,
                                                             size: 40,
                                                             color: Colors.grey,
                                                           )),
@@ -371,7 +329,9 @@ class _SkinSpecialistsState extends State<SkinSpecialists> {
                                                         child: Text(
                                                       'Book Appointment',
                                                       style: TextStyle(
-                                                          color: Colors.white),
+                                                          color: Colors.white,
+                                                          fontWeight:
+                                                              FontWeight.bold),
                                                     )),
                                                   ),
                                                 ],

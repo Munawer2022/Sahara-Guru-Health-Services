@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -93,6 +94,7 @@ class _BookAppointmentState extends State<BookAppointment> {
         setState(() {
           loading = false;
         });
+
         Utils().warningSnackBarMessage(data['message'], context);
       }
     } catch (e) {
@@ -175,7 +177,7 @@ class _BookAppointmentState extends State<BookAppointment> {
                                         backgroundColor: Colors.white,
                                         child: Center(
                                             child: Icon(
-                                          Icons.person,
+                                          CupertinoIcons.person_alt,
                                           size: 40,
                                           color: Colors.grey,
                                         )),

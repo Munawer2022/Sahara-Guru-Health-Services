@@ -20,7 +20,8 @@ class Button extends StatelessWidget {
         style: ButtonStyle(
             //backgroundColor: MaterialStateProperty.all(Colors.grey.shade300)
             backgroundColor: loading
-                ? MaterialStateProperty.all(const Color.fromARGB(255, 3, 43, 104))
+                ? MaterialStateProperty.all(
+                    const Color.fromARGB(255, 3, 43, 104))
                 : MaterialStateProperty.all(Colors.blue.shade800)
             // elevation: MaterialStateProperty.all(2)
             ),
@@ -31,10 +32,11 @@ class Button extends StatelessWidget {
                     strokeWidth: 3,
                     color: Colors.white,
                   )
-                : Text(
-                    title,
-                    style: const TextStyle(color: Colors.white),
-                  )),
+                : Text(title,
+                    style: theme.textTheme.subtitle1?.copyWith(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ))),
       ),
     );
   }

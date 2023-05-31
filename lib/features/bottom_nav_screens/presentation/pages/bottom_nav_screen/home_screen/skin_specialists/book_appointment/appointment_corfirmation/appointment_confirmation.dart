@@ -8,6 +8,7 @@ import 'package:http/http.dart';
 
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/pages/bottom_nav_screen/appointment/presentation/presentation/my_appointment.dart';
 
 import '../../../../../../../../../config/routes/routes_names.dart';
 import '../../../../../../widgets/list_tile.dart';
@@ -60,6 +61,9 @@ class AppointmentConfirmation extends StatelessWidget {
               FutureBuilder<AppointmentConfirmationModel>(
                 future: appointmentConfirmation(),
                 builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return Center(child: Text('error'));
+                  }
                   if (snapshot.hasData) {
                     return Padding(
                       padding: screen_padding,
@@ -122,12 +126,15 @@ class AppointmentConfirmation extends StatelessWidget {
                                     SizedBox(
                                       height: mediaQuery.height * 0.01,
                                     ),
-                                    Text(
-                                        'Your in-person appointment\nhas been booked!',
-                                        textAlign: TextAlign.center,
-                                        style: theme.textTheme.headline6
-                                            ?.copyWith(
-                                                fontWeight: FontWeight.bold)),
+                                    Align(
+                                      alignment: Alignment.center,
+                                      child: Text(
+                                          'Your in-person appointment\nhas been booked!',
+                                          textAlign: TextAlign.center,
+                                          style: theme.textTheme.headline6
+                                              ?.copyWith(
+                                                  fontWeight: FontWeight.bold)),
+                                    ),
                                     SizedBox(
                                       height: mediaQuery.height * 0.05,
                                     ),
@@ -162,11 +169,183 @@ class AppointmentConfirmation extends StatelessWidget {
                               ),
                             ),
                           ),
+                          SizedBox(
+                            width: double.infinity,
+                            child: Card(
+                              elevation: 0,
+                              child: Padding(
+                                padding: card_padding,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('Diagnosis Details',
+                                        style: theme.textTheme.headline6),
+                                    SizedBox(
+                                      height: mediaQuery.height * 0.02,
+                                    ),
+                                    listTile(
+                                        'Medicines Name',
+                                        snapshot.data?.appointmentDetails
+                                                ?.diagnosis?.diagnosis ??
+                                            'N/A',
+                                        Icons.medical_information_outlined),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     );
                   }
-                  return const Center(child: CircularProgressIndicator());
+                  return Padding(
+                    padding: screen_padding,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        SizedBox(
+                          width: double.infinity,
+                          child: Card(
+                            color: Colors.grey.shade300,
+                            elevation: 0,
+                            child: Padding(
+                              padding: card_padding,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Align(
+                                      alignment: Alignment.center,
+                                      child: CircleAvatar(
+                                        radius: 25,
+                                        backgroundColor: Colors.grey.shade400,
+                                      )),
+                                  SizedBox(
+                                    height: mediaQuery.height * 0.01,
+                                  ),
+                                  Align(
+                                      alignment: Alignment.center,
+                                      child: Column(
+                                        children: [
+                                          SizedBox(
+                                            height: 40,
+                                            width: 300,
+                                            child: Card(
+                                              elevation: 0,
+                                              color: Colors.grey.shade400,
+                                            ),
+                                          ),
+                                          SizedBox(
+                                            height: 40,
+                                            width: 180,
+                                            child: Card(
+                                              elevation: 0,
+                                              color: Colors.grey.shade400,
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                  SizedBox(
+                                    height: mediaQuery.height * 0.05,
+                                  ),
+                                  SizedBox(
+                                    height: 40,
+                                    width: 220,
+                                    child: Card(
+                                      elevation: 0,
+                                      color: Colors.grey.shade400,
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: mediaQuery.height * 0.02,
+                                  ),
+                                  ListTile(
+                                    title: SizedBox(
+                                      height: 25,
+                                      child: Card(
+                                        elevation: 0,
+                                        color: Colors.grey.shade400,
+                                      ),
+                                    ),
+                                    subtitle: SizedBox(
+                                      height: 25,
+                                      child: Card(
+                                        elevation: 0,
+                                        color: Colors.grey.shade400,
+                                      ),
+                                    ),
+                                    leading: CircleAvatar(
+                                      radius: 15,
+                                      backgroundColor: Colors.grey.shade400,
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: SizedBox(
+                                      height: 25,
+                                      child: Card(
+                                        elevation: 0,
+                                        color: Colors.grey.shade400,
+                                      ),
+                                    ),
+                                    subtitle: SizedBox(
+                                      height: 25,
+                                      child: Card(
+                                        elevation: 0,
+                                        color: Colors.grey.shade400,
+                                      ),
+                                    ),
+                                    leading: CircleAvatar(
+                                      radius: 15,
+                                      backgroundColor: Colors.grey.shade400,
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: SizedBox(
+                                      height: 25,
+                                      child: Card(
+                                        elevation: 0,
+                                        color: Colors.grey.shade400,
+                                      ),
+                                    ),
+                                    subtitle: SizedBox(
+                                      height: 25,
+                                      child: Card(
+                                        elevation: 0,
+                                        color: Colors.grey.shade400,
+                                      ),
+                                    ),
+                                    leading: CircleAvatar(
+                                      radius: 15,
+                                      backgroundColor: Colors.grey.shade400,
+                                    ),
+                                  ),
+                                  ListTile(
+                                    title: SizedBox(
+                                      height: 25,
+                                      child: Card(
+                                        elevation: 0,
+                                        color: Colors.grey.shade400,
+                                      ),
+                                    ),
+                                    subtitle: SizedBox(
+                                      height: 25,
+                                      child: Card(
+                                        elevation: 0,
+                                        color: Colors.grey.shade400,
+                                      ),
+                                    ),
+                                    leading: CircleAvatar(
+                                      radius: 15,
+                                      backgroundColor: Colors.grey.shade400,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
                 },
               ),
               // Container(

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/pages/bottom_nav_screen/profile.dart';
 
 import '../../provider/bottom_nav_dashboard_controller.dart';
-import 'appointments/my_appointment.dart';
+import 'appointment/presentation/presentation/my_appointment.dart';
 import 'home_screen/home_screen.dart';
 
 class BottomNavDashboard extends StatelessWidget {
@@ -12,7 +12,6 @@ class BottomNavDashboard extends StatelessWidget {
 
   static final List<Widget> _pages = <Widget>[
     HomeScreen(),
-    MyAppointment(),
     MyAppointment(),
     Profile(),
   ];
@@ -41,16 +40,16 @@ class BottomNavDashboard extends StatelessWidget {
               ),
               NavigationDestination(
                 selectedIcon: Icon(
-                  CupertinoIcons.time_solid,
+                  CupertinoIcons.calendar,
                 ),
-                icon: Icon(CupertinoIcons.time),
+                icon: Icon(Icons.calendar_month_outlined),
                 label: 'Appointments',
               ),
-              NavigationDestination(
-                selectedIcon: Icon(CupertinoIcons.doc_person_fill),
-                icon: Icon(CupertinoIcons.doc_person),
-                label: 'Records',
-              ),
+              // NavigationDestination(
+              //   selectedIcon: Icon(CupertinoIcons.doc_person_fill),
+              //   icon: Icon(CupertinoIcons.doc_person),
+              //   label: 'Records',
+              // ),
               NavigationDestination(
                 selectedIcon: Icon(
                   CupertinoIcons.person_alt_circle_fill,

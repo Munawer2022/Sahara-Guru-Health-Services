@@ -7,9 +7,9 @@ import 'package:sahara_guru_health_services/config/routes/routes_names.dart';
 
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/pages/bottom_nav_screen/appointments/upcoming_my_appointment_model.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screens/presentation/pages/bottom_nav_screen/appointment/data/models/upcoming_my_appointment_model.dart';
 
-import 'old_my_appointment_model.dart';
+import '../../data/models/old_my_appointment_model.dart';
 
 class MyAppointment extends StatefulWidget {
   MyAppointment({super.key});
@@ -61,7 +61,7 @@ class _MyAppointmentState extends State<MyAppointment> {
       return UpcomingMyAppointmentModel.fromJson(data);
     }
 
-    throw {};
+    throw {}; 
   }
 
   @override
@@ -198,7 +198,7 @@ class _MyAppointmentState extends State<MyAppointment> {
                                                         const EdgeInsets.all(
                                                             5.0),
                                                     child: Text(
-                                                      '${snapshot.data!.appointmentData!.upcoming![index].fees.toString()} Remaning',
+                                                      'Cash',
                                                       // 'Rs. 2300 Remaning',
                                                       style: theme
                                                           .textTheme.subtitle2
@@ -302,6 +302,9 @@ class _MyAppointmentState extends State<MyAppointment> {
               FutureBuilder<OldMyAppointmentModel>(
                   future: oldMyAppointment(),
                   builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(child: Text('error'));
+                    }
                     if (snapshot.hasData) {
                       return ListView.builder(
                           physics: const NeverScrollableScrollPhysics(),

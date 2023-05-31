@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
@@ -61,8 +62,18 @@ class _SearchDoctorState extends State<SearchDoctor> {
         controller: searchTermController,
         bottom: true,
         bottomText: 'Doctors, hospitals, specialties, services, diseases',
-        arrow_back: true,
+        arrow_back: false,
         title: 'Find a Doctor',
+        actions: [
+          IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              icon: const Icon(
+                CupertinoIcons.clear,
+                color: Colors.white,
+              ))
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
