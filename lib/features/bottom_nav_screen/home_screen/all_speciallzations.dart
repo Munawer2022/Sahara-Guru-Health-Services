@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/images.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/skin_specialists/book_appointment/get_list_doctor_model.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/get_list_doctor_model.dart';
 
 import '../../../config/routes/routes_names.dart';
 import '../../../core/utils/constants/padding.dart';
@@ -52,7 +52,9 @@ class AllSpeciallzations extends StatelessWidget {
                                     context, RoutesName.skinspecialists,
                                     arguments: {
                                       'department_id':
-                                          snapshot.data!.departments![index].id
+                                          snapshot.data!.departments![index].id,
+                                      'name': snapshot
+                                          .data!.departments![index].name,
                                     });
                               },
                               child: ListTile(

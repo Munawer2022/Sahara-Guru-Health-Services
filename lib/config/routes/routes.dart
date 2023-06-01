@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:sahara_guru_health_services/features/auth/presentation/pages/login_screen.dart';
 
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/bottom_nav_dashboard.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/search_doctor.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/search_doctor/presentation/pages/search_doctor_screen.dart';
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/home_screen.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/skin_specialists/book_appointment/book_appointment.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/skin_specialists/catagory_doctor.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/book_appointment.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/catagory_doctor/catagory_doctor.dart';
 
 import '../../features/bottom_nav_screen/home_screen/all_speciallzations.dart';
-import '../../features/bottom_nav_screen/home_screen/skin_specialists/book_appointment/appointment_corfirmation/appointment_confirmation.dart';
-import '../../features/bottom_nav_screen/home_screen/skin_specialists/book_appointment/appointment_corfirmation/appointment_detail/appointment_detail.dart';
+import '../../features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/appointment_corfirmation/appointment_confirmation.dart';
+import '../../features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/appointment_corfirmation/appointment_detail/appointment_detail.dart';
 import '../../core/utils/splesh_screen.dart';
 import 'routes_names.dart';
 
@@ -18,7 +18,7 @@ class Routes {
     switch (settings.name) {
       case RoutesName.searchdoctor:
         return MaterialPageRoute(
-            builder: (BuildContext context) => SearchDoctor());
+            builder: (BuildContext context) => SearchDoctorScreen());
       // case RoutesName.signupscreen:
       //   return MaterialPageRoute(
       //       builder: (BuildContext context) => SignUpScreen());

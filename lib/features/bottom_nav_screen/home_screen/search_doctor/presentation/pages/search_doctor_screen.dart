@@ -4,21 +4,24 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
+import 'package:provider/provider.dart';
 
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/search_doctor/presentation/provider/search_doctor_provider.dart';
 
-import '../../../config/routes/routes_names.dart';
-import '../../data/repositories/list_doctor_respository.dart';
+import '../../../../../../config/routes/routes_names.dart';
+import '../../../../../data/repositories/list_doctor_respository.dart';
 
-class SearchDoctor extends StatefulWidget {
-  const SearchDoctor({super.key});
+class SearchDoctorScreen extends StatefulWidget {
+  const SearchDoctorScreen({super.key});
 
   @override
-  State<SearchDoctor> createState() => _SearchDoctorState();
+  State<SearchDoctorScreen> createState() => _SearchDoctorScreenState();
 }
 
-class _SearchDoctorState extends State<SearchDoctor> {
+class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
   TextEditingController searchTermController = TextEditingController();
+  // SearchDoctorProvider searchDoctorProvider = SearchDoctorProvider();
 
   final box = GetStorage();
   List<dynamic> getsearchdoctorlist = [];
@@ -44,13 +47,22 @@ class _SearchDoctorState extends State<SearchDoctor> {
   @override
   void initState() {
     super.initState();
+
     searchTermController.addListener(() {
+      // searchDoctorProvider.baseSearchDoctor(searchTermController.text);
       getsearchdoctor();
     });
   }
 
-  ListDoctorRespository demoRespository = ListDoctorRespository();
-  bool _isShow = true;
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    searchTermController.dispose();
+  }
+
+  // ListDoctorRespository demoRespository = ListDoctorRespository();
+  final bool _isShow = true;
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
