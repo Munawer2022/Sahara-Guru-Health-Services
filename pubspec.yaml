@@ -77,6 +77,8 @@ flutter:
     
     - assets/images/category.png
     - assets/images/doctor.png
+    - assets/images/No_data.png
+    - assets/images/Search.png
     
 
   #   - images/a_dot_ham.jpeg

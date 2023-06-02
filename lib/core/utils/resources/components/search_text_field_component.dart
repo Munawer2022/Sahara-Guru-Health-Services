@@ -7,12 +7,14 @@ class SearchTextFieldComponent extends StatelessWidget {
   final controller;
   final ontap;
   final readOnly;
+  final suffixIcon;
   const SearchTextFieldComponent({
     super.key,
     required this.text,
     this.controller,
     this.ontap,
     this.readOnly,
+    this.suffixIcon,
   });
 
   @override
@@ -26,6 +28,7 @@ class SearchTextFieldComponent extends StatelessWidget {
         decoration: InputDecoration(
           fillColor: Colors.white,
           filled: true,
+          suffixIcon: suffixIcon,
           // enabledBorder: InputBorder.none,
           contentPadding: const EdgeInsets.all(10),
           border: OutlineInputBorder(

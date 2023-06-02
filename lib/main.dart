@@ -10,6 +10,7 @@ import 'features/bottom_nav_screen/appointments/data/repositories/appointments_b
 import 'features/bottom_nav_screen/appointments/data/repositories/appointments_repository.dart';
 import 'features/bottom_nav_screen/appointments/presentation/provider/appointments_provider.dart';
 
+import 'features/bottom_nav_screen/home_screen/all_speciallzations/presentation/provider/all_speciallzations_provider.dart';
 import 'features/provider/appointments_controller.dart';
 import 'features/provider/bookappointment_controller.dart';
 import 'features/auth/presentation/provider/login_provider.dart';
@@ -17,14 +18,19 @@ import 'features/auth/presentation/provider/login_provider.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:get_it/get_it.dart';
 
+import 'features/widgets/slide_horizontal_list.dart';
+
 GetIt getIt = GetIt.instance;
 
 void main() async {
   await GetStorage.init();
   // getIt.registerLazySingleton<AppointmentsBaseApiServices>(() => AppointmentsRepository());
   runApp(MultiProvider(providers: [
+    ChangeNotifierProvider(create: (_) => AllSpeciallzationsProvider()),
     ChangeNotifierProvider(create: (_) => AppointmentsProvider()),
-    ChangeNotifierProvider(create: (_) => SearchDoctorProvider()),
+    ChangeNotifierProvider(create: (_) => AllSpeciallzationsProvider()),
+
+    // ChangeNotifierProvider(create: (_) => SearchDoctorProvider()),
     // ChangeNotifierProvider(create: (_) =>AppointmentsProvider(appointmentsBaseApiServices: getIt())..baseOldAppointments()),
 
     ChangeNotifierProvider(create: (_) => LoginProvider()),

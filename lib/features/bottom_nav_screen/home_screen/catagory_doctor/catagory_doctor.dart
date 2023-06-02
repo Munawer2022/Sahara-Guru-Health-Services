@@ -69,281 +69,352 @@ class _CatagoryDoctorState extends State<CatagoryDoctor> {
                   future: getlistdoctor(),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
-                      return Flexible(
-                        child: Padding(
-                          padding: screen_padding,
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                  'Top ${snapshot.data?.departments![0].doctors?.length.toString()} Dermatogists',
-                                  style: theme.textTheme.subtitle2),
-                              SizedBox(
-                                height: mediaQuery.height * 0.02,
-                              ),
-                              ListView.builder(
-                                  physics: const NeverScrollableScrollPhysics(),
-                                  shrinkWrap: true,
-                                  itemCount: snapshot
-                                      .data!.departments![0].doctors?.length,
-                                  itemBuilder: (context, index) => Card(
-                                        elevation: 0,
-                                        child: Padding(
-                                          padding: card_padding,
-                                          child: Column(
-                                            children: [
-                                              ListTile(
-                                                title: Text(
-                                                    snapshot
-                                                        .data!
-                                                        .departments![0]
-                                                        .doctors![index]
-                                                        .firstName
-                                                        .toString(),
-                                                    style: theme
-                                                        .textTheme.headline6!
-                                                        .copyWith(
-                                                            fontWeight:
-                                                                FontWeight
-                                                                    .bold)),
-                                                leading: DecoratedBox(
-                                                  decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              50),
-                                                      boxShadow: <BoxShadow>[
-                                                        BoxShadow(
-                                                          color: Colors.black
-                                                              .withOpacity(.2),
-                                                          blurRadius: 10,
-                                                        )
-                                                      ]),
-
-                                                  // backgroundColor: Colors.white,
-                                                  // radius: 27,
-                                                  child: snapshot
+                      return snapshot.data?.departments![0].doctors?.length == 0
+                          ? Column(
+                              children: [
+                                Image.asset(
+                                  no_data,
+                                  scale: 6,
+                                ),
+                                ListTile(
+                                    title: Center(
+                                      child: Text(
+                                          'Empty ${widget.data['name'].toString()} \nCatagory',
+                                          textAlign: TextAlign.center,
+                                          style: theme.textTheme.headline6),
+                                    ),
+                                    subtitle: const Center(
+                                      child: Text(
+                                        "\nSorry, Doctor's empty in this catagory",
+                                      ),
+                                    )),
+                              ],
+                            )
+                          : Flexible(
+                              child: Padding(
+                                padding: screen_padding,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                        'Top ${snapshot.data?.departments![0].doctors?.length.toString()} Dermatogists',
+                                        style: theme.textTheme.subtitle2),
+                                    SizedBox(
+                                      height: mediaQuery.height * 0.02,
+                                    ),
+                                    ListView.builder(
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        shrinkWrap: true,
+                                        itemCount: snapshot.data!
+                                            .departments![0].doctors?.length,
+                                        itemBuilder: (context, index) => Card(
+                                              elevation: 0,
+                                              child: Padding(
+                                                padding: card_padding,
+                                                child: Column(
+                                                  children: [
+                                                    ListTile(
+                                                      title: Text(
+                                                          snapshot
                                                               .data!
                                                               .departments![0]
                                                               .doctors![index]
-                                                              .profile !=
-                                                          null
-                                                      ? CircleAvatar(
-                                                          backgroundColor:
-                                                              Colors.white,
-                                                          onBackgroundImageError:
-                                                              (exception,
-                                                                  stackTrace) {},
-                                                          backgroundImage: NetworkImage(
-                                                              department_doctors_profiles +
-                                                                  snapshot
+                                                              .firstName
+                                                              .toString(),
+                                                          style: theme.textTheme
+                                                              .headline6!
+                                                              .copyWith(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold)),
+                                                      leading: DecoratedBox(
+                                                        decoration: BoxDecoration(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        50),
+                                                            boxShadow: <
+                                                                BoxShadow>[
+                                                              BoxShadow(
+                                                                color: Colors
+                                                                    .black
+                                                                    .withOpacity(
+                                                                        .2),
+                                                                blurRadius: 10,
+                                                              )
+                                                            ]),
+
+                                                        // backgroundColor: Colors.white,
+                                                        // radius: 27,
+                                                        child: snapshot
+                                                                    .data!
+                                                                    .departments![
+                                                                        0]
+                                                                    .doctors![
+                                                                        index]
+                                                                    .profile !=
+                                                                null
+                                                            ? CircleAvatar(
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .white,
+                                                                onBackgroundImageError:
+                                                                    (exception,
+                                                                        stackTrace) {},
+                                                                backgroundImage: NetworkImage(department_doctors_profiles +
+                                                                    snapshot
+                                                                        .data!
+                                                                        .departments![
+                                                                            0]
+                                                                        .doctors![
+                                                                            index]
+                                                                        .profile
+                                                                        .toString()),
+                                                                radius: 25,
+                                                              )
+                                                            : const CircleAvatar(
+                                                                radius: 25,
+                                                                backgroundColor:
+                                                                    Colors
+                                                                        .white,
+                                                                child: Center(
+                                                                    child: Icon(
+                                                                  CupertinoIcons
+                                                                      .person_alt,
+                                                                  size: 40,
+                                                                  color: Colors
+                                                                      .grey,
+                                                                )),
+                                                              ),
+                                                      ),
+                                                      subtitle: Text(
+                                                          snapshot
+                                                              .data!
+                                                              .departments![0]
+                                                              .doctors![index]
+                                                              .lastName
+                                                              .toString(),
+                                                          maxLines: 2,
+                                                          style: theme.textTheme
+                                                              .subtitle2),
+                                                    ),
+                                                    SizedBox(
+                                                        height:
+                                                            mediaQuery.height *
+                                                                0.02),
+                                                    Row(
+                                                      mainAxisAlignment:
+                                                          MainAxisAlignment
+                                                              .spaceBetween,
+                                                      children: [
+                                                        RichText(
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          text: TextSpan(
+                                                            text: 'Fees\n',
+                                                            style: theme
+                                                                .textTheme
+                                                                .subtitle2!
+                                                                .copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                            children: <
+                                                                TextSpan>[
+                                                              TextSpan(
+                                                                text: snapshot
+                                                                        .data!
+                                                                        .departments![
+                                                                            0]
+                                                                        .doctors![
+                                                                            index]
+                                                                        .fees ??
+                                                                    'N/A',
+                                                                style: theme
+                                                                    .textTheme
+                                                                    .subtitle2!
+                                                                    .copyWith(
+                                                                        fontSize:
+                                                                            12),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        RichText(
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          text: TextSpan(
+                                                            text: '22 Years\n',
+                                                            style: theme
+                                                                .textTheme
+                                                                .subtitle2!
+                                                                .copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                            children: <
+                                                                TextSpan>[
+                                                              TextSpan(
+                                                                text:
+                                                                    'Experience',
+                                                                style: theme
+                                                                    .textTheme
+                                                                    .subtitle2!
+                                                                    .copyWith(
+                                                                        fontSize:
+                                                                            12),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                        RichText(
+                                                          textAlign:
+                                                              TextAlign.center,
+                                                          text: TextSpan(
+                                                            text:
+                                                                '95% (4161)\n',
+                                                            style: theme
+                                                                .textTheme
+                                                                .subtitle2!
+                                                                .copyWith(
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .bold,
+                                                            ),
+                                                            children: <
+                                                                TextSpan>[
+                                                              TextSpan(
+                                                                text:
+                                                                    'Satisfied',
+                                                                style: theme
+                                                                    .textTheme
+                                                                    .subtitle2!
+                                                                    .copyWith(
+                                                                        fontSize:
+                                                                            12),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    SizedBox(
+                                                        height:
+                                                            mediaQuery.height *
+                                                                0.02),
+                                                    SizedBox(
+                                                      width: double.infinity,
+                                                      child: Card(
+                                                        child: Padding(
+                                                          padding: card_padding,
+                                                          child: Text(
+                                                              snapshot
                                                                       .data!
                                                                       .departments![
                                                                           0]
                                                                       .doctors![
                                                                           index]
-                                                                      .profile
-                                                                      .toString()),
-                                                          radius: 25,
-                                                        )
-                                                      : const CircleAvatar(
-                                                          radius: 25,
-                                                          backgroundColor:
-                                                              Colors.white,
-                                                          child: Center(
-                                                              child: Icon(
-                                                            CupertinoIcons
-                                                                .person_alt,
-                                                            size: 40,
-                                                            color: Colors.grey,
+                                                                      .bio ??
+                                                                  'N/A',
+                                                              maxLines: 3,
+                                                              textAlign:
+                                                                  TextAlign
+                                                                      .center,
+                                                              // '"Dr. Salman is one of the top doctors, He is highly qulaified, intelligent and very punctual, Really satisfi...',
+                                                              style: theme
+                                                                  .textTheme
+                                                                  .subtitle2),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                    SizedBox(
+                                                        height:
+                                                            mediaQuery.height *
+                                                                0.02),
+                                                    Row(
+                                                      children: [
+                                                        ElevatedButton(
+                                                          style: ButtonStyle(
+                                                              backgroundColor:
+                                                                  MaterialStateProperty
+                                                                      .all(Colors
+                                                                          .blue
+                                                                          .shade800)),
+                                                          onPressed: () {
+                                                            Navigator.pushNamed(
+                                                                context,
+                                                                RoutesName
+                                                                    .bookappointment,
+                                                                arguments: {
+                                                                  'fees': snapshot
+                                                                      .data!
+                                                                      .departments![
+                                                                          0]
+                                                                      .doctors[
+                                                                          index]
+                                                                      .fees,
+                                                                  'bio': snapshot
+                                                                          .data!
+                                                                          .departments![
+                                                                              0]
+                                                                          .doctors[
+                                                                              index]
+                                                                          .bio ??
+                                                                      'N/A',
+                                                                  'id': snapshot
+                                                                      .data!
+                                                                      .departments![
+                                                                          0]
+                                                                      .doctors[
+                                                                          index]
+                                                                      .id,
+                                                                  'firstName': snapshot
+                                                                      .data!
+                                                                      .departments![
+                                                                          0]
+                                                                      .doctors[
+                                                                          index]
+                                                                      .firstName,
+                                                                  'lastName': snapshot
+                                                                      .data!
+                                                                      .departments![
+                                                                          0]
+                                                                      .doctors[
+                                                                          index]
+                                                                      .lastName,
+                                                                  'profile': snapshot
+                                                                      .data!
+                                                                      .departments![
+                                                                          0]
+                                                                      .doctors[
+                                                                          index]
+                                                                      .profile,
+                                                                });
+                                                          },
+                                                          child: const Center(
+                                                              child: Text(
+                                                            'Book Appointment',
+                                                            style: TextStyle(
+                                                                color: Colors
+                                                                    .white,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold),
                                                           )),
                                                         ),
-                                                ),
-                                                subtitle: Text(
-                                                    snapshot
-                                                        .data!
-                                                        .departments![0]
-                                                        .doctors![index]
-                                                        .lastName
-                                                        .toString(),
-                                                    maxLines: 2,
-                                                    style: theme
-                                                        .textTheme.subtitle2),
-                                              ),
-                                              SizedBox(
-                                                  height:
-                                                      mediaQuery.height * 0.02),
-                                              Row(
-                                                mainAxisAlignment:
-                                                    MainAxisAlignment
-                                                        .spaceBetween,
-                                                children: [
-                                                  RichText(
-                                                    textAlign: TextAlign.center,
-                                                    text: TextSpan(
-                                                      text: 'Fees\n',
-                                                      style: theme
-                                                          .textTheme.subtitle2!
-                                                          .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                      children: <TextSpan>[
-                                                        TextSpan(
-                                                          text: snapshot
-                                                                  .data!
-                                                                  .departments![
-                                                                      0]
-                                                                  .doctors![
-                                                                      index]
-                                                                  .fees ??
-                                                              'N/A',
-                                                          style: theme.textTheme
-                                                              .subtitle2!
-                                                              .copyWith(
-                                                                  fontSize: 12),
-                                                        ),
                                                       ],
-                                                    ),
-                                                  ),
-                                                  RichText(
-                                                    textAlign: TextAlign.center,
-                                                    text: TextSpan(
-                                                      text: '22 Years\n',
-                                                      style: theme
-                                                          .textTheme.subtitle2!
-                                                          .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                      children: <TextSpan>[
-                                                        TextSpan(
-                                                          text: 'Experience',
-                                                          style: theme.textTheme
-                                                              .subtitle2!
-                                                              .copyWith(
-                                                                  fontSize: 12),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  RichText(
-                                                    textAlign: TextAlign.center,
-                                                    text: TextSpan(
-                                                      text: '95% (4161)\n',
-                                                      style: theme
-                                                          .textTheme.subtitle2!
-                                                          .copyWith(
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                      ),
-                                                      children: <TextSpan>[
-                                                        TextSpan(
-                                                          text: 'Satisfied',
-                                                          style: theme.textTheme
-                                                              .subtitle2!
-                                                              .copyWith(
-                                                                  fontSize: 12),
-                                                        ),
-                                                      ],
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                              SizedBox(
-                                                  height:
-                                                      mediaQuery.height * 0.02),
-                                              SizedBox(
-                                                width: double.infinity,
-                                                child: Card(
-                                                  child: Padding(
-                                                    padding: card_padding,
-                                                    child: Text(
-                                                        snapshot
-                                                                .data!
-                                                                .departments![0]
-                                                                .doctors![index]
-                                                                .bio ??
-                                                            'N/A',
-                                                        maxLines: 3,
-                                                        textAlign:
-                                                            TextAlign.center,
-                                                        // '"Dr. Salman is one of the top doctors, He is highly qulaified, intelligent and very punctual, Really satisfi...',
-                                                        style: theme.textTheme
-                                                            .subtitle2),
-                                                  ),
+                                                    )
+                                                  ],
                                                 ),
                                               ),
-                                              SizedBox(
-                                                  height:
-                                                      mediaQuery.height * 0.02),
-                                              Row(
-                                                children: [
-                                                  ElevatedButton(
-                                                    style: ButtonStyle(
-                                                        backgroundColor:
-                                                            MaterialStateProperty
-                                                                .all(Colors.blue
-                                                                    .shade800)),
-                                                    onPressed: () {
-                                                      Navigator.pushNamed(
-                                                          context,
-                                                          RoutesName
-                                                              .bookappointment,
-                                                          arguments: {
-                                                            'fees': snapshot
-                                                                .data!
-                                                                .departments![0]
-                                                                .doctors[index]
-                                                                .fees,
-                                                            'bio': snapshot
-                                                                    .data!
-                                                                    .departments![
-                                                                        0]
-                                                                    .doctors[
-                                                                        index]
-                                                                    .bio ??
-                                                                'N/A',
-                                                            'id': snapshot
-                                                                .data!
-                                                                .departments![0]
-                                                                .doctors[index]
-                                                                .id,
-                                                            'firstName': snapshot
-                                                                .data!
-                                                                .departments![0]
-                                                                .doctors[index]
-                                                                .firstName,
-                                                            'lastName': snapshot
-                                                                .data!
-                                                                .departments![0]
-                                                                .doctors[index]
-                                                                .lastName,
-                                                            'profile': snapshot
-                                                                .data!
-                                                                .departments![0]
-                                                                .doctors[index]
-                                                                .profile,
-                                                          });
-                                                    },
-                                                    child: const Center(
-                                                        child: Text(
-                                                      'Book Appointment',
-                                                      style: TextStyle(
-                                                          color: Colors.white,
-                                                          fontWeight:
-                                                              FontWeight.bold),
-                                                    )),
-                                                  ),
-                                                ],
-                                              )
-                                            ],
-                                          ),
-                                        ),
-                                      )),
-                            ],
-                          ),
-                        ),
-                      );
+                                            )),
+                                  ],
+                                ),
+                              ),
+                            );
                     }
                     return Flexible(
                       child: Padding(

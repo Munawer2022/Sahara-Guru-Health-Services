@@ -7,7 +7,7 @@ import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_scre
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/book_appointment.dart';
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/catagory_doctor/catagory_doctor.dart';
 
-import '../../features/bottom_nav_screen/home_screen/all_speciallzations.dart';
+import '../../features/bottom_nav_screen/home_screen/all_speciallzations/presentation/pages/all_speciallzations_screen.dart';
 import '../../features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/appointment_corfirmation/appointment_confirmation.dart';
 import '../../features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/appointment_corfirmation/appointment_detail/appointment_detail.dart';
 import '../../core/utils/splesh_screen.dart';
@@ -17,8 +17,23 @@ class Routes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case RoutesName.searchdoctor:
-        return MaterialPageRoute(
-            builder: (BuildContext context) => SearchDoctorScreen());
+        return PageRouteBuilder(
+          pageBuilder: (context, animation, secondaryAnimation) =>
+              const SearchDoctorScreen(),
+          transitionsBuilder: (context, animation, secondaryAnimation, child) {
+            var begin = const Offset(0.0, 1.0);
+            var end = Offset.zero;
+            var curve = Curves.ease;
+
+            var tween =
+                Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+
+            return SlideTransition(
+              position: animation.drive(tween),
+              child: child,
+            );
+          },
+        );
       // case RoutesName.signupscreen:
       //   return MaterialPageRoute(
       //       builder: (BuildContext context) => SignUpScreen());
@@ -58,7 +73,7 @@ class Routes {
             builder: (BuildContext context) => SplashScreen());
       case RoutesName.allSpeciallzations:
         return MaterialPageRoute(
-            builder: (BuildContext context) => AllSpeciallzations());
+            builder: (BuildContext context) => AllSpeciallzationsScreen());
 
       default:
         return MaterialPageRoute(builder: (_) {

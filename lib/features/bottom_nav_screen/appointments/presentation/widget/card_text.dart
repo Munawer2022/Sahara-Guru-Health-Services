@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class CardText extends StatelessWidget {
   final text;
   const CardText({super.key, required this.text});

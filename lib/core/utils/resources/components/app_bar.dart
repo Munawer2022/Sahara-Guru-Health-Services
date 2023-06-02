@@ -14,6 +14,7 @@ class MyAppBarWidget extends StatelessWidget implements PreferredSize {
   final controller;
   final readOnly;
   final ontap;
+  final suffixIcon;
 
   const MyAppBarWidget({
     super.key,
@@ -25,6 +26,7 @@ class MyAppBarWidget extends StatelessWidget implements PreferredSize {
     this.controller,
     this.readOnly,
     this.ontap,
+    this.suffixIcon,
   });
 
   @override
@@ -51,6 +53,7 @@ class MyAppBarWidget extends StatelessWidget implements PreferredSize {
                 child: Padding(
                   padding: card_padding,
                   child: SearchTextFieldComponent(
+                    suffixIcon: suffixIcon,
                     readOnly: readOnly,
                     ontap: ontap,
                     text: bottomText,

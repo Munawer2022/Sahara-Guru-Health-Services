@@ -10,6 +10,7 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/app_
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/search_doctor/presentation/provider/search_doctor_provider.dart';
 
 import '../../../../../../config/routes/routes_names.dart';
+import '../../../../../../core/utils/constants/images.dart';
 import '../../../../../data/repositories/list_doctor_respository.dart';
 
 class SearchDoctorScreen extends StatefulWidget {
@@ -70,6 +71,12 @@ class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
     debugPrint('object');
     return Scaffold(
       appBar: MyAppBarWidget(
+        suffixIcon: searchTermController.text.isEmpty
+            ? null
+            : IconButton(
+                onPressed: searchTermController.clear,
+                icon: const Icon(CupertinoIcons.clear_circled_solid),
+              ),
         readOnly: false,
         controller: searchTermController,
         bottom: true,
@@ -88,109 +95,151 @@ class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
         ],
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                // Padding(
-                //   padding: screen_padding,
-                //   child: Row(
-                //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                //     children: [
-                //       Text('Recent searches', style: theme.textTheme.subtitle2),
-                //       TextButton(
-                //           onPressed: () {},
-                //           child: const Text(
-                //             'Clear all',
-                //           ))
-                //     ],
-                //   ),
-                // ),
-                // SlideHorizontalList(),
-                // SizedBox(
-                //   height: mediaQuery.height * 0.02,
-                // ),
-                // Padding(
-                //   padding: screen_padding,
-                //   child: Text('Search by specialty',
-                //       style: theme.textTheme.subtitle2),
-                // ),
-                // FutureBuilder<Getlistdoctor>(
-                //     future: demoRespository.getlistdoctor(),
-                //     builder: (context, snapshot) {
-                //       if (snapshot.hasData) {
-                //         return GridView.builder(
-                //           physics: const NeverScrollableScrollPhysics(),
-                //           shrinkWrap: true,
-                //           gridDelegate:
-                //               const SliverGridDelegateWithFixedCrossAxisCount(
-                //                   childAspectRatio: 2.8, crossAxisCount: 2),
-                //           itemBuilder: (_, index) {
-                //             return Card(
-                //               elevation: 0,
-                //               child: Center(
-                //                 child: ListTile(
-                //                   // onTap: () {},
-                //                   title: Text(
-                //                       snapshot.data!.departments![index].name
-                //                           .toString(),
-                //                       style: theme.textTheme.subtitle2),
-                //                   leading: const CircleAvatar(),
-                //                 ),
-                //               ),
-                //             );
-                //           },
-                //           itemCount: snapshot.data!.departments!.length,
-                //         );
-                //       }
-                //       return Container();
-                //     }),
-                searchTermController.text.isEmpty
-                    ? Visibility(
-                        visible: _isShow,
-                        child: const Center(child: Text('no search')))
-                    : ListView.builder(
-                        padding: EdgeInsets.zero,
-                        shrinkWrap: true,
-                        itemCount: getsearchdoctorlist.length,
-                        itemBuilder: (context, index) {
-                          return Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            children: [
-                              ListTile(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, RoutesName.bookappointment,
-                                      arguments: {
-                                        'id': getsearchdoctorlist[index]['id'],
-                                        'fees': getsearchdoctorlist[index]
-                                            ['fees'],
-                                        'bio': getsearchdoctorlist[index]
-                                                ['bio'] ??
-                                            'N/A',
-                                        'profile': getsearchdoctorlist[index]
-                                            ['profile'],
-                                        'firstName': getsearchdoctorlist[index]
-                                            ['first_name'],
-                                        'lastName': getsearchdoctorlist[index]
-                                            ['last_name']
-                                      });
-                                },
-                                title: Text(getsearchdoctorlist[index]
-                                        ['first_name']
-                                    .toString()),
-                              ),
-                              const Divider()
-                            ],
-                          );
-                        }),
-              ],
-            ),
-          ],
-        ),
+        child: searchTermController.text.isEmpty
+            ? Visibility(
+                visible: _isShow,
+                child: Column(
+                  children: [
+                    Image.asset(
+                      search,
+                      scale: 6,
+                    ),
+                    ListTile(
+                        title: Center(
+                          child: Text('What Are You\nSearching For?',
+                              textAlign: TextAlign.start,
+                              style: theme.textTheme.headline6),
+                        ),
+                        subtitle: const Center(
+                          child: Text(
+                            "\nHere You Find Your Favorite Doctor's",
+                          ),
+                        )),
+                  ],
+                ))
+            : getsearchdoctorlist.isEmpty
+                ? Column(
+                    children: [
+                      Image.asset(
+                        no_data,
+                        scale: 6,
+                      ),
+                      ListTile(
+                          title: Center(
+                            child: Text(
+                                'Result Not Found\n"${searchTermController.text.toString()}"',
+                                textAlign: TextAlign.center,
+                                style: theme.textTheme.headline6),
+                          ),
+                          subtitle: const Center(
+                            child: Text(
+                              "\nSorry, we couldn't find any matches",
+                            ),
+                          )),
+                    ],
+                  )
+                : Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:
+                            Text('Doctors', style: theme.textTheme.subtitle1),
+                      ),
+                      ListView.builder(
+                          physics: const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          padding: EdgeInsets.zero,
+                          itemCount: getsearchdoctorlist.length,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Container(
+                                  height: mediaQuery.height * 0.10,
+                                  width: double.infinity,
+                                  color: Colors.white,
+                                  child: Center(
+                                    child: ListTile(
+                                      onTap: () {
+                                        Navigator.pushNamed(
+                                            context, RoutesName.bookappointment,
+                                            arguments: {
+                                              'id': getsearchdoctorlist[index]
+                                                  ['id'],
+                                              'fees': getsearchdoctorlist[index]
+                                                  ['fees'],
+                                              'bio': getsearchdoctorlist[index]
+                                                      ['bio'] ??
+                                                  'N/A',
+                                              'profile':
+                                                  getsearchdoctorlist[index]
+                                                      ['profile'],
+                                              'firstName':
+                                                  getsearchdoctorlist[index]
+                                                      ['first_name'],
+                                              'lastName':
+                                                  getsearchdoctorlist[index]
+                                                      ['last_name']
+                                            });
+                                      },
+                                      title: Text(
+                                          '${getsearchdoctorlist[index]['first_name'].toString()} ${getsearchdoctorlist[index]['last_name'].toString()}'),
+                                      subtitle: Text(getsearchdoctorlist[index]
+                                              ['departmentName']
+                                          .toString()),
+                                      leading: DecoratedBox(
+                                        decoration: BoxDecoration(
+                                            borderRadius:
+                                                BorderRadius.circular(50),
+                                            boxShadow: <BoxShadow>[
+                                              BoxShadow(
+                                                color: Colors.black
+                                                    .withOpacity(.2),
+                                                blurRadius: 10,
+                                              )
+                                            ]),
+
+                                        // backgroundColor: Colors.white,
+                                        // radius: 27,
+                                        child: getsearchdoctorlist[index]
+                                                    ['profile'] !=
+                                                null
+                                            ? CircleAvatar(
+                                                backgroundColor: Colors.white,
+                                                onBackgroundImageError:
+                                                    (exception, stackTrace) {},
+                                                backgroundImage: NetworkImage(
+                                                    department_doctors_profiles +
+                                                        getsearchdoctorlist[
+                                                                    index]
+                                                                ['profile']
+                                                            .toString()),
+                                                radius: 25,
+                                              )
+                                            : const CircleAvatar(
+                                                radius: 25,
+                                                backgroundColor: Colors.white,
+                                                child: Center(
+                                                    child: Icon(
+                                                  CupertinoIcons.person_alt,
+                                                  size: 40,
+                                                  color: Colors.grey,
+                                                )),
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(
+                                  height: mediaQuery.height * 0.01,
+                                )
+                              ],
+                            );
+                          })
+                    ],
+                  ),
       ),
     );
   }
