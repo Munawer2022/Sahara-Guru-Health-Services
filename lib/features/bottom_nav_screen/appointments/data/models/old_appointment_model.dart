@@ -174,37 +174,171 @@ class Department {
 }
 
 
-// class OldAppointmentsModel {
+
+// class OldMyAppointmentModel {
+//   AppointmentData appointmentData;
+
+//   OldMyAppointmentModel({required this.appointmentData});
+
+//   factory OldMyAppointmentModel.fromJson(Map<String, dynamic> json) =>
+//       OldMyAppointmentModel(appointmentData: json['appointmentData']);
+// }
+
+// class AppointmentData {
+//   Old old;
+
+//   AppointmentData({required this.old});
+
+//   factory AppointmentData.fromJson(Map<String, dynamic> json) =>
+//       AppointmentData(old: json['old']);
+// }
+
+// class Old {
 //   int id;
-//   String firstName;
-//   String lastName;
+//   int patientId;
+//   int doctorId;
+//   int receptionistId;
 //   String fees;
+//   String createdAt;
+//   String updatedAt;
+//   int status;
+//   int referDoctorId;
 //   String appointmentTime;
 //   String appointmentDate;
+//   Doctor doctor;
 
-//   OldAppointmentsModel({
-//     required this.id,
-//     required this.fees,
-//     required this.firstName,
-//     required this.lastName,
-//     required this.appointmentTime,
-//     required this.appointmentDate,
-//   });
+//   Old(
+//       {required this.id,
+//       required this.patientId,
+//       required this.doctorId,
+//       required this.receptionistId,
+//       required this.fees,
+//       required this.createdAt,
+//       required this.updatedAt,
+//       required this.status,
+//       required this.referDoctorId,
+//       required this.appointmentTime,
+//       required this.appointmentDate,
+//       required this.doctor});
 
-//   factory OldAppointmentsModel.fromJson(Map<String, dynamic> json) =>
-//       OldAppointmentsModel(
-//           id: json['id'],
-//           fees: json['fees'],
-//           firstName: json['firstName'],
-//           lastName: json['lastName'],
-//           appointmentTime: json['appointmentTime'],
-//           appointmentDate: json['appointmentDate']);
+//   factory Old.fromJson(Map<String, dynamic> json) => Old(
+//       id: json['id'],
+//       patientId: json['patientId'],
+//       doctorId: json['doctorId'],
+//       receptionistId: json['receptionistId'],
+//       fees: json['fees'],
+//       createdAt: json['createdAt'],
+//       updatedAt: json['updatedAt'],
+//       status: json['status'],
+//       referDoctorId: json['referDoctorId'],
+//       appointmentTime: json['appointmentTime'],
+//       appointmentDate: json['appointmentDate'],
+//       doctor: json['doctor']);
+// }
 
-//   MockOldAppointmentsModel toDomain() => MockOldAppointmentsModel(
-//       fees: fees,
-//       appointmentTime: appointmentTime,
-//       firstName: firstName,
-//       lastName: lastName,
-//       appointmentDate: appointmentDate,
-//       id: id);
+// class Doctor {
+//   int id;
+//   int userType;
+//   String firstName;
+//   String lastName;
+//   String email;
+//   Null emailVerifiedAt;
+//   String profile;
+//   String phoneNumber;
+//   String dateOfBirth;
+//   String gender;
+//   Null height;
+//   Null weight;
+//   Null blood;
+//   String adharcardNo;
+//   Null address;
+//   Null bio;
+//   int status;
+//   String createdAt;
+//   String updatedAt;
+//   int departmentId;
+//   String profession;
+//   String fees;
+//   int age;
+//   String education;
+//   Null signature;
+//   Department department;
+
+//   Doctor(
+//       {required this.id,
+//       required this.userType,
+//       required this.firstName,
+//       required this.lastName,
+//       required this.email,
+//       required this.emailVerifiedAt,
+//       required this.profile,
+//       required this.phoneNumber,
+//       required this.dateOfBirth,
+//       required this.gender,
+//       required this.height,
+//       required this.weight,
+//       required this.blood,
+//       required this.adharcardNo,
+//       required this.address,
+//       required this.bio,
+//       required this.status,
+//       required this.createdAt,
+//       required this.updatedAt,
+//       required this.departmentId,
+//       required this.profession,
+//       required this.fees,
+//       required this.age,
+//       required this.education,
+//       required this.signature,
+//       required this.department});
+
+//   factory Doctor.fromJson(Map<String, dynamic> json) => Doctor(
+//       id: json['id'],
+//       userType: json['userType'],
+//       firstName: json['firstName'],
+//       lastName: json['lastName'],
+//       email: json['email'],
+//       emailVerifiedAt: json['emailVerifiedAt'],
+//       profile: json['profile'],
+//       phoneNumber: json['phoneNumber'],
+//       dateOfBirth: json['dateOfBirth'],
+//       gender: json['gender'],
+//       height: json['height'],
+//       weight: json['weight'],
+//       blood: json['blood'],
+//       adharcardNo: json['adharcardNo'],
+//       address: json['address'],
+//       bio: json['bio'],
+//       status: json['status'],
+//       createdAt: json['createdAt'],
+//       updatedAt: json['updatedAt'],
+//       departmentId: json['departmentId'],
+//       profession: json['profession'],
+//       fees: json['fees'],
+//       age: json['age'],
+//       education: json['education'],
+//       signature: json['signature'],
+//       department: json['department']);
+// }
+
+// class Department {
+//   int id;
+//   String name;
+//   String createdAt;
+//   String updatedAt;
+
+//   Department(
+//       {required this.id,
+//       required this.name,
+//       required this.createdAt,
+//       required this.updatedAt});
+
+//   factory Department.fromJson(Map<String, dynamic> json) => Department(
+//       id: json['id'],
+//       name: json['name'],
+//       createdAt: json['createdAt'],
+//       updatedAt: json['updatedAt']);
+
+//   MockOldMyAppointmentModel toDomain() =>
+//       MockOldMyAppointmentModel(appointmentData: AppointmentData(old: Old()));
 // }

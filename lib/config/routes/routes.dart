@@ -4,12 +4,12 @@ import 'package:sahara_guru_health_services/features/auth/presentation/pages/log
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/bottom_nav_dashboard.dart';
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/search_doctor/presentation/pages/search_doctor_screen.dart';
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/home_screen.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/book_appointment.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/catagory_doctor/catagory_doctor.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/all_speciallzations/catagory_doctor/book_appointment/book_appointment.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/all_speciallzations/catagory_doctor/catagory_doctor.dart';
 
-import '../../features/bottom_nav_screen/home_screen/all_speciallzations/presentation/pages/all_speciallzations_screen.dart';
-import '../../features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/appointment_corfirmation/appointment_confirmation.dart';
-import '../../features/bottom_nav_screen/home_screen/catagory_doctor/book_appointment/appointment_corfirmation/appointment_detail/appointment_detail.dart';
+import '../../features/bottom_nav_screen/home_screen/all_speciallzations/all_speciallzations/presentation/pages/all_speciallzations_screen.dart';
+import '../../features/bottom_nav_screen/home_screen/all_speciallzations/catagory_doctor/book_appointment/appointment_confirmation/presentation/pages/appointment_confirmation_screen.dart';
+
 import '../../core/utils/splesh_screen.dart';
 import 'routes_names.dart';
 
@@ -62,7 +62,7 @@ class Routes {
       //       builder: (BuildContext context) => AppointmentsDetails());
       case RoutesName.appointmentConfirmation:
         return MaterialPageRoute(
-            builder: (BuildContext context) => AppointmentConfirmation(
+            builder: (BuildContext context) => AppointmentConfirmationScreen(
                   para: settings.arguments as Map,
                 ));
       // case RoutesName.appointmentDetail:

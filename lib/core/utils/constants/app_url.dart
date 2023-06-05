@@ -11,4 +11,6 @@ class AppUrl {
   static const String login = '${baseUrl}login';
   static const String logout = '${baseUrl}logout';
   static const String saveAppointment = '${baseUrl}save-appointment';
+  static const String patientAppointmentswithId =
+      '${baseUrl}fetch/single/appointment?appointmentId=';
 }

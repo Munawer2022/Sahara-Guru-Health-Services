@@ -135,9 +135,10 @@ class _LoginScreenState extends State<LoginScreen> {
                         title: 'Continue',
                         onTap: () {
                           if (_formKey.currentState!.validate()) {
-                            // login(context);
-                            loginController.login(
-                                context, emailController, passwordController);
+                            loginController.loginPostApiResponse(context, {
+                              'email': emailController.text,
+                              'password': passwordController.text
+                            });
                           }
                         }),
                   ],

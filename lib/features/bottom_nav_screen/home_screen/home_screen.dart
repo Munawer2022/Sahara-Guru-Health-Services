@@ -6,7 +6,7 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/app_
 
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/utils.dart';
-import 'package:sahara_guru_health_services/features/widgets/slide_horizontal_list.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/all_speciallzations/all_speciallzations/presentation/pages/home_slide_horizontal_list.dart';
 
 import '../../../config/routes/routes_names.dart';
 
@@ -40,7 +40,6 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () {
                   box.remove('token').then((value) {
                     Navigator.pushNamed(context, RoutesName.loginscreen);
-                    Utils().snackBarMessage('Logged out successfully', context);
                   }).onError((error, stackTrace) {
                     Utils().errorSnackBarMessage(error.toString(), context);
                   });
@@ -56,28 +55,6 @@ class HomeScreen extends StatelessWidget {
             padding: screen_padding,
             child: Column(
               children: [
-                // Card(
-                //   elevation: 0,
-                //   child: Padding(
-                //     padding: card_padding,
-                //     child: Column(
-                //       mainAxisAlignment: MainAxisAlignment.start,
-                //       crossAxisAlignment: CrossAxisAlignment.start,
-                //       children: [
-                //         Text(
-                //           'Search for Dector',
-                //           style: theme.textTheme.headline6,
-                //         ),
-                //         SizedBox(
-                //           height: mediaQuery.height * 0.02,
-                //         ),
-                //         const SearchTextFieldComponent(
-                //             text:
-                //                 'Find Dectors, Specialities, Disease and Hospital'),
-                //       ],
-                //     ),
-                //   ),
-                // ),
                 Card(
                     elevation: 0,
                     child: Column(
@@ -91,7 +68,7 @@ class HomeScreen extends StatelessWidget {
                               style: theme.textTheme.headline6,
                             ),
                           ),
-                          SlideHorizontalList(),
+                          HomeSlideHorizontalList(),
                           Padding(
                               padding: card_padding,
                               child: Button(
@@ -115,7 +92,7 @@ class HomeScreen extends StatelessWidget {
                               style: theme.textTheme.headline6,
                             ),
                           ),
-                          SlideHorizontalList(),
+                          HomeSlideHorizontalList(),
                           SizedBox(
                             height: mediaQuery.height * 0.03,
                           ),
@@ -133,7 +110,7 @@ class HomeScreen extends StatelessWidget {
                               style: theme.textTheme.headline6,
                             ),
                           ),
-                          SlideHorizontalList(),
+                          HomeSlideHorizontalList(),
                           SizedBox(
                             height: mediaQuery.height * 0.03,
                           ),

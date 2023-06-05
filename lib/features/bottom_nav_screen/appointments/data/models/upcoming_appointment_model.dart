@@ -1,5 +1,3 @@
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/appointments/domain/entities/mock_old_appointment_model.dart';
-
 class UpcomingMyAppointmentModel {
   AppointmentData? appointmentData;
 
@@ -7,16 +5,8 @@ class UpcomingMyAppointmentModel {
 
   UpcomingMyAppointmentModel.fromJson(Map<String, dynamic> json) {
     appointmentData = json['appointmentData'] != null
-        ? new AppointmentData.fromJson(json['appointmentData'])
+        ? AppointmentData.fromJson(json['appointmentData'])
         : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.appointmentData != null) {
-      data['appointmentData'] = this.appointmentData!.toJson();
-    }
-    return data;
   }
 }
 
@@ -29,17 +19,9 @@ class AppointmentData {
     if (json['upcoming'] != null) {
       upcoming = <Upcoming>[];
       json['upcoming'].forEach((v) {
-        upcoming!.add(new Upcoming.fromJson(v));
+        upcoming!.add(Upcoming.fromJson(v));
       });
     }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.upcoming != null) {
-      data['upcoming'] = this.upcoming!.map((v) => v.toJson()).toList();
-    }
-    return data;
   }
 }
 
@@ -83,27 +65,7 @@ class Upcoming {
     referDoctorId = json['refer_doctor_id'];
     appointmentTime = json['appointment_time'];
     appointmentDate = json['appointment_date'];
-    doctor =
-        json['doctor'] != null ? new Doctor.fromJson(json['doctor']) : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['patient_id'] = this.patientId;
-    data['doctor_id'] = this.doctorId;
-    data['receptionist_id'] = this.receptionistId;
-    data['fees'] = this.fees;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['status'] = this.status;
-    data['refer_doctor_id'] = this.referDoctorId;
-    data['appointment_time'] = this.appointmentTime;
-    data['appointment_date'] = this.appointmentDate;
-    if (this.doctor != null) {
-      data['doctor'] = this.doctor!.toJson();
-    }
-    return data;
+    doctor = json['doctor'] != null ? Doctor.fromJson(json['doctor']) : null;
   }
 }
 
@@ -190,41 +152,8 @@ class Doctor {
     education = json['education'];
     signature = json['signature'];
     department = json['department'] != null
-        ? new Department.fromJson(json['department'])
+        ? Department.fromJson(json['department'])
         : null;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['user_type'] = this.userType;
-    data['first_name'] = this.firstName;
-    data['last_name'] = this.lastName;
-    data['email'] = this.email;
-    data['email_verified_at'] = this.emailVerifiedAt;
-    data['profile'] = this.profile;
-    data['phone_number'] = this.phoneNumber;
-    data['date_of_birth'] = this.dateOfBirth;
-    data['gender'] = this.gender;
-    data['height'] = this.height;
-    data['weight'] = this.weight;
-    data['blood'] = this.blood;
-    data['adharcard_no'] = this.adharcardNo;
-    data['address'] = this.address;
-    data['bio'] = this.bio;
-    data['status'] = this.status;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    data['department_id'] = this.departmentId;
-    data['profession'] = this.profession;
-    data['fees'] = this.fees;
-    data['age'] = this.age;
-    data['education'] = this.education;
-    data['signature'] = this.signature;
-    if (this.department != null) {
-      data['department'] = this.department!.toJson();
-    }
-    return data;
   }
 }
 
@@ -241,14 +170,5 @@ class Department {
     name = json['name'];
     createdAt = json['created_at'];
     updatedAt = json['updated_at'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['name'] = this.name;
-    data['created_at'] = this.createdAt;
-    data['updated_at'] = this.updatedAt;
-    return data;
   }
 }

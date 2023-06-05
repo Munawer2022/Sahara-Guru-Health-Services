@@ -11,83 +11,63 @@ import '../error/app_excaptions.dart';
 import '../utils/constants/app_url.dart';
 import 'BaseApiServices.dart';
 
-class NetworkApiService extends BaseApiServices {
-  final box = GetStorage();
-  @override
-  Future loginPostApiResponse(String url, dynamic data) async {
-    dynamic responseJson;
+// class NetworkApiService extends BaseApiServices {
+//   final box = GetStorage();
 
-    try {
-      Response response = await post(
-        Uri.parse(url),
-        body: data,
-        headers: {
-          'Accept': 'application/json',
-        },
-      ).timeout(const Duration(seconds: 10));
+//   // @override
+//   // Future searchDoctorApiResponse(String url) async {
+//   //   dynamic responseJson;
+//   //   try {
+//   //     final response = await http.get(
+//   //       Uri.parse(url),
+//   //       headers: {
+//   //         'Accept': 'application/json',
+//   //         'Authorization': 'Bearer ${box.read('token')}',
+//   //       },
+//   //     ).timeout(const Duration(seconds: 10));
+//   //     responseJson = returnResponse(response);
+//   //   } on SocketException {
+//   //     throw FetchDataException('No Internet Connection');
+//   //   }
 
-      responseJson = returnResponse(response);
-    } on SocketException {
-      throw FetchDataException('No Internet Connection');
-    }
+//   //   return responseJson;
+//   // }
 
-    return responseJson;
-  }
+//   // @override
+//   // Future<dynamic> baseOldAppointments(String url, dynamic data) async {
+//   //   dynamic responseJson;
+//   //   try {
+//   //     Response response = await get(
+//   //       Uri.parse(url),
+//   //       headers: data,
+//   //     ).timeout(const Duration(seconds: 10));
+//   //     // var data = jsonDecode(response.body.toString());
+//   //     responseJson = returnResponse(response);
+//   //     debugPrint(responseJson.toString());
+//   //   } on SocketException {
+//   //     throw FetchDataException('No Internet Connection');
+//   //   }
 
-  @override
-  Future searchDoctorApiResponse(String url) async {
-    dynamic responseJson;
-    try {
-      final response = await http.get(
-        Uri.parse(url),
-        headers: {
-          'Accept': 'application/json',
-          'Authorization': 'Bearer ${box.read('token')}',
-        },
-      ).timeout(const Duration(seconds: 10));
-      responseJson = returnResponse(response);
-    } on SocketException {
-      throw FetchDataException('No Internet Connection');
-    }
+//   //   return responseJson;
+//   // }
 
-    return responseJson;
-  }
+//   dynamic returnResponse(http.Response response) {
+//     switch (response.statusCode) {
+//       case 200:
+//         dynamic responseJson = jsonDecode(response.body);
 
-  @override
-  Future<dynamic> baseOldAppointments(String url, dynamic data) async {
-    dynamic responseJson;
-    try {
-      Response response = await get(
-        Uri.parse(url),
-        headers: data,
-      ).timeout(const Duration(seconds: 10));
-      // var data = jsonDecode(response.body.toString());
-      responseJson = returnResponse(response);
-      debugPrint(responseJson.toString());
-    } on SocketException {
-      throw FetchDataException('No Internet Connection');
-    }
-
-    return responseJson;
-  }
-
-  dynamic returnResponse(http.Response response) {
-    switch (response.statusCode) {
-      case 200:
-        dynamic responseJson = jsonDecode(response.body);
-
-        return responseJson;
-      case 401:
-        throw BadRequestException(response.body.toString());
-      case 500:
-      case 404:
-        throw UnauthorisedException(response.body.toString());
-      default:
-        throw FetchDataException(
-            'Error accured while communicating with server with status code ${response.statusCode.toString()}');
-    }
-  }
-}
+//         return responseJson;
+//       case 401:
+//         throw BadRequestException(response.body.toString());
+//       case 500:
+//       case 404:
+//         throw UnauthorisedException(response.body.toString());
+//       default:
+//         throw FetchDataException(
+//             'Error accured while communicating with server with status code ${response.statusCode.toString()}');
+//     }
+//   }
+// }
 
 dynamic returnResponse(http.Response response) {
   switch (response.statusCode) {

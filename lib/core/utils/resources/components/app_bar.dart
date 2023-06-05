@@ -34,9 +34,9 @@ class MyAppBarWidget extends StatelessWidget implements PreferredSize {
     var theme = Theme.of(context);
     return CustomScrollView(slivers: [
       SliverAppBar(
-        snap: true,
-        pinned: false,
-        floating: true,
+        snap: false,
+        pinned: true,
+        floating: false,
 
         // shape: const RoundedRectangleBorder(
         //   borderRadius: BorderRadius.only(

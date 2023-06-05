@@ -10,7 +10,7 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/app_
 
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 
-import '../../../../config/routes/routes_names.dart';
+import '../../../../../config/routes/routes_names.dart';
 
 import 'book_appointment/get_list_doctor_model.dart';
 
@@ -338,6 +338,14 @@ class _CatagoryDoctorState extends State<CatagoryDoctor> {
                                                       children: [
                                                         ElevatedButton(
                                                           style: ButtonStyle(
+                                                              shape: MaterialStateProperty.all<
+                                                                      RoundedRectangleBorder>(
+                                                                  RoundedRectangleBorder(
+                                                                borderRadius:
+                                                                    BorderRadius
+                                                                        .circular(
+                                                                            12.0),
+                                                              )),
                                                               backgroundColor:
                                                                   MaterialStateProperty
                                                                       .all(Colors

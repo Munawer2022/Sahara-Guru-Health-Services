@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 
 class Button extends StatelessWidget {
   final String title;
@@ -18,7 +19,10 @@ class Button extends StatelessWidget {
       width: double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(
-            //backgroundColor: MaterialStateProperty.all(Colors.grey.shade300)
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12.0),
+            )),
             backgroundColor: loading
                 ? MaterialStateProperty.all(
                     const Color.fromARGB(255, 3, 43, 104))
@@ -28,12 +32,19 @@ class Button extends StatelessWidget {
         onPressed: loading ? null : onTap,
         child: Center(
             child: loading
-                ? const CircularProgressIndicator(
-                    strokeWidth: 3,
-                    color: Colors.white,
-                  )
+                ? Center(
+                    child: Text('Loading...',
+                        style: theme.textTheme.subtitle2?.copyWith(
+                          fontWeight: FontWeight.bold,
+                          fontStyle: FontStyle.italic,
+                          color: Colors.white,
+                        )))
+                // const CircularProgressIndicator(
+                //     strokeWidth: 3,
+                //     color: Colors.white,
+                //   )
                 : Text(title,
-                    style: theme.textTheme.subtitle1?.copyWith(
+                    style: theme.textTheme.subtitle2?.copyWith(
                       fontWeight: FontWeight.bold,
                       color: Colors.white,
                     ))),
