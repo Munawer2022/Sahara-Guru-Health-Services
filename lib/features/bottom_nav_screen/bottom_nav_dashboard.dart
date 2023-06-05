@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/profile/profile.dart';
 
-import '../provider/bottom_nav_dashboard_controller.dart';
+import 'bottom_nav_dashboard_controller.dart';
 import 'appointments/presentation/pages/appointments_screen.dart';
 import 'home_screen/home_screen.dart';
 

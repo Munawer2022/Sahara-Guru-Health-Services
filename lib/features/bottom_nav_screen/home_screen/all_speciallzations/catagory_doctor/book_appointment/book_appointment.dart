@@ -20,7 +20,7 @@ import 'package:sahara_guru_health_services/core/utils/resources/components/butt
 import 'package:sahara_guru_health_services/core/utils/utils.dart';
 
 import '../../../../../../core/utils/constants/images.dart';
-import '../../../../../provider/bookappointment_controller.dart';
+import 'bookappointment_controller.dart';
 
 class BookAppointment extends StatefulWidget {
   dynamic routeData;
@@ -36,7 +36,7 @@ class _BookAppointmentState extends State<BookAppointment> {
   String selectedDate = DateFormat("y-MM-dd").format(DateTime.now()).toString();
 
   bool loading = false;
-
+  String? error;
   Future saveAppoitment(BuildContext context) async {
     setState(() {
       loading = true;
@@ -49,13 +49,6 @@ class _BookAppointmentState extends State<BookAppointment> {
           'Accept': 'application/json',
           'Authorization': 'Bearer ${box.read('token')}'
         },
-        // body: {
-        //   'patientId': box.read('id').toString(),
-        //   'doctorId': routeData['id'].toString(),
-        //   'fees': routeData['fees'].toString(),
-        //   'appointmentDate': selectedDate
-        //   // '2023-05-18',
-        // }
       );
 
       var data = jsonDecode(response.body.toString());
@@ -94,8 +87,8 @@ class _BookAppointmentState extends State<BookAppointment> {
         setState(() {
           loading = false;
         });
-
-        Utils().warningSnackBarMessage(data['message'], context);
+        error = data['message'];
+        // Utils().warningSnackBarMessage(data['message'], context);
       }
     } catch (e) {
       if (kDebugMode) {
@@ -137,239 +130,249 @@ class _BookAppointmentState extends State<BookAppointment> {
             title: 'Select a Time Slot',
           ),
           body: SingleChildScrollView(
-            child: Padding(
-              padding: screen_padding,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Card(
-                    elevation: 0,
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: mediaQuery.height * 0.01,
-                        ),
-                        ListTile(
-                          leading: DecoratedBox(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(50),
-                                boxShadow: <BoxShadow>[
-                                  BoxShadow(
-                                    color: Colors.black.withOpacity(.2),
-                                    blurRadius: 10,
-                                  )
-                                ]),
-                            child:
-                                //  department_doctors_profiles +
-                                widget.routeData['profile'] != null
-                                    ? CircleAvatar(
-                                        backgroundColor: Colors.white,
-                                        onBackgroundImageError:
-                                            (exception, stackTrace) {},
-                                        backgroundImage: NetworkImage(
-                                            department_doctors_profiles +
-                                                widget.routeData['profile']
-                                                    .toString()),
-                                        radius: 25,
-                                      )
-                                    : const CircleAvatar(
-                                        radius: 25,
-                                        backgroundColor: Colors.white,
-                                        child: Center(
-                                            child: Icon(
-                                          CupertinoIcons.person_alt,
-                                          size: 40,
-                                          color: Colors.grey,
-                                        )),
-                                      ),
-                          ),
-                          trailing: TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                              },
-                              child: const Text(
-                                'Change',
-                              )),
-                          title: Text(widget.routeData['firstName'].toString(),
-                              style: theme.textTheme.headline6!
-                                  .copyWith(fontWeight: FontWeight.bold)),
-                          subtitle: Text(widget.routeData['fees'].toString(),
-                              // box.read('fees').toString(),
-                              style: theme.textTheme.subtitle2),
-                        ),
-
-                        // SizedBox(
-                        //   height: mediaQuery.height * 0.02,
-                        // ),
-                        // Container(
-                        //   height: 26,
-                        //   width: double.infinity,
-                        //   decoration: BoxDecoration(
-                        //     color: Colors.grey.shade300,
-                        //   ),
-                        //   child: Row(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     children: [
-                        //       Icon(
-                        //         Icons.radio_button_off_rounded,
-                        //         color: Colors.blue.shade800,
-                        //         size: 15,
-                        //       ),
-                        //       SizedBox(
-                        //         width: mediaQuery.width * 0.01,
-                        //       ),
-                        //       Text('Rs.200 OFF on ONLINE PAYMENT',
-                        //           style: theme.textTheme.subtitle2!.copyWith(
-                        //               fontWeight: FontWeight.bold,
-                        //               color: Colors.blue.shade800)),
-                        //     ],
-                        //   ),
-                        // ),
-                      ],
-                    ),
-                  ),
-                  Card(
-                    elevation: 0,
-                    child: Center(
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(
-                            height: mediaQuery.height * 0.01,
-                          ),
-                          SizedBox(
-                            width: double.infinity,
-                            height: 80,
-                            child: ListView.builder(
-                              scrollDirection: Axis.horizontal,
-                              itemCount: 3,
-                              itemBuilder: (context, index) => Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 10),
-                                  child: ChoiceChip(
-                                    label: SizedBox(
-                                      height: 50,
-                                      width: mediaQuery.width * 0.3,
-                                      child: Center(
-                                          child: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.center,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.center,
-                                        children: [
-                                          Text(day[index],
-                                              style: theme.textTheme.subtitle2),
-                                          Text(date[index].toString(),
-                                              style: theme.textTheme.subtitle2),
-                                        ],
-                                      )),
-                                    ),
-                                    selected: value.value == index,
-                                    onSelected: (bool selected) {
-                                      print(
-                                        date[value.value].toString(),
-                                      );
-                                      debugPrint(selectedDate);
-                                      value.changeTabIndex(index);
-                                      selectedDate =
-                                          date[value.value].toString();
-                                    },
-                                  )),
-                            ),
-                          ),
-
-                          // Row(
-                          //   children: [
-                          //     Icon(
-                          //       Icons.sunny_snowing,
-                          //     ),
-                          //     SizedBox(
-                          //       width: mediaQuery.width * 0.01,
-                          //     ),
-                          //     Text('Afternoon Slots',
-                          //         style: theme.textTheme.subtitle2)
-                          //   ],
-                          // ),
-                          // SizedBox(
-                          //   height: mediaQuery.height * 0.02,
-                          // ),
-                          // Wrap(
-                          //     spacing: 8.0,
-                          //     children: List<Widget>.generate(3, (int index) {
-                          //       print('ChoiceChip1');
-                          //       return ChoiceChip(
-                          //         label: const Text(
-                          //           '01:40 PM',
-                          //         ),
-                          //         selected: value.value1 == index,
-                          //         onSelected: (bool selected) {
-                          //           value.changeTabIndex1(index);
-                          //         },
-                          //       );
-                          //     })),
-                          // SizedBox(
-                          //   height: mediaQuery.height * 0.03,
-                          // ),
-
-                          // Padding(
-                          //   padding: card_padding,
-                          //   child: Align(
-                          //     alignment: Alignment.bottomLeft,
-                          //     child: Text('Evening Slots',
-                          //         style: theme.textTheme.subtitle2),
-                          //   ),
-                          // ),
-
-                          // Wrap(
-                          //     spacing: 8.0,
-                          //     children: List<Widget>.generate(5, (int index) {
-                          //       debugPrint('ChoiceChip2');
-                          //       return ChoiceChip(
-                          //         label: const Text(
-                          //           '01:40 PM',
-                          //         ),
-                          //         selected: value.value2 == index,
-                          //         onSelected: (bool selected) {
-                          //           value.changeTabIndex2(index);
-                          //         },
-                          //       );
-                          //     })),
-                          // SizedBox(
-                          //   height: mediaQuery.height * 0.3,
-                          // )
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: double.infinity,
-                    child: Card(
+            child: Column(
+              children: [
+                showAlert(),
+                Padding(
+                  padding: screen_padding,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Card(
                         elevation: 0,
-                        child: Padding(
-                          padding: card_padding,
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('About Doctor',
+                        child: Column(
+                          children: [
+                            SizedBox(
+                              height: mediaQuery.height * 0.01,
+                            ),
+                            ListTile(
+                              leading: DecoratedBox(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    boxShadow: <BoxShadow>[
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(.2),
+                                        blurRadius: 10,
+                                      )
+                                    ]),
+                                child:
+                                    //  department_doctors_profiles +
+                                    widget.routeData['profile'] != null
+                                        ? CircleAvatar(
+                                            backgroundColor: Colors.white,
+                                            onBackgroundImageError:
+                                                (exception, stackTrace) {},
+                                            backgroundImage: NetworkImage(
+                                                department_doctors_profiles +
+                                                    widget.routeData['profile']
+                                                        .toString()),
+                                            radius: 25,
+                                          )
+                                        : const CircleAvatar(
+                                            radius: 25,
+                                            backgroundColor: Colors.white,
+                                            child: Center(
+                                                child: Icon(
+                                              CupertinoIcons.person_alt,
+                                              size: 40,
+                                              color: Colors.grey,
+                                            )),
+                                          ),
+                              ),
+                              trailing: TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                  },
+                                  child: const Text(
+                                    'Change',
+                                  )),
+                              title: Text(
+                                  widget.routeData['firstName'].toString(),
                                   style: theme.textTheme.headline6!
                                       .copyWith(fontWeight: FontWeight.bold)),
-                              Text(widget.routeData['bio'].toString(),
-                                  style: theme.textTheme.subtitle2),
+                              subtitle:
+                                  Text(widget.routeData['fees'].toString(),
+                                      // box.read('fees').toString(),
+                                      style: theme.textTheme.subtitle2),
+                            ),
+
+                            // SizedBox(
+                            //   height: mediaQuery.height * 0.02,
+                            // ),
+                            // Container(
+                            //   height: 26,
+                            //   width: double.infinity,
+                            //   decoration: BoxDecoration(
+                            //     color: Colors.grey.shade300,
+                            //   ),
+                            //   child: Row(
+                            //     mainAxisAlignment: MainAxisAlignment.center,
+                            //     children: [
+                            //       Icon(
+                            //         Icons.radio_button_off_rounded,
+                            //         color: Colors.blue.shade800,
+                            //         size: 15,
+                            //       ),
+                            //       SizedBox(
+                            //         width: mediaQuery.width * 0.01,
+                            //       ),
+                            //       Text('Rs.200 OFF on ONLINE PAYMENT',
+                            //           style: theme.textTheme.subtitle2!.copyWith(
+                            //               fontWeight: FontWeight.bold,
+                            //               color: Colors.blue.shade800)),
+                            //     ],
+                            //   ),
+                            // ),
+                          ],
+                        ),
+                      ),
+                      Card(
+                        elevation: 0,
+                        child: Center(
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(
+                                height: mediaQuery.height * 0.01,
+                              ),
+                              SizedBox(
+                                width: double.infinity,
+                                height: 80,
+                                child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 3,
+                                  itemBuilder: (context, index) => Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: ChoiceChip(
+                                        label: SizedBox(
+                                          height: 50,
+                                          width: mediaQuery.width * 0.3,
+                                          child: Center(
+                                              child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              Text(day[index],
+                                                  style: theme
+                                                      .textTheme.subtitle2),
+                                              Text(date[index].toString(),
+                                                  style: theme
+                                                      .textTheme.subtitle2),
+                                            ],
+                                          )),
+                                        ),
+                                        selected: value.value == index,
+                                        onSelected: (bool selected) {
+                                          print(
+                                            date[value.value].toString(),
+                                          );
+                                          debugPrint(selectedDate);
+                                          value.changeTabIndex(index);
+                                          selectedDate =
+                                              date[value.value].toString();
+                                        },
+                                      )),
+                                ),
+                              ),
+
+                              // Row(
+                              //   children: [
+                              //     Icon(
+                              //       Icons.sunny_snowing,
+                              //     ),
+                              //     SizedBox(
+                              //       width: mediaQuery.width * 0.01,
+                              //     ),
+                              //     Text('Afternoon Slots',
+                              //         style: theme.textTheme.subtitle2)
+                              //   ],
+                              // ),
+                              // SizedBox(
+                              //   height: mediaQuery.height * 0.02,
+                              // ),
+                              // Wrap(
+                              //     spacing: 8.0,
+                              //     children: List<Widget>.generate(3, (int index) {
+                              //       print('ChoiceChip1');
+                              //       return ChoiceChip(
+                              //         label: const Text(
+                              //           '01:40 PM',
+                              //         ),
+                              //         selected: value.value1 == index,
+                              //         onSelected: (bool selected) {
+                              //           value.changeTabIndex1(index);
+                              //         },
+                              //       );
+                              //     })),
+                              // SizedBox(
+                              //   height: mediaQuery.height * 0.03,
+                              // ),
+
+                              // Padding(
+                              //   padding: card_padding,
+                              //   child: Align(
+                              //     alignment: Alignment.bottomLeft,
+                              //     child: Text('Evening Slots',
+                              //         style: theme.textTheme.subtitle2),
+                              //   ),
+                              // ),
+
+                              // Wrap(
+                              //     spacing: 8.0,
+                              //     children: List<Widget>.generate(5, (int index) {
+                              //       debugPrint('ChoiceChip2');
+                              //       return ChoiceChip(
+                              //         label: const Text(
+                              //           '01:40 PM',
+                              //         ),
+                              //         selected: value.value2 == index,
+                              //         onSelected: (bool selected) {
+                              //           value.changeTabIndex2(index);
+                              //         },
+                              //       );
+                              //     })),
+                              // SizedBox(
+                              //   height: mediaQuery.height * 0.3,
+                              // )
                             ],
                           ),
-                        )),
-                  ),
-                  // TimePickerDialog(
-                  //   initialTime: TimeOfDay.now(),
-                  // ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: double.infinity,
+                        child: Card(
+                            elevation: 0,
+                            child: Padding(
+                              padding: card_padding,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text('About Doctor',
+                                      style: theme.textTheme.headline6!
+                                          .copyWith(
+                                              fontWeight: FontWeight.bold)),
+                                  Text(widget.routeData['bio'].toString(),
+                                      style: theme.textTheme.subtitle2),
+                                ],
+                              ),
+                            )),
+                      ),
+                      // TimePickerDialog(
+                      //   initialTime: TimeOfDay.now(),
+                      // ),
 
-                  SizedBox(
-                    height: mediaQuery.height * 0.2,
-                  )
-                ],
-              ),
+                      SizedBox(
+                        height: mediaQuery.height * 0.2,
+                      )
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
           bottomSheet: Container(
@@ -438,5 +441,45 @@ class _BookAppointmentState extends State<BookAppointment> {
             ),
           ));
     });
+  }
+
+  Widget showAlert() {
+    if (error != null) {
+      return Container(
+        color: Colors.amber.shade200,
+        width: double.infinity,
+        padding: const EdgeInsets.all(8.0),
+        child: Row(
+          children: <Widget>[
+            const Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: Icon(
+                Icons.error_outline,
+              ),
+            ),
+            Expanded(
+              child: Text(
+                error.toString(),
+                maxLines: 3,
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 8.0),
+              child: IconButton(
+                icon: const Icon(Icons.close),
+                onPressed: () {
+                  setState(() {
+                    error = null;
+                  });
+                },
+              ),
+            )
+          ],
+        ),
+      );
+    }
+    return const SizedBox(
+      height: 0,
+    );
   }
 }

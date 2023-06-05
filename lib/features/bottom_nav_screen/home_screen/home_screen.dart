@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
@@ -15,6 +17,7 @@ import '../../../core/utils/resources/components/button.dart';
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final box = GetStorage();
+
   @override
   Widget build(BuildContext context) {
     debugPrint('home');

@@ -13,7 +13,7 @@ import 'package:sahara_guru_health_services/features/bottom_nav_screen/appointme
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/all_speciallzations/catagory_doctor/book_appointment/appointment_confirmation/presentation/provider/appointment_confirmation_provider.dart';
 
 import '../../../../../../../../../config/routes/routes_names.dart';
-import '../../../../../../../../widgets/list_tile.dart';
+import '../widgets/list_tile.dart';
 
 import '../../data/models/appointment_confirmation_model.dart';
 

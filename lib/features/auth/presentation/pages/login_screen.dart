@@ -150,52 +150,43 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-}
- // bool loading = false;
-  // TextEditingController emailController = TextEditingController();
 
-  // TextEditingController passwordController = TextEditingController();
-
-  // final box = GetStorage();
-
-  // void login(BuildContext context) async {
-  //   setState(() {
-  //     loading = true;
-  //   });
-  //   try {
-  //     Response response = await post(
-  //         Uri.parse(
-  //             'https://saharadigitalhealth.in/sahara_digital_health/public/api/login'),
-  //         headers: {
-  //           'Accept': 'application/json',
-  //         },
-  //         body: {
-  //           'email': emailController.text,
-  //           'password': passwordController.text,
-  //         });
-
-  //     if (response.statusCode == 200) {
-  //       var data = jsonDecode(response.body.toString());
-  //       setState(() {
-  //         loading = true;
-  //       });
-
-  //       Navigator.pushNamed(context, RoutesName.bottomnavdashboard);
-  //       box.write('token', data['token']);
-  //       box.write('id', data['user']['id']);
-  //       box.write('first_name', data['user']['first_name']);
-  //       box.write('last_name', data['user']['last_name']);
-  //     } else {
-  //       setState(() {
-  //         loading = false;
-  //       });
-  //       if (kDebugMode) {
-  //         print('failed');
-  //       }
-  //     }
-  //   } catch (e) {
-  //     if (kDebugMode) {
-  //       print(e.toString());
-  //     }
+  // LoginProvider loginProvider = LoginProvider();
+  // Widget showAlert() {
+  //   if (loginProvider.error != null) {
+  //     return Container(
+  //       color: Colors.amber.shade200,
+  //       width: double.infinity,
+  //       padding: const EdgeInsets.all(8.0),
+  //       child: Row(
+  //         children: <Widget>[
+  //           const Padding(
+  //             padding: EdgeInsets.only(right: 8.0),
+  //             child: Icon(
+  //               Icons.error_outline,
+  //             ),
+  //           ),
+  //           Expanded(
+  //             child: Text(
+  //               loginProvider.error.toString(),
+  //               maxLines: 3,
+  //             ),
+  //           ),
+  //           Padding(
+  //             padding: const EdgeInsets.only(left: 8.0),
+  //             child: IconButton(
+  //               icon: const Icon(Icons.close),
+  //               onPressed: () {
+  //                 // loginProvider.error = null;
+  //               },
+  //             ),
+  //           )
+  //         ],
+  //       ),
+  //     );
   //   }
+  //   return const SizedBox(
+  //     height: 0,
+  //   );
   // }
+}

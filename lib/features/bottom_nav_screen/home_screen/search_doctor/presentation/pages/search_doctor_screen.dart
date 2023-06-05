@@ -11,7 +11,6 @@ import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_scre
 
 import '../../../../../../config/routes/routes_names.dart';
 import '../../../../../../core/utils/constants/images.dart';
-import '../../../../../data/repositories/list_doctor_respository.dart';
 
 class SearchDoctorScreen extends StatefulWidget {
   const SearchDoctorScreen({super.key});
