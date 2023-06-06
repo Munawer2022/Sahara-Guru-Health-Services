@@ -23,103 +23,102 @@ class HomeScreen extends StatelessWidget {
     debugPrint('home');
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
-    return WillPopScope(
-      onWillPop: () async {
-        await SystemNavigator.pop();
-        return true;
-      },
-      child: Scaffold(
-        appBar: MyAppBarWidget(
-          readOnly: true,
-          ontap: () {
-            Navigator.pushNamed(context, RoutesName.searchdoctor);
-          },
-          bottom: true,
-          bottomText: 'Find Dectors, Specialities, Disease and Hospital',
-          arrow_back: false,
-          title: 'Sara Health',
-          actions: [
-            IconButton(
-                onPressed: () {
-                  box.remove('token').then((value) {
-                    Navigator.pushNamed(context, RoutesName.loginscreen);
-                  }).onError((error, stackTrace) {
-                    Utils().errorSnackBarMessage(error.toString(), context);
-                  });
-                },
-                icon: const Icon(
-                  Icons.logout_rounded,
-                  color: Colors.white,
-                ))
-          ],
-        ),
-        body: SingleChildScrollView(
-          child: Padding(
-            padding: screen_padding,
-            child: Column(
-              children: [
-                Card(
-                    elevation: 0,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
+    return Scaffold(
+      appBar: MyAppBarWidget(
+        readOnly: true,
+        ontap: () {
+          Navigator.pushNamed(context, RoutesName.searchdoctor);
+        },
+        bottom: true,
+        bottomText: 'Find Dectors, Specialities, Disease and Hospital',
+        arrow_back: false,
+        title: 'Sara Health',
+        actions: [
+          IconButton(
+              onPressed: () {
+                box.remove('token').then((value) {
+                  box.remove('profile');
+                  box.remove('first_name');
+                  box.remove('last_name');
+                  box.remove('email');
+                  box.remove('phone_number');
+                  Navigator.pushNamed(context, RoutesName.loginscreen);
+                }).onError((error, stackTrace) {
+                  Utils().errorSnackBarMessage(error.toString(), context);
+                });
+              },
+              icon: const Icon(
+                Icons.logout_rounded,
+                color: Colors.white,
+              ))
+        ],
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: screen_padding,
+          child: Column(
+            children: [
+              Card(
+                  elevation: 0,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: card_padding,
+                          child: Text(
+                            "I'm Looking For",
+                            style: theme.textTheme.headline6,
+                          ),
+                        ),
+                        HomeSlideHorizontalList(),
+                        Padding(
                             padding: card_padding,
-                            child: Text(
-                              "I'm Looking For",
-                              style: theme.textTheme.headline6,
-                            ),
+                            child: Button(
+                              onTap: () {
+                                Navigator.pushNamed(
+                                    context, RoutesName.allSpeciallzations);
+                              },
+                              title: 'All Speciallzations',
+                            )),
+                      ])),
+              Card(
+                  elevation: 0,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: card_padding,
+                          child: Text(
+                            "Previous Doctors",
+                            style: theme.textTheme.headline6,
                           ),
-                          HomeSlideHorizontalList(),
-                          Padding(
-                              padding: card_padding,
-                              child: Button(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, RoutesName.allSpeciallzations);
-                                },
-                                title: 'All Speciallzations',
-                              )),
-                        ])),
-                Card(
-                    elevation: 0,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: card_padding,
-                            child: Text(
-                              "Previous Doctors",
-                              style: theme.textTheme.headline6,
-                            ),
+                        ),
+                        HomeSlideHorizontalList(),
+                        SizedBox(
+                          height: mediaQuery.height * 0.03,
+                        ),
+                      ])),
+              Card(
+                  elevation: 0,
+                  child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: card_padding,
+                          child: Text(
+                            "Popular Doctors",
+                            style: theme.textTheme.headline6,
                           ),
-                          HomeSlideHorizontalList(),
-                          SizedBox(
-                            height: mediaQuery.height * 0.03,
-                          ),
-                        ])),
-                Card(
-                    elevation: 0,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: card_padding,
-                            child: Text(
-                              "Popular Doctors",
-                              style: theme.textTheme.headline6,
-                            ),
-                          ),
-                          HomeSlideHorizontalList(),
-                          SizedBox(
-                            height: mediaQuery.height * 0.03,
-                          ),
-                        ])),
-              ],
-            ),
+                        ),
+                        HomeSlideHorizontalList(),
+                        SizedBox(
+                          height: mediaQuery.height * 0.03,
+                        ),
+                      ])),
+            ],
           ),
         ),
       ),

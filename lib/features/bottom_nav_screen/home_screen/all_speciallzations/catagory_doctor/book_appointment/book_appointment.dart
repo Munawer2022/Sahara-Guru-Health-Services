@@ -8,16 +8,15 @@ import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
 import 'package:intl/intl.dart';
 import 'package:material_dialogs/material_dialogs.dart';
-import 'package:material_dialogs/shared/types.dart';
+
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
-import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 
 import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
 
 import 'package:sahara_guru_health_services/core/utils/resources/components/button.dart';
-import 'package:sahara_guru_health_services/core/utils/utils.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/appointments/presentation/pages/appointments_screen.dart';
 
 import '../../../../../../core/utils/constants/images.dart';
 import 'bookappointment_controller.dart';

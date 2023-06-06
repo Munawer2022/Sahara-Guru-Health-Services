@@ -2,12 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get_storage/get_storage.dart';
-import 'package:provider/provider.dart';
 
 import '../../../core/utils/constants/images.dart';
 import '../../../core/utils/constants/padding.dart';
 import '../../../core/utils/resources/components/app_bar.dart';
-import '../../auth/presentation/provider/login_provider.dart';
 
 class Profile extends StatelessWidget {
   Profile({
@@ -17,7 +15,7 @@ class Profile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-    final loginController = Provider.of<LoginProvider>(context);
+
     return Scaffold(
       appBar: const MyAppBarWidget(
         bottom: false,
@@ -47,7 +45,7 @@ class Profile extends StatelessWidget {
                               blurRadius: 10,
                             )
                           ]),
-                      child: loginController.response['user']['profile'] != null
+                      child: box.read('profile') != null
                           ? CircleAvatar(
                               backgroundColor: Colors.white,
                               onBackgroundImageError:
@@ -71,17 +69,15 @@ class Profile extends StatelessWidget {
                   ),
                   SizedBox(height: mediaQuery.height * 0.02),
                   Text(
-                      '${loginController.response['user']['first_name'].toString()} ${loginController.response['user']['last_name'].toString()}',
+                      '${box.read('first_name')} ${box.read('last_name') ?? 'N/A'}',
                       style: Theme.of(context).textTheme.headline4),
-                  Text(loginController.response['user']['email'] ?? 'N/A',
+                  Text(box.read('email') ?? 'N/A',
                       style: Theme.of(context).textTheme.bodyText2),
                   SizedBox(height: mediaQuery.height * 0.04),
                   ProfileMenuWidget(
                     title: "Phone",
                     leading: CupertinoIcons.phone_circle_fill,
-                    trailing: Text(loginController.response['user']
-                            ['phone_number'] ??
-                        'N/A'),
+                    trailing: Text(box.read('phone_number') ?? 'N/A'),
                   ),
                 ],
               ),

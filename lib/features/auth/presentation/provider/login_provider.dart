@@ -13,8 +13,8 @@ class LoginProvider extends ChangeNotifier {
   bool _loading = false;
   bool get loading => _loading;
 
-  dynamic _response;
-  dynamic get response => _response;
+  // dynamic _response;
+  // dynamic get response => _response;
 
   hideicon() {
     _isVisible = !_isVisible;
@@ -39,8 +39,14 @@ class LoginProvider extends ChangeNotifier {
       );
       debugPrint(value['token']);
       box.write('token', value['token']);
-      // box.write('id', value['user']['id']);
-      _response = value;
+      box.write('id', value['user']['id']);
+
+      box.write('first_name', value['user']['first_name']);
+      box.write('last_name', value['user']['last_name']);
+      box.write('profile', value['user']['profile']);
+      box.write('email', value['user']['email']);
+      box.write('phone_number', value['user']['phone_number']);
+      // _response = value;
     }).onError((error, stackTrace) {
       loadingBotton(false);
 
@@ -49,8 +55,3 @@ class LoginProvider extends ChangeNotifier {
     });
   }
 }
-      // box.write('first_name', value['user']['first_name']);
-      // box.write('last_name', value['user']['last_name']);
-      // box.write('profile', value['user']['profile']);
-      // box.write('email', value['user']['email']);
-      // box.write('phone_number', value['user']['phone_number']);
