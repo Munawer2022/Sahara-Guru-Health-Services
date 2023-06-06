@@ -2,18 +2,22 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 
 import '../../../core/utils/constants/images.dart';
 import '../../../core/utils/constants/padding.dart';
 import '../../../core/utils/resources/components/app_bar.dart';
+import '../../auth/presentation/provider/login_provider.dart';
 
 class Profile extends StatelessWidget {
-  Profile({super.key});
+  Profile({
+    super.key,
+  });
   final box = GetStorage();
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
-
+    final loginController = Provider.of<LoginProvider>(context);
     return Scaffold(
       appBar: const MyAppBarWidget(
         bottom: false,
@@ -43,7 +47,7 @@ class Profile extends StatelessWidget {
                               blurRadius: 10,
                             )
                           ]),
-                      child: box.read('profile') != null
+                      child: loginController.response['user']['profile'] != null
                           ? CircleAvatar(
                               backgroundColor: Colors.white,
                               onBackgroundImageError:
@@ -67,15 +71,17 @@ class Profile extends StatelessWidget {
                   ),
                   SizedBox(height: mediaQuery.height * 0.02),
                   Text(
-                      '${box.read('first_name').toString()} ${box.read('last_name').toString()}',
+                      '${loginController.response['user']['first_name'].toString()} ${loginController.response['user']['last_name'].toString()}',
                       style: Theme.of(context).textTheme.headline4),
-                  Text(box.read('email') ?? 'N/A',
+                  Text(loginController.response['user']['email'] ?? 'N/A',
                       style: Theme.of(context).textTheme.bodyText2),
                   SizedBox(height: mediaQuery.height * 0.04),
                   ProfileMenuWidget(
                     title: "Phone",
                     leading: CupertinoIcons.phone_circle_fill,
-                    trailing: Text(box.read('phone_number') ?? 'N/A'),
+                    trailing: Text(loginController.response['user']
+                            ['phone_number'] ??
+                        'N/A'),
                   ),
                 ],
               ),

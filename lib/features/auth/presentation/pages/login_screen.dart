@@ -150,43 +150,4 @@ class _LoginScreenState extends State<LoginScreen> {
       ),
     );
   }
-
-  // LoginProvider loginProvider = LoginProvider();
-  // Widget showAlert() {
-  //   if (loginProvider.error != null) {
-  //     return Container(
-  //       color: Colors.amber.shade200,
-  //       width: double.infinity,
-  //       padding: const EdgeInsets.all(8.0),
-  //       child: Row(
-  //         children: <Widget>[
-  //           const Padding(
-  //             padding: EdgeInsets.only(right: 8.0),
-  //             child: Icon(
-  //               Icons.error_outline,
-  //             ),
-  //           ),
-  //           Expanded(
-  //             child: Text(
-  //               loginProvider.error.toString(),
-  //               maxLines: 3,
-  //             ),
-  //           ),
-  //           Padding(
-  //             padding: const EdgeInsets.only(left: 8.0),
-  //             child: IconButton(
-  //               icon: const Icon(Icons.close),
-  //               onPressed: () {
-  //                 // loginProvider.error = null;
-  //               },
-  //             ),
-  //           )
-  //         ],
-  //       ),
-  //     );
-  //   }
-  //   return const SizedBox(
-  //     height: 0,
-  //   );
-  // }
 }

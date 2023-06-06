@@ -12,4 +12,5 @@ class RoutesName {
   static const String appointmentConfirmation = 'appointmentConfirmation';
   static const String appointmentDetail = 'appointmentDetail';
   static const String splashScreen = 'splashScreen';
+  static const String profileScreen = 'profileScreen';
 }

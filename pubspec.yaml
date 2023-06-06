@@ -35,9 +35,10 @@ dependencies:
   http:
   get_storage: ^2.1.1
   intl:
-  get_it: ^7.6.0
+  # get_it: ^7.6.0
   awesome_snackbar_content: 
   material_dialogs: ^1.1.4
+  dartz: ^0.10.1
 
   
 

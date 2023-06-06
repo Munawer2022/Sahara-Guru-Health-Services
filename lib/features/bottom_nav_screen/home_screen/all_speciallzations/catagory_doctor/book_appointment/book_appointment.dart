@@ -105,14 +105,14 @@ class _BookAppointmentState extends State<BookAppointment> {
     // 'Today',
     DateFormat("EEEE").format(DateTime.now()),
     // 'Tomorrow',
-    DateFormat("EEEE").format(DateTime.now().add(Duration(days: 1))),
-    DateFormat("EEEE").format(DateTime.now().add(Duration(days: 2))),
+    DateFormat("EEEE").format(DateTime.now().add(const Duration(days: 1))),
+    DateFormat("EEEE").format(DateTime.now().add(const Duration(days: 2))),
   ];
 
   dynamic date = [
     DateFormat("y-MM-dd").format(DateTime.now()),
-    DateFormat("y-MM-dd").format(DateTime.now().add(Duration(days: 1))),
-    DateFormat("y-MM-dd").format(DateTime.now().add(Duration(days: 2))),
+    DateFormat("y-MM-dd").format(DateTime.now().add(const Duration(days: 1))),
+    DateFormat("y-MM-dd").format(DateTime.now().add(const Duration(days: 2))),
   ];
 
   @override
@@ -278,66 +278,6 @@ class _BookAppointmentState extends State<BookAppointment> {
                                       )),
                                 ),
                               ),
-
-                              // Row(
-                              //   children: [
-                              //     Icon(
-                              //       Icons.sunny_snowing,
-                              //     ),
-                              //     SizedBox(
-                              //       width: mediaQuery.width * 0.01,
-                              //     ),
-                              //     Text('Afternoon Slots',
-                              //         style: theme.textTheme.subtitle2)
-                              //   ],
-                              // ),
-                              // SizedBox(
-                              //   height: mediaQuery.height * 0.02,
-                              // ),
-                              // Wrap(
-                              //     spacing: 8.0,
-                              //     children: List<Widget>.generate(3, (int index) {
-                              //       print('ChoiceChip1');
-                              //       return ChoiceChip(
-                              //         label: const Text(
-                              //           '01:40 PM',
-                              //         ),
-                              //         selected: value.value1 == index,
-                              //         onSelected: (bool selected) {
-                              //           value.changeTabIndex1(index);
-                              //         },
-                              //       );
-                              //     })),
-                              // SizedBox(
-                              //   height: mediaQuery.height * 0.03,
-                              // ),
-
-                              // Padding(
-                              //   padding: card_padding,
-                              //   child: Align(
-                              //     alignment: Alignment.bottomLeft,
-                              //     child: Text('Evening Slots',
-                              //         style: theme.textTheme.subtitle2),
-                              //   ),
-                              // ),
-
-                              // Wrap(
-                              //     spacing: 8.0,
-                              //     children: List<Widget>.generate(5, (int index) {
-                              //       debugPrint('ChoiceChip2');
-                              //       return ChoiceChip(
-                              //         label: const Text(
-                              //           '01:40 PM',
-                              //         ),
-                              //         selected: value.value2 == index,
-                              //         onSelected: (bool selected) {
-                              //           value.changeTabIndex2(index);
-                              //         },
-                              //       );
-                              //     })),
-                              // SizedBox(
-                              //   height: mediaQuery.height * 0.3,
-                              // )
                             ],
                           ),
                         ),

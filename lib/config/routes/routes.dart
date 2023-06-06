@@ -6,6 +6,7 @@ import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_scre
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/home_screen.dart';
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/all_speciallzations/catagory_doctor/book_appointment/book_appointment.dart';
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/all_speciallzations/catagory_doctor/catagory_doctor.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/profile/profile.dart';
 
 import '../../features/bottom_nav_screen/home_screen/all_speciallzations/all_speciallzations/presentation/pages/all_speciallzations_screen.dart';
 import '../../features/bottom_nav_screen/home_screen/all_speciallzations/catagory_doctor/book_appointment/appointment_confirmation/presentation/pages/appointment_confirmation_screen.dart';
@@ -56,7 +57,9 @@ class Routes {
             builder: (BuildContext context) => HomeScreen());
       case RoutesName.bottomnavdashboard:
         return MaterialPageRoute(
-            builder: (BuildContext context) => BottomNavDashboard());
+            builder: (BuildContext context) => BottomNavDashboard(
+                // data: settings.arguments as Map,
+                ));
       // case RoutesName.appointmentsdetails:
       //   return MaterialPageRoute(
       //       builder: (BuildContext context) => AppointmentsDetails());
@@ -65,9 +68,11 @@ class Routes {
             builder: (BuildContext context) => AppointmentConfirmationScreen(
                   para: settings.arguments as Map,
                 ));
-      // case RoutesName.appointmentDetail:
-      //   return MaterialPageRoute(
-      //       builder: (BuildContext context) => AppointmentDetail());
+      case RoutesName.profileScreen:
+        return MaterialPageRoute(
+            builder: (BuildContext context) => Profile(
+                // data: settings.arguments as Map,
+                ));
       case RoutesName.splashScreen:
         return MaterialPageRoute(
             builder: (BuildContext context) => SplashScreen());
