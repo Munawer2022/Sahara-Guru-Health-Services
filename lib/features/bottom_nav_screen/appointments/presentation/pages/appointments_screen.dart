@@ -8,7 +8,6 @@ import 'package:sahara_guru_health_services/features/bottom_nav_screen/appointme
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/appointments/presentation/widget/card_text.dart';
 import 'package:sahara_guru_health_services/features/bottom_nav_screen/appointments/presentation/widget/old_appointments_widget.dart';
 
-import '../../../../../core/error/status.dart';
 import '../../data/models/old_appointment_model.dart';
 import '../provider/appointments_provider.dart';
 import '../widget/upcoming_appointments_widget.dart';
@@ -16,7 +15,6 @@ import '../widget/upcoming_appointments_widget.dart';
 class AppointmentScreen extends StatelessWidget {
   const AppointmentScreen({super.key});
 
-  // Future<OldMyAppointmentModel> oldMyAppointment() async {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,8 +36,7 @@ class AppointmentScreen extends StatelessWidget {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());
                       } else if (snapshot.hasError) {
-                        return Center(
-                            child: Text("got error ${snapshot.error}"));
+                        return Center(child: Text(snapshot.error.toString()));
                       } else {
                         return UpcomingAppointmentsWidget(
                           snapshot: snapshot,
@@ -64,8 +61,7 @@ class AppointmentScreen extends StatelessWidget {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());
                       } else if (snapshot.hasError) {
-                        return Center(
-                            child: Text("got error ${snapshot.error}"));
+                        return Center(child: Text(snapshot.error.toString()));
                       } else {
                         return OldAppointmentsWidget(
                             appointmentsData: snapshot);

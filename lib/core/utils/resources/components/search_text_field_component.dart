@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
-import 'package:sahara_guru_health_services/core/utils/resources/components/type_text_field_component.dart';
 
 class SearchTextFieldComponent extends StatelessWidget {
   final text;

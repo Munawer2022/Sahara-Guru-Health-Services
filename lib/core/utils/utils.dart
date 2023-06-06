@@ -18,19 +18,6 @@ class Utils {
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
       ..showSnackBar(snackBar);
-
-    // ScaffoldMessenger.of(context).showSnackBar(
-    //   SnackBar(
-    //     backgroundColor: Colors.green,
-    //     content: Text(message.toString()),
-    //     action: SnackBarAction(
-    //       textColor: Colors.white,
-    //       label: 'OK',
-    //       onPressed: () {},
-    //       // onPressed: scaffold.hideCurrentSnackBar
-    //     ),
-    //   ),
-    // );
   }
 
   void errorSnackBarMessage(String message, BuildContext context) {

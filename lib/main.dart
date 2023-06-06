@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       themeMode: ThemeMode.light,
-      darkTheme: Themes.dark,
+      // darkTheme: Themes.dark,
       theme: Themes.light,
       initialRoute: RoutesName.splashScreen,
       onGenerateRoute: Routes.generateRoute,

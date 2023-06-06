@@ -8,13 +8,11 @@ class Themes {
     colorSchemeSeed: Colors.blue.shade800,
     useMaterial3: true,
     brightness: Brightness.light,
-    appBarTheme: const AppBarTheme(
-        // titleTextStyle: TextStyle(fontFamily: fonts.firstfont),
-        ),
+    appBarTheme: const AppBarTheme(),
   );
-  static final dark = ThemeData(
-    colorSchemeSeed: Colors.lightBlueAccent,
-    brightness: Brightness.dark,
-    useMaterial3: true,
-  );
+  // static final dark = ThemeData(
+  //   colorSchemeSeed: Colors.lightBlueAccent,
+  //   brightness: Brightness.dark,
+  //   useMaterial3: true,
+  // );
 }

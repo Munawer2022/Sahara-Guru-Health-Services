@@ -27,7 +27,7 @@ class AllSpeciallzationsWidget extends StatelessWidget {
                   child: InkWell(
                     borderRadius: BorderRadius.circular(12),
                     onTap: () {
-                      Navigator.pushNamed(context, RoutesName.skinspecialists,
+                      Navigator.pushNamed(context, RoutesName.catagoryDoctor,
                           arguments: {
                             'department_id':
                                 snapshot.data!.departments![index].id,

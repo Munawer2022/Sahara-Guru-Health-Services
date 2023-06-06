@@ -8,18 +8,18 @@ class LoginRepository implements LoginBaseApiServices {
   @override
   Future<dynamic> loginPostApiResponse(dynamic data) async {
     dynamic responseJson;
-    try {
-      Response response = await post(
-        Uri.parse(AppUrl.login),
-        body: data,
-        headers: {
-          'Accept': 'application/json',
-        },
-      );
-      responseJson = returnResponse(response);
-      return responseJson;
-    } catch (e) {
-      rethrow;
-    }
+    // try {
+    Response response = await post(
+      Uri.parse(AppUrl.login),
+      body: data,
+      headers: {
+        'Accept': 'application/json',
+      },
+    );
+    responseJson = returnResponse(response);
+    return responseJson;
+    // } catch (e) {
+    //   return Exception(e.toString());
+    // }
   }
 }

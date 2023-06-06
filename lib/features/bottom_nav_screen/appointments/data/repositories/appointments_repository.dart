@@ -21,6 +21,7 @@ class AppointmentsRepository implements AppointmentsBaseApiServices {
         'Authorization': 'Bearer ${box.read('token')}'
       },
     );
+
     responseJson = returnResponse(response);
     return responseJson = OldMyAppointmentModel.fromJson(responseJson);
   }

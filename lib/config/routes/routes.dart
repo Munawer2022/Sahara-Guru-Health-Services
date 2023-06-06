@@ -35,17 +35,15 @@ class Routes {
             );
           },
         );
-      // case RoutesName.signupscreen:
-      //   return MaterialPageRoute(
-      //       builder: (BuildContext context) => SignUpScreen());
-      case RoutesName.skinspecialists:
+
+      case RoutesName.catagoryDoctor:
         return MaterialPageRoute(
             builder: (BuildContext context) => CatagoryDoctor(
                   data: settings.arguments as Map,
                 ));
       case RoutesName.loginscreen:
         return MaterialPageRoute(
-            builder: (BuildContext context) => LoginScreen());
+            builder: (BuildContext context) => const LoginScreen());
 
       case RoutesName.bookappointment:
         return MaterialPageRoute(
@@ -57,28 +55,22 @@ class Routes {
             builder: (BuildContext context) => HomeScreen());
       case RoutesName.bottomnavdashboard:
         return MaterialPageRoute(
-            builder: (BuildContext context) => BottomNavDashboard(
-                // data: settings.arguments as Map,
-                ));
-      // case RoutesName.appointmentsdetails:
-      //   return MaterialPageRoute(
-      //       builder: (BuildContext context) => AppointmentsDetails());
+            builder: (BuildContext context) => const BottomNavDashboard());
+
       case RoutesName.appointmentConfirmation:
         return MaterialPageRoute(
             builder: (BuildContext context) => AppointmentConfirmationScreen(
                   para: settings.arguments as Map,
                 ));
       case RoutesName.profileScreen:
-        return MaterialPageRoute(
-            builder: (BuildContext context) => Profile(
-                // data: settings.arguments as Map,
-                ));
+        return MaterialPageRoute(builder: (BuildContext context) => Profile());
       case RoutesName.splashScreen:
         return MaterialPageRoute(
-            builder: (BuildContext context) => SplashScreen());
+            builder: (BuildContext context) => const SplashScreen());
       case RoutesName.allSpeciallzations:
         return MaterialPageRoute(
-            builder: (BuildContext context) => AllSpeciallzationsScreen());
+            builder: (BuildContext context) =>
+                const AllSpeciallzationsScreen());
 
       default:
         return MaterialPageRoute(builder: (_) {

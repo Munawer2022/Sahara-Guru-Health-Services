@@ -26,7 +26,7 @@ class HomeSlideHorizontalListWidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, RoutesName.skinspecialists,
+                      Navigator.pushNamed(context, RoutesName.catagoryDoctor,
                           arguments: {
                             'department_id':
                                 snapshot.data!.departments![index].id,
