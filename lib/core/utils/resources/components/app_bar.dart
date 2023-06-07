@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
-import 'package:sahara_guru_health_services/core/utils/resources/components/search_text_field_component.dart';
+import '../../constants/padding.dart';
+import 'search_text_field_component.dart';
 
 class MyAppBarWidget extends StatelessWidget implements PreferredSize {
   final title;

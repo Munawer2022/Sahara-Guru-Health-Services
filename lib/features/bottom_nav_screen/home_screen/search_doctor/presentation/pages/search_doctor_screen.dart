@@ -4,10 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:http/http.dart';
-import 'package:provider/provider.dart';
 
-import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/search_doctor/presentation/provider/search_doctor_provider.dart';
+import '../../../../../../core/utils/resources/components/app_bar.dart';
 
 import '../../../../../../config/routes/routes_names.dart';
 import '../../../../../../core/utils/constants/images.dart';

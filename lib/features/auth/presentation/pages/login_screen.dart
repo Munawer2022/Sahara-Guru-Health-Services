@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:provider/provider.dart';
-import 'package:sahara_guru_health_services/core/utils/constants/images.dart';
+import '../../../../core/utils/constants/images.dart';
 
 import '../../../../core/utils/constants/padding.dart';
 import '../../../../core/utils/resources/components/app_bar.dart';

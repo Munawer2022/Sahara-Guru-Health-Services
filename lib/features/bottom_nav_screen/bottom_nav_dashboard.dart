@@ -2,10 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/profile/profile.dart';
+import 'profile/profile.dart';
 
-import 'bottom_nav_dashboard_controller.dart';
-import 'appointments/presentation/pages/appointments_screen.dart';
+import 'appointments/appointment/presentation/pages/appointments_screen.dart';
 import 'home_screen/home_screen.dart';
 
 class BottomNavDashboard extends StatelessWidget {
@@ -71,5 +70,15 @@ class BottomNavDashboard extends StatelessWidget {
         },
       ),
     );
+  }
+}
+
+class BottomNavDashboardController extends ChangeNotifier {
+  int _tabIndex = 0;
+  int get tabIndex => _tabIndex;
+
+  void changeTabIndex(int index) {
+    _tabIndex = index;
+    notifyListeners();
   }
 }

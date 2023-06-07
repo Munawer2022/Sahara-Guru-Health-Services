@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sahara_guru_health_services/config/themes.dart';
+import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/search_doctor/presentation/provider/search_doctor_provider.dart';
+import 'config/themes.dart';
 
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/bottom_nav_dashboard_controller.dart';
+import 'features/bottom_nav_screen/bottom_nav_dashboard.dart';
+
 import 'config/routes/routes.dart';
 import 'config/routes/routes_names.dart';
 
-import 'features/bottom_nav_screen/appointments/presentation/provider/appointments_provider.dart';
+import 'features/bottom_nav_screen/appointments/appointment/presentation/provider/appointments_provider.dart';
 
-import 'features/bottom_nav_screen/home_screen/all_speciallzations/all_speciallzations/presentation/provider/all_speciallzations_provider.dart';
-import 'features/bottom_nav_screen/home_screen/all_speciallzations/catagory_doctor/book_appointment/appointment_confirmation/presentation/provider/appointment_confirmation_provider.dart';
+import 'features/bottom_nav_screen/home_screen/all_speciallzations/presentation/provider/all_speciallzations_provider.dart';
+import 'features/bottom_nav_screen/appointments/appointment_confirmation/presentation/provider/appointment_confirmation_provider.dart';
 
-import 'features/bottom_nav_screen/home_screen/all_speciallzations/catagory_doctor/book_appointment/bookappointment_controller.dart';
+import 'features/bottom_nav_screen/home_screen/book_appointment/presentation/provider/bookappointment_controller.dart';
 import 'features/auth/presentation/provider/login_provider.dart';
 
 import 'package:get_storage/get_storage.dart';

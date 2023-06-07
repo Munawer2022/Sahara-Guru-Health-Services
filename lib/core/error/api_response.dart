@@ -1,4 +1,4 @@
-import 'package:sahara_guru_health_services/core/error/status.dart';
+import 'status.dart';
 
 class ApiResponse<T> {
   Status? status;

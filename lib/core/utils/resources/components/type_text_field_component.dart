@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
+import 'app_bar.dart';
 
 class TypeTextFieldComponent extends StatelessWidget {
   final textInputAction;

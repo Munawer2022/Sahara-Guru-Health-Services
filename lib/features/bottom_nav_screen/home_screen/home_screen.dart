@@ -4,11 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'package:sahara_guru_health_services/core/utils/resources/components/app_bar.dart';
+import '../../../core/utils/resources/components/app_bar.dart';
 
-import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
-import 'package:sahara_guru_health_services/core/utils/utils.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/all_speciallzations/all_speciallzations/presentation/pages/home_slide_horizontal_list.dart';
+import '../../../core/utils/constants/padding.dart';
+import '../../../core/utils/utils.dart';
+import 'all_speciallzations/presentation/pages/home_slide_horizontal_list.dart';
 
 import '../../../config/routes/routes_names.dart';
 

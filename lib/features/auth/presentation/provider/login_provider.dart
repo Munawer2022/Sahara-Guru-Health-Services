@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:sahara_guru_health_services/core/utils/utils.dart';
-import 'package:sahara_guru_health_services/features/auth/data/repositories/login_respository.dart';
+import '../../../../core/utils/utils.dart';
+import '../../data/repositories/login_respository.dart';
 
 import '../../../../config/routes/routes_names.dart';
 
