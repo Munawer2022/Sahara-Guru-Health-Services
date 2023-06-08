@@ -6,7 +6,7 @@ import 'package:http/http.dart';
 import '../../../../../../core/error/app_excaptions.dart';
 import '../../../../../../core/error/return_response.dart';
 import '../../../../../../core/utils/constants/app_url.dart';
-import '../../domain/repositories/appointments_base_api_services.dart';
+import 'appointments_base_api_services.dart';
 import '../models/old_appointment_model.dart';
 import '../models/upcoming_appointment_model.dart';
 

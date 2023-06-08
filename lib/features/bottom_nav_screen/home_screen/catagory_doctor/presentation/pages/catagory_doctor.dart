@@ -95,9 +95,13 @@ class _CatagoryDoctorScreenState extends State<CatagoryDoctorScreen> {
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
-                                    Text(
-                                        'Top ${snapshot.data?.departments![0].doctors?.length.toString()} Dermatogists',
-                                        style: theme.textTheme.subtitle2),
+                                    Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 10),
+                                      child: Text(
+                                          'Top ${snapshot.data?.departments![0].doctors?.length.toString()} Dermatogists',
+                                          style: theme.textTheme.subtitle2),
+                                    ),
                                     SizedBox(
                                       height: mediaQuery.height * 0.02,
                                     ),

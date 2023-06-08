@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:sahara_guru_health_services/features/bottom_nav_screen/home_screen/search_doctor/presentation/provider/search_doctor_provider.dart';
+
 import 'config/themes.dart';
 
 import 'features/bottom_nav_screen/bottom_nav_dashboard.dart';
@@ -37,7 +37,6 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
