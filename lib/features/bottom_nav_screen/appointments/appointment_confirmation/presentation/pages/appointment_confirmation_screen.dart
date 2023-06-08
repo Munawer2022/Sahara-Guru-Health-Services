@@ -39,40 +39,6 @@ class AppointmentConfirmationScreen extends StatelessWidget {
             padding: screen_padding,
             child: Column(
               children: [
-                SizedBox(
-                  width: double.infinity,
-                  child: Card(
-                    elevation: 0,
-                    child: Padding(
-                      padding: card_padding,
-                      child: Column(
-                        children: [
-                          Align(
-                            alignment: Alignment.center,
-                            child: Icon(
-                              Icons.check_circle_outline_sharp,
-                              size: 50,
-                              color: Colors.green.shade700,
-                            ),
-                          ),
-                          SizedBox(
-                            height: mediaQuery.height * 0.01,
-                          ),
-                          Align(
-                            alignment: Alignment.center,
-                            child: Text(
-                                'Your in-person appointment\nhas been booked!',
-                                textAlign: TextAlign.center,
-                                style: theme.textTheme.subtitle1?.copyWith(
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green.shade900,
-                                )),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
                 Consumer<AppointmentConfirmationProvider>(
                     builder: (context, value, _) {
                   return FutureBuilder(
@@ -87,6 +53,41 @@ class AppointmentConfirmationScreen extends StatelessWidget {
                         return Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
+                            SizedBox(
+                              width: double.infinity,
+                              child: Card(
+                                elevation: 0,
+                                child: Padding(
+                                  padding: card_padding,
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Icon(
+                                          Icons.check_circle_outline_sharp,
+                                          size: 50,
+                                          color: Colors.green.shade700,
+                                        ),
+                                      ),
+                                      SizedBox(
+                                        height: mediaQuery.height * 0.01,
+                                      ),
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Text(
+                                            'Your in-person appointment\nhas been booked!',
+                                            textAlign: TextAlign.center,
+                                            style: theme.textTheme.subtitle1
+                                                ?.copyWith(
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.green.shade900,
+                                            )),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
                             // SizedBox(
                             //   width: double.infinity,
                             //   child: Card(
@@ -142,7 +143,7 @@ class AppointmentConfirmationScreen extends StatelessWidget {
                                           Icon(CupertinoIcons.time),
                                           Icon(
                                               CupertinoIcons.person_alt_circle),
-                                          Icon(Icons.money),
+                                          Icon(Icons.price_change_outlined),
                                         ],
                                         children: <Widget>[
                                           listTile(

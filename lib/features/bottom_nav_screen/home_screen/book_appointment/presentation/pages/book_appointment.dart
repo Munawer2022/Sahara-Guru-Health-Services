@@ -95,11 +95,11 @@ class _BookAppointmentState extends State<BookAppointment> {
         print(e.toString());
       }
     }
-    Timer(const Duration(seconds: 5), () {
-      setState(() {
-        error = null;
-      });
-    });
+    // Timer(const Duration(seconds: 4), () {
+    //   setState(() {
+    //     error = null;
+    //   });
+    // });
   }
 
   dynamic month = DateFormat("M").format(DateTime.now());
@@ -228,92 +228,99 @@ class _BookAppointmentState extends State<BookAppointment> {
                             //     ],
                             //   ),
                             // ),
+
+                            SizedBox(
+                              height: mediaQuery.height * 0.01,
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 80,
+                              child: ListView.builder(
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: 3,
+                                  itemBuilder: (context, index) {
+                                    String monthStr = date[index];
+                                    DateTime month = DateTime.parse(monthStr);
+                                    String monthFinal =
+                                        DateFormat("E").format(month);
+                                    return Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10),
+                                        child: ChoiceChip(
+                                          label: SizedBox(
+                                            height: 50,
+                                            width: mediaQuery.width * 0.2,
+                                            child: Center(
+                                                child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              children: [
+                                                Text(monthFinal,
+                                                    style: theme
+                                                        .textTheme.subtitle2
+                                                        ?.copyWith(
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                    )),
+                                                // Text(day[index],
+                                                //     style: theme
+                                                //         .textTheme.subtitle2),
+                                                Text(
+                                                    DateFormat("dd").format(
+                                                        DateTime.parse(
+                                                            date[index])),
+                                                    style: theme
+                                                        .textTheme.subtitle2
+                                                        ?.copyWith(
+                                                      fontStyle:
+                                                          FontStyle.italic,
+                                                    )),
+                                              ],
+                                            )),
+                                          ),
+                                          selected: value.value == index,
+                                          onSelected: (bool selected) {
+                                            setState(() {
+                                              error = null;
+                                            });
+                                            print(
+                                              date[value.value].toString(),
+                                            );
+                                            debugPrint(selectedDate);
+                                            value.changeTabIndex(index);
+                                            selectedDate =
+                                                date[value.value].toString();
+                                          },
+                                        ));
+                                  }),
+                            ),
+
+                            SizedBox(
+                              width: double.infinity,
+                              child: Padding(
+                                padding: card_padding,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text('About Doctor',
+                                        style: theme.textTheme.headline6!
+                                            .copyWith(
+                                                fontWeight: FontWeight.bold)),
+                                    SizedBox(
+                                      height: mediaQuery.height * 0.01,
+                                    ),
+                                    Text(widget.routeData['bio'].toString(),
+                                        style: theme.textTheme.subtitle2),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      Card(
-                        elevation: 0,
-                        child: Center(
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              SizedBox(
-                                height: mediaQuery.height * 0.01,
-                              ),
-                              SizedBox(
-                                width: double.infinity,
-                                height: 80,
-                                child: ListView.builder(
-                                  scrollDirection: Axis.horizontal,
-                                  itemCount: 3,
-                                  itemBuilder: (context, index) => Padding(
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10),
-                                      child: ChoiceChip(
-                                        label: SizedBox(
-                                          height: 50,
-                                          width: mediaQuery.width * 0.3,
-                                          child: Center(
-                                              child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.center,
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.center,
-                                            children: [
-                                              Text(day[index],
-                                                  style: theme
-                                                      .textTheme.subtitle2),
-                                              Text(date[index].toString(),
-                                                  style: theme
-                                                      .textTheme.subtitle2),
-                                            ],
-                                          )),
-                                        ),
-                                        selected: value.value == index,
-                                        onSelected: (bool selected) {
-                                          // setState(() {
-                                          //   error = null;
-                                          // });
-                                          print(
-                                            date[value.value].toString(),
-                                          );
-                                          debugPrint(selectedDate);
-                                          value.changeTabIndex(index);
-                                          selectedDate =
-                                              date[value.value].toString();
-                                        },
-                                      )),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: double.infinity,
-                        child: Card(
-                            elevation: 0,
-                            child: Padding(
-                              padding: card_padding,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text('About Doctor',
-                                      style: theme.textTheme.headline6!
-                                          .copyWith(
-                                              fontWeight: FontWeight.bold)),
-                                  Text(widget.routeData['bio'].toString(),
-                                      style: theme.textTheme.subtitle2),
-                                ],
-                              ),
-                            )),
-                      ),
-                      // TimePickerDialog(
-                      //   initialTime: TimeOfDay.now(),
-                      // ),
-
                       SizedBox(
                         height: mediaQuery.height * 0.2,
                       )
@@ -352,7 +359,9 @@ class _BookAppointmentState extends State<BookAppointment> {
                       //     //     month[value.value]
                       //     date[value.value],
                       Text("${day[value.value]} ${date[value.value]}",
-                          style: theme.textTheme.subtitle2)
+                          style: theme.textTheme.subtitle2?.copyWith(
+                            fontStyle: FontStyle.italic,
+                          ))
                     ],
                   ),
                   SizedBox(

@@ -1,15 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
 import '../../../../../../core/utils/constants/padding.dart';
 import '../../../../../../core/utils/resources/components/app_bar.dart';
-import '../../data/models/upcoming_appointment_model.dart';
+
 import '../widget/card_text.dart';
 import '../widget/old_appointments_widget.dart';
 
-import '../../../../../../core/error/status.dart';
-import '../../data/models/old_appointment_model.dart';
 import '../provider/appointments_provider.dart';
 import '../widget/upcoming_appointments_widget.dart';
 
@@ -18,6 +17,7 @@ class AppointmentScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
       appBar: const MyAppBarWidget(
         bottom: false,
@@ -39,9 +39,29 @@ class AppointmentScreen extends StatelessWidget {
                       } else if (snapshot.hasError) {
                         return Center(child: Text(snapshot.error.toString()));
                       } else {
-                        return UpcomingAppointmentsWidget(
-                          snapshot: snapshot,
-                        );
+                        return snapshot.data!.appointmentData!.upcoming!.isEmpty
+                            ? Padding(
+                                padding: screen_padding,
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.calendar_badge_minus,
+                                      size: 50,
+                                      color: Colors.blue.shade800,
+                                    ),
+                                    SizedBox(
+                                      height: mediaQuery.height * 0.01,
+                                    ),
+                                    const Text(
+                                      'You have no upcoming\nappointments',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : UpcomingAppointmentsWidget(
+                                snapshot: snapshot,
+                              );
                       }
                     });
               }),
@@ -55,8 +75,27 @@ class AppointmentScreen extends StatelessWidget {
                       } else if (snapshot.hasError) {
                         return Center(child: Text(snapshot.error.toString()));
                       } else {
-                        return OldAppointmentsWidget(
-                            appointmentsData: snapshot);
+                        return snapshot.data!.appointmentData!.old!.isEmpty
+                            ? Padding(
+                                padding: screen_padding,
+                                child: Column(
+                                  children: [
+                                    Icon(
+                                      CupertinoIcons.calendar_badge_minus,
+                                      color: Colors.blue.shade800,
+                                      size: 50,
+                                    ),
+                                    SizedBox(
+                                      height: mediaQuery.height * 0.01,
+                                    ),
+                                    const Text(
+                                      'You have no old\nappointments',
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : OldAppointmentsWidget(appointmentsData: snapshot);
                       }
                     });
               }),

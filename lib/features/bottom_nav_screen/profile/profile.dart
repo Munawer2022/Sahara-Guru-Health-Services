@@ -75,7 +75,7 @@ class Profile extends StatelessWidget {
                   SizedBox(height: mediaQuery.height * 0.04),
                   ProfileMenuWidget(
                     title: "Phone",
-                    leading: CupertinoIcons.phone_circle_fill,
+                    leading: const Icon(CupertinoIcons.phone_circle_fill),
                     trailing: Text(box.read('phone_number') ?? 'N/A'),
                   ),
                 ],
@@ -97,7 +97,7 @@ class ProfileMenuWidget extends StatelessWidget {
   }) : super(key: key);
 
   final String title;
-  final IconData leading;
+  final leading;
   final trailing;
 
   @override
@@ -105,7 +105,7 @@ class ProfileMenuWidget extends StatelessWidget {
     return ListTile(
         onTap: () {},
         trailing: trailing,
-        leading: Icon(leading),
+        leading: leading,
         title: Text(
           title,
         ));

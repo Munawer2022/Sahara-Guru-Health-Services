@@ -1,7 +1,5 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
 import 'package:get_storage/get_storage.dart';
 
 import '../../../core/utils/resources/components/app_bar.dart';
@@ -48,7 +46,7 @@ class HomeScreen extends StatelessWidget {
                 });
               },
               icon: const Icon(
-                Icons.logout_rounded,
+                Icons.power_settings_new_outlined,
                 color: Colors.white,
               ))
         ],
@@ -71,7 +69,7 @@ class HomeScreen extends StatelessWidget {
                             style: theme.textTheme.headline6,
                           ),
                         ),
-                        HomeSlideHorizontalList(),
+                        const HomeSlideHorizontalList(),
                         Padding(
                             padding: card_padding,
                             child: Button(
@@ -95,7 +93,7 @@ class HomeScreen extends StatelessWidget {
                             style: theme.textTheme.headline6,
                           ),
                         ),
-                        HomeSlideHorizontalList(),
+                        const HomeSlideHorizontalList(),
                         SizedBox(
                           height: mediaQuery.height * 0.03,
                         ),
@@ -113,7 +111,7 @@ class HomeScreen extends StatelessWidget {
                             style: theme.textTheme.headline6,
                           ),
                         ),
-                        HomeSlideHorizontalList(),
+                        const HomeSlideHorizontalList(),
                         SizedBox(
                           height: mediaQuery.height * 0.03,
                         ),

@@ -47,27 +47,53 @@ class OldAppointmentsWidget extends StatelessWidget {
                   child: Column(
                     children: [
                       ListTile(
-                        leading: Container(
-                          color: Colors.black12,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 4, vertical: 8),
-                            child: RichText(
-                              textAlign: TextAlign.center,
-                              text: TextSpan(
-                                text: '$day\n',
-                                style: theme.textTheme.subtitle2
-                                    ?.copyWith(fontWeight: FontWeight.w800),
-                                children: <TextSpan>[
-                                  TextSpan(
-                                    text: monthFinal,
-                                    style: theme.textTheme.subtitle2,
+                        leading: Card(
+                          child: SizedBox(
+                            width: 40,
+                            height: 80,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                RichText(
+                                  textAlign: TextAlign.center,
+                                  text: TextSpan(
+                                    text: '$day\n',
+                                    style: theme.textTheme.subtitle2
+                                        ?.copyWith(fontWeight: FontWeight.w800),
+                                    children: <TextSpan>[
+                                      TextSpan(
+                                        text: monthFinal,
+                                        style: theme.textTheme.subtitle2,
+                                      ),
+                                    ],
                                   ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                           ),
                         ),
+                        //  Container(
+                        //   color: Colors.black12,
+                        //   child: Padding(
+                        //     padding: const EdgeInsets.symmetric(
+                        //         horizontal: 4, vertical: 8),
+                        //     child: RichText(
+                        //       textAlign: TextAlign.center,
+                        //       text: TextSpan(
+                        //         text: '$day\n',
+                        //         style: theme.textTheme.subtitle2
+                        //             ?.copyWith(fontWeight: FontWeight.w800),
+                        //         children: <TextSpan>[
+                        //           TextSpan(
+                        //             text: monthFinal,
+                        //             style: theme.textTheme.subtitle2,
+                        //           ),
+                        //         ],
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
                         title: Column(
                           children: [
                             Align(
