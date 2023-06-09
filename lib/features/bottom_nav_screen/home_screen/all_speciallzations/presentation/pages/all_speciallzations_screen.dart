@@ -29,9 +29,7 @@ class AllSpeciallzationsScreen extends StatelessWidget {
             children: [
               Consumer<AllSpeciallzationsProvider>(
                   builder: (context, value, _) {
-                return AllSpeciallzationsWidget(
-                  value: value,
-                );
+                return AllSpeciallzationsWidget(value: value);
               })
             ],
           ),

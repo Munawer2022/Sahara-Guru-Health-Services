@@ -67,7 +67,200 @@ class _CatagoryDoctorScreenState extends State<CatagoryDoctorScreen> {
                   future: catagoryDoctorProvider
                       .getlistdoctor(widget.data['department_id'].toString()),
                   builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    if (snapshot.hasData) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Flexible(
+                        child: Padding(
+                          padding: screen_padding,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Container(
+                                width: mediaQuery.width * 0.40,
+                                height: mediaQuery.height * 0.02,
+                                decoration: BoxDecoration(
+                                    color: Colors.grey.shade300,
+                                    borderRadius: BorderRadius.circular(12)),
+                              ),
+                              SizedBox(
+                                height: mediaQuery.height * 0.02,
+                              ),
+                              ListView.builder(
+                                  physics: const NeverScrollableScrollPhysics(),
+                                  shrinkWrap: true,
+                                  itemCount: 4,
+                                  itemBuilder: (context, index) => Card(
+                                        color: Colors.grey.shade300,
+                                        elevation: 0,
+                                        child: Padding(
+                                          padding: card_padding,
+                                          child: Column(
+                                            children: [
+                                              ListTile(
+                                                  title: Container(
+                                                    height: 20,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors
+                                                            .grey.shade400,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12)),
+                                                  ),
+                                                  leading: CircleAvatar(
+                                                    backgroundColor:
+                                                        Colors.grey.shade400,
+                                                    radius: 27,
+                                                  ),
+                                                  subtitle: Container(
+                                                    height: 12,
+                                                    decoration: BoxDecoration(
+                                                        color: Colors
+                                                            .grey.shade400,
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(12)),
+                                                  )),
+                                              SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.02),
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                        height: 10,
+                                                        width: 30,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey.shade400,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12)),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            mediaQuery.height *
+                                                                0.01,
+                                                      ),
+                                                      Container(
+                                                        height: 10,
+                                                        width: 40,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey.shade400,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12)),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                        height: 10,
+                                                        width: 30,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey.shade400,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12)),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            mediaQuery.height *
+                                                                0.01,
+                                                      ),
+                                                      Container(
+                                                        height: 10,
+                                                        width: 40,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey.shade400,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12)),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Column(
+                                                    children: [
+                                                      Container(
+                                                        height: 10,
+                                                        width: 30,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey.shade400,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12)),
+                                                      ),
+                                                      SizedBox(
+                                                        height:
+                                                            mediaQuery.height *
+                                                                0.01,
+                                                      ),
+                                                      Container(
+                                                        height: 10,
+                                                        width: 40,
+                                                        decoration: BoxDecoration(
+                                                            color: Colors
+                                                                .grey.shade400,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        12)),
+                                                      ),
+                                                    ],
+                                                  )
+                                                ],
+                                              ),
+                                              SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.02),
+                                              SizedBox(
+                                                width: double.infinity,
+                                                height:
+                                                    mediaQuery.height * 0.08,
+                                                child: Card(
+                                                  elevation: 0,
+                                                  color: Colors.grey.shade400,
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.02),
+                                              Align(
+                                                alignment: Alignment.centerLeft,
+                                                child: Container(
+                                                  height: 40,
+                                                  width: 150,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade400,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              20)),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                      )),
+                            ],
+                          ),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text(snapshot.error.toString()));
+                    } else {
                       return snapshot.data?.departments![0].doctors?.length == 0
                           ? Column(
                               children: [
@@ -427,194 +620,6 @@ class _CatagoryDoctorScreenState extends State<CatagoryDoctorScreen> {
                               ),
                             );
                     }
-                    return Flexible(
-                      child: Padding(
-                        padding: screen_padding,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: mediaQuery.width * 0.40,
-                              height: mediaQuery.height * 0.02,
-                              decoration: BoxDecoration(
-                                  color: Colors.grey.shade300,
-                                  borderRadius: BorderRadius.circular(12)),
-                            ),
-                            SizedBox(
-                              height: mediaQuery.height * 0.02,
-                            ),
-                            ListView.builder(
-                                physics: const NeverScrollableScrollPhysics(),
-                                shrinkWrap: true,
-                                itemCount: 4,
-                                itemBuilder: (context, index) => Card(
-                                      color: Colors.grey.shade300,
-                                      elevation: 0,
-                                      child: Padding(
-                                        padding: card_padding,
-                                        child: Column(
-                                          children: [
-                                            ListTile(
-                                                title: Container(
-                                                  height: 20,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade400,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12)),
-                                                ),
-                                                leading: CircleAvatar(
-                                                  backgroundColor:
-                                                      Colors.grey.shade400,
-                                                  radius: 27,
-                                                ),
-                                                subtitle: Container(
-                                                  height: 12,
-                                                  decoration: BoxDecoration(
-                                                      color:
-                                                          Colors.grey.shade400,
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              12)),
-                                                )),
-                                            SizedBox(
-                                                height:
-                                                    mediaQuery.height * 0.02),
-                                            Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                Column(
-                                                  children: [
-                                                    Container(
-                                                      height: 10,
-                                                      width: 30,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors
-                                                              .grey.shade400,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12)),
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          mediaQuery.height *
-                                                              0.01,
-                                                    ),
-                                                    Container(
-                                                      height: 10,
-                                                      width: 40,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors
-                                                              .grey.shade400,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12)),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    Container(
-                                                      height: 10,
-                                                      width: 30,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors
-                                                              .grey.shade400,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12)),
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          mediaQuery.height *
-                                                              0.01,
-                                                    ),
-                                                    Container(
-                                                      height: 10,
-                                                      width: 40,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors
-                                                              .grey.shade400,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12)),
-                                                    ),
-                                                  ],
-                                                ),
-                                                Column(
-                                                  children: [
-                                                    Container(
-                                                      height: 10,
-                                                      width: 30,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors
-                                                              .grey.shade400,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12)),
-                                                    ),
-                                                    SizedBox(
-                                                      height:
-                                                          mediaQuery.height *
-                                                              0.01,
-                                                    ),
-                                                    Container(
-                                                      height: 10,
-                                                      width: 40,
-                                                      decoration: BoxDecoration(
-                                                          color: Colors
-                                                              .grey.shade400,
-                                                          borderRadius:
-                                                              BorderRadius
-                                                                  .circular(
-                                                                      12)),
-                                                    ),
-                                                  ],
-                                                )
-                                              ],
-                                            ),
-                                            SizedBox(
-                                                height:
-                                                    mediaQuery.height * 0.02),
-                                            SizedBox(
-                                              width: double.infinity,
-                                              height: mediaQuery.height * 0.08,
-                                              child: Card(
-                                                elevation: 0,
-                                                color: Colors.grey.shade400,
-                                              ),
-                                            ),
-                                            SizedBox(
-                                                height:
-                                                    mediaQuery.height * 0.02),
-                                            Align(
-                                              alignment: Alignment.centerLeft,
-                                              child: Container(
-                                                height: 40,
-                                                width: 150,
-                                                decoration: BoxDecoration(
-                                                    color: Colors.grey.shade400,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            20)),
-                                              ),
-                                            )
-                                          ],
-                                        ),
-                                      ),
-                                    )),
-                          ],
-                        ),
-                      ),
-                    );
                   },
                 ),
               ]),

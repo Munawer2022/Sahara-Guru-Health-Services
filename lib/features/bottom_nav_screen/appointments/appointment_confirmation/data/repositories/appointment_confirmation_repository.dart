@@ -29,9 +29,9 @@ class AppointmentConfirmationRepository
       responseJson = returnResponse(response);
       return responseJson = AppointmentConfirmationModel.fromJson(responseJson);
     } on SocketException {
-      throw FetchDataException('No Internet Connection');
-    } catch (e) {
-      rethrow;
+      throw FetchDataException('');
+    } on BadRequestException {
+      throw BadRequestException('');
     }
   }
 }

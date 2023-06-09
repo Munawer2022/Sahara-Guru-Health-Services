@@ -26,12 +26,13 @@ class AllSpeciallzationsRespository
           'Authorization': 'Bearer ${box.read('token')}'
         },
       ).timeout(const Duration(seconds: 10));
+
       responseJson = returnResponse(response);
-      return responseJson = AllSpeciallzationsModel.fromJson(responseJson);
     } on SocketException {
-      throw FetchDataException('No Internet Connection');
-    } catch (e) {
-      rethrow;
+      throw FetchDataException('');
+    } on BadRequestException {
+      throw BadRequestException('');
     }
+    return responseJson = AllSpeciallzationsModel.fromJson(responseJson);
   }
 }

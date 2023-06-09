@@ -9,6 +9,7 @@ class AllSpeciallzationsProvider extends ChangeNotifier {
 
   Future<AllSpeciallzationsModel> baseAllSpeciallzations() async {
     return await allSpeciallzationsRespository.baseAllSpeciallzations();
+
     // notifyListeners();
   }
 }

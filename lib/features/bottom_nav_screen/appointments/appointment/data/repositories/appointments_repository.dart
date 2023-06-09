@@ -27,7 +27,9 @@ class AppointmentsRepository implements AppointmentsBaseApiServices {
 
       responseJson = returnResponse(response);
     } on SocketException {
-      throw FetchDataException('No Internet Connection');
+      throw FetchDataException('');
+    } on BadRequestException {
+      throw BadRequestException('');
     }
     return responseJson = OldMyAppointmentModel.fromJson(responseJson);
   }
@@ -46,7 +48,9 @@ class AppointmentsRepository implements AppointmentsBaseApiServices {
 
       responseJson = returnResponse(response);
     } on SocketException {
-      throw FetchDataException('No Internet Connection');
+      throw FetchDataException('');
+    } on BadRequestException {
+      throw BadRequestException('');
     }
     return responseJson = UpcomingMyAppointmentModel.fromJson(responseJson);
   }

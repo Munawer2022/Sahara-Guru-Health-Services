@@ -37,6 +37,7 @@ class _BookAppointmentState extends State<BookAppointment> {
 
   bool loading = false;
   String? error;
+  bool? a;
   Future saveAppoitment(BuildContext context) async {
     setState(() {
       loading = true;
@@ -52,6 +53,7 @@ class _BookAppointmentState extends State<BookAppointment> {
       );
 
       var data = jsonDecode(response.body.toString());
+      a = data['success'];
       debugPrint(data['message']);
       debugPrint(selectedDate);
       print(response.body);
@@ -292,6 +294,12 @@ class _BookAppointmentState extends State<BookAppointment> {
                                             value.changeTabIndex(index);
                                             selectedDate =
                                                 date[value.value].toString();
+                                            // saveAppoitment(context)
+                                            //     .onError((error, stackTrace) {
+                                            //   if (a == false) {
+                                            //     error;
+                                            //   }
+                                            // });
                                           },
                                         ));
                                   }),
@@ -411,7 +419,7 @@ class _BookAppointmentState extends State<BookAppointment> {
             const Padding(
               padding: EdgeInsets.only(right: 8.0),
               child: Icon(
-                Icons.error_outline,
+                Icons.warning_amber_outlined,
               ),
             ),
             Expanded(

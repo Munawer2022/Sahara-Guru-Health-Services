@@ -26,6 +26,8 @@ class LoginProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  dynamic errorShow;
+  // String get error => _error;
   final LoginRepository loginRepository = LoginRepository();
   Future<dynamic> loginPostApiResponse(
       BuildContext context, dynamic data) async {
@@ -49,7 +51,7 @@ class LoginProvider extends ChangeNotifier {
       // _response = value;
     }).onError((error, stackTrace) {
       loadingBotton(false);
-
+      errorShow = error;
       Utils().errorSnackBarMessage(error.toString(), context);
       notifyListeners();
     });

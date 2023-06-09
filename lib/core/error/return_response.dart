@@ -11,12 +11,12 @@ dynamic returnResponse(http.Response response) {
 
       return responseJson;
     case 401:
-      throw BadRequestException(response.body.toString());
+      throw BadRequestException(response.body);
     case 500:
     case 404:
-      throw UnauthorisedException(response.body.toString());
+      throw UnauthorisedException(response.body);
     default:
       throw FetchDataException(
-          'Error accured while communicating with server with status code ${response.statusCode.toString()}');
+          'Error accured while communicating with server ${response.statusCode.toString()}');
   }
 }
