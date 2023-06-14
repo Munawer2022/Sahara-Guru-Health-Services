@@ -114,7 +114,7 @@ class OldAppointmentsWidget extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              'Dr. ${appointmentsData.data!.appointmentData!.old![index].doctor?.firstName.toString()} ${appointmentsData.data!.appointmentData!.old![index].doctor?.lastName.toString()}',
+                              'Dr. ${appointmentsData.data!.appointmentData!.old![index].doctor?.firstName} ${appointmentsData.data!.appointmentData!.old![index].doctor?.lastName ?? ''}',
                               style: theme.textTheme.subtitle2
                                   ?.copyWith(fontWeight: FontWeight.bold),
                             ),

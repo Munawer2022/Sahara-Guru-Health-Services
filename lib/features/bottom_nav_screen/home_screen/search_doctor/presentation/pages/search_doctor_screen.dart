@@ -182,7 +182,7 @@ class _SearchDoctorScreenState extends State<SearchDoctorScreen> {
                                             });
                                       },
                                       title: Text(
-                                          '${getsearchdoctorlist[index]['first_name'].toString()} ${getsearchdoctorlist[index]['last_name'].toString()}'),
+                                          '${getsearchdoctorlist[index]['first_name'].toString()} ${getsearchdoctorlist[index]['last_name'] ?? ''}'),
                                       subtitle: Text(getsearchdoctorlist[index]
                                               ['departmentName']
                                           .toString()),

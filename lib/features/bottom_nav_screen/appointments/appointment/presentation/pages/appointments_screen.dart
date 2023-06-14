@@ -47,7 +47,7 @@ class AppointmentScreen extends StatelessWidget {
                                     Icon(
                                       CupertinoIcons.calendar_badge_minus,
                                       size: 50,
-                                      color: Colors.blue.shade800,
+                                      // color: Colors.grey.shade800,
                                     ),
                                     SizedBox(
                                       height: mediaQuery.height * 0.01,
@@ -82,7 +82,7 @@ class AppointmentScreen extends StatelessWidget {
                                   children: [
                                     Icon(
                                       CupertinoIcons.calendar_badge_minus,
-                                      color: Colors.blue.shade800,
+                                      // color: Colors.blue.shade800,
                                       size: 50,
                                     ),
                                     SizedBox(

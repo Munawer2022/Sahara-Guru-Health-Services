@@ -386,11 +386,13 @@ class _CatagoryDoctorScreenState extends State<CatagoryDoctorScreen> {
                                                       ),
                                                       subtitle: Text(
                                                           snapshot
-                                                              .data!
-                                                              .departments![0]
-                                                              .doctors![index]
-                                                              .lastName
-                                                              .toString(),
+                                                                  .data!
+                                                                  .departments![
+                                                                      0]
+                                                                  .doctors![
+                                                                      index]
+                                                                  .lastName ??
+                                                              '',
                                                           maxLines: 2,
                                                           style: theme.textTheme
                                                               .subtitle2),
