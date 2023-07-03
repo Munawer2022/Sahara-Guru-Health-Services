@@ -43,7 +43,7 @@ class MyAppBarWidget extends StatelessWidget implements PreferredSize {
         //   ),
         // ),
 
-        backgroundColor: Colors.blue.shade800,
+        backgroundColor: Color(0xff010066),
 
         bottom: bottom
             ? PreferredSize(

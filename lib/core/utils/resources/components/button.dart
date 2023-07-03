@@ -25,7 +25,7 @@ class Button extends StatelessWidget {
             backgroundColor: loading
                 ? MaterialStateProperty.all(
                     const Color.fromARGB(255, 3, 43, 104))
-                : MaterialStateProperty.all(Colors.blue.shade800)
+                : MaterialStateProperty.all(Color(0xff010066))
             // elevation: MaterialStateProperty.all(2)
             ),
         onPressed: loading ? null : onTap,

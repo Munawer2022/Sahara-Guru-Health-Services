@@ -11,7 +11,7 @@ class AllSpeciallzationsWidget extends StatelessWidget {
     super.key,
     required this.value,
   });
-
+  List iamges = [brainstorm, baby, neurology, skin, hospital];
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -76,16 +76,31 @@ class AllSpeciallzationsWidget extends StatelessWidget {
                                 height: 50,
                                 width: 50,
                                 decoration: BoxDecoration(
-                                  boxShadow: <BoxShadow>[
-                                    BoxShadow(
-                                      color: Colors.black.withOpacity(.2),
-                                      blurRadius: 10,
-                                    ),
-                                  ],
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    stops: [0.0, 1.0],
+                                    colors: [
+                                      Colors.blue.shade100,
+                                      Colors.grey.shade200
+                                    ],
+                                  ),
+                                  // boxShadow: <BoxShadow>[
+                                  //   BoxShadow(
+                                  //     color: Colors.black.withOpacity(.2),
+                                  //     blurRadius: 10,
+                                  //   ),
+                                  // ],
                                   color: Colors.white,
                                   borderRadius: BorderRadius.circular(50),
                                 ),
-                                child: Image(image: AssetImage(category))),
+                                child: Center(
+                                  child: Image(
+                                    image: AssetImage(iamges[index]),
+                                    height: 30,
+                                    width: 30,
+                                  ),
+                                )),
                             title: Text(
                                 snapshot.data!.departments![index].name
                                     .toString(),

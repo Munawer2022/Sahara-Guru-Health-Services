@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:sahara_guru_health_services/core/utils/constants/images.dart';
 import 'profile/profile.dart';
 
 import 'appointments/appointment/presentation/pages/appointments_screen.dart';
@@ -31,33 +32,43 @@ class BottomNavDashboard extends StatelessWidget {
         builder: (context, value, child) {
           return Scaffold(
             bottomNavigationBar: NavigationBar(
+              elevation: 1,
+              backgroundColor: Colors.white,
               selectedIndex: value.tabIndex,
               onDestinationSelected: (index) {
                 value.changeTabIndex(index);
               },
-              destinations: const <NavigationDestination>[
+              destinations: <NavigationDestination>[
                 NavigationDestination(
-                  selectedIcon: Icon(
-                    CupertinoIcons.house_fill,
+                  selectedIcon: Image.asset(
+                    home,
+                    scale: 24,
                   ),
-                  icon: Icon(
-                    CupertinoIcons.home,
+                  icon: Image.asset(
+                    home,
+                    scale: 24,
                   ),
                   label: 'Home',
                 ),
                 NavigationDestination(
-                  selectedIcon: Icon(
-                    CupertinoIcons.calendar,
+                  selectedIcon: Image.asset(
+                    calendar,
+                    scale: 24,
                   ),
-                  icon: Icon(Icons.calendar_month_outlined),
+                  icon: Image.asset(
+                    calendar,
+                    scale: 24,
+                  ),
                   label: 'Appointments',
                 ),
                 NavigationDestination(
-                  selectedIcon: Icon(
-                    CupertinoIcons.person_alt_circle_fill,
+                  selectedIcon: Image.asset(
+                    user,
+                    scale: 24,
                   ),
-                  icon: Icon(
-                    CupertinoIcons.person_alt_circle,
+                  icon: Image.asset(
+                    user,
+                    scale: 24,
                   ),
                   label: 'Profile',
                 ),

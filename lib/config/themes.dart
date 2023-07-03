@@ -6,7 +6,7 @@ class Themes {
   static final light = ThemeData(
     fontFamily: firstfont,
     scaffoldBackgroundColor: Colors.grey.shade200,
-    colorSchemeSeed: Colors.blue,
+    colorSchemeSeed: Color(0xff010066),
     useMaterial3: true,
     brightness: Brightness.light,
     appBarTheme: const AppBarTheme(),

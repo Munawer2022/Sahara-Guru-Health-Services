@@ -546,9 +546,8 @@ class _CatagoryDoctorScreenState extends State<CatagoryDoctorScreen> {
                                                               )),
                                                               backgroundColor:
                                                                   MaterialStateProperty
-                                                                      .all(Colors
-                                                                          .blue
-                                                                          .shade800)),
+                                                                      .all(Color(
+                                                                          0xff010066))),
                                                           onPressed: () {
                                                             Navigator.pushNamed(
                                                                 context,
