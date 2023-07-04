@@ -153,56 +153,68 @@ class HomeScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(10),
                                 color: Color(0xffc6ddfd)),
                             child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+
+                              // crossAxisAlignment: CrossAxisAlignment.center,
+                              // mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Instant Video Consultation',
-                                        style: theme.textTheme.bodyMedium
-                                            ?.copyWith(
-                                                fontWeight: FontWeight.bold,
-                                                color: Color(0xff010066))),
-                                    SizedBox(
-                                      height: mediaQuery.height * 0.01,
-                                    ),
-                                    Container(
-                                      height: 30,
-                                      width: 200,
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xff010066),
-                                        borderRadius: BorderRadius.circular(20),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 6),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Instant Video Consultation',
+                                          style: theme.textTheme.bodyMedium
+                                              ?.copyWith(
+                                                  fontWeight: FontWeight.bold,
+                                                  color: Color(0xff010066))),
+                                      SizedBox(
+                                        height: mediaQuery.height * 0.01,
                                       ),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 12),
-                                          child: Row(
-                                            mainAxisAlignment:
-                                                MainAxisAlignment.spaceBetween,
-                                            children: [
-                                              const Text(
-                                                '92 doctors online now',
-                                                style: TextStyle(
-                                                    fontWeight: FontWeight.bold,
-                                                    color: Colors.white,
-                                                    fontSize: 11),
-                                              ),
-                                              FlutterRipple(
-                                                radius: 10,
-                                                child: null,
-                                                rippleColor:
-                                                    const Color.fromARGB(
-                                                        255, 35, 245, 42),
-                                              ),
-                                            ],
+                                      Container(
+                                        height: mediaQuery.height * 0.05,
+                                        width: mediaQuery.width * 0.5,
+                                        // height: 30,
+                                        // width: 200,
+                                        decoration: BoxDecoration(
+                                          color: const Color(0xff010066),
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                        ),
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(
+                                                horizontal: 12),
+                                            child: Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                const Text(
+                                                  '92 doctors online now',
+                                                  style: TextStyle(
+                                                      fontWeight:
+                                                          FontWeight.bold,
+                                                      color: Colors.white,
+                                                      fontSize: 11),
+                                                ),
+                                                FlutterRipple(
+                                                  radius: 8,
+                                                  child: null,
+                                                  rippleColor:
+                                                      const Color.fromARGB(
+                                                          255, 35, 245, 42),
+                                                ),
+                                              ],
+                                            ),
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  ],
+                                    ],
+                                  ),
                                 ),
                                 Image.asset(instant)
                               ],
