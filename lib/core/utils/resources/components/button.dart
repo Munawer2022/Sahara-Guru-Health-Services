@@ -14,7 +14,7 @@ class Button extends StatelessWidget {
   Widget build(BuildContext context) {
     var theme = Theme.of(context);
     return SizedBox(
-      height: 50,
+      height: 45,
       width: double.infinity,
       child: ElevatedButton(
         style: ButtonStyle(
@@ -25,7 +25,9 @@ class Button extends StatelessWidget {
             backgroundColor: loading
                 ? MaterialStateProperty.all(
                     const Color.fromARGB(255, 3, 43, 104))
-                : MaterialStateProperty.all(Color(0xff010066))
+                : MaterialStateProperty.all(
+                    // Colors.grey.shade300,
+                    const Color(0xff010066))
             // elevation: MaterialStateProperty.all(2)
             ),
         onPressed: loading ? null : onTap,

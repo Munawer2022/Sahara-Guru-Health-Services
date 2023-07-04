@@ -124,16 +124,16 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: mediaQuery.height * 0.01,
+                        height: mediaQuery.height * 0.05,
                       ),
-                      TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            'Forgot your password?',
-                          )),
-                      SizedBox(
-                        height: mediaQuery.height * 0.01,
-                      ),
+                      // TextButton(
+                      //     onPressed: () {},
+                      //     child: const Text(
+                      //       'Forgot your password?',
+                      //     )),
+                      // SizedBox(
+                      //   height: mediaQuery.height * 0.01,
+                      // ),
                       Button(
                           loading: loginController.loading,
                           title: 'Continue',

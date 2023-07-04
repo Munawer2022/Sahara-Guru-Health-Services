@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
 
+import '../../../../../../core/utils/constants/colors.dart';
 import '../../../../../../core/utils/constants/padding.dart';
 import '../../../../../../core/utils/resources/components/app_bar.dart';
 
@@ -21,18 +22,22 @@ class AppointmentConfirmationScreen extends StatelessWidget {
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
     return Scaffold(
-      appBar: MyAppBarWidget(
-        bottom: false,
-        arrow_back: true,
-        title: 'Appointment Confirmaiton',
-        actions: [
-          TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, RoutesName.appointmentDetail);
-              },
-              child: const Text('Done'))
-        ],
-      ),
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: AppColor.textButtonColor,
+          leading: arrow(context),
+          title: text(context, 'Appointment Confirmaiton')),
+      // MyAppBarWidget(
+      //   arrow_back: true,
+      //   title: 'Appointment Confirmaiton',
+      //   actions: [
+      //     TextButton(
+      //         onPressed: () {
+      //           Navigator.pushNamed(context, RoutesName.appointmentDetail);
+      //         },
+      //         child: const Text('Done'))
+      //   ],
+      // ),
       body: SingleChildScrollView(
         child: Center(
           child: Padding(

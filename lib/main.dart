@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 
 import 'config/themes.dart';
@@ -21,6 +22,9 @@ import 'package:get_storage/get_storage.dart';
 // GetIt getIt = GetIt.instance;
 
 void main() async {
+  // SystemChrome.setSystemUIOverlayStyle(
+  //     const SystemUiOverlayStyle(statusBarColor: Colors.black87));
+
   await GetStorage.init();
   // getIt.registerLazySingleton<AppointmentsBaseApiServices>(() => AppointmentsRepository());
   runApp(MultiProvider(providers: [

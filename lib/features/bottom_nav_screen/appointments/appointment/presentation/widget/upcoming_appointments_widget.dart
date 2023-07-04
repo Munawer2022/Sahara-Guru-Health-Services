@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:sahara_guru_health_services/core/utils/constants/padding.dart';
 
 import '../../../../../../config/routes/routes_names.dart';
 import '../pages/appointments_screen.dart';
@@ -72,27 +71,6 @@ class UpcomingAppointmentsWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        // Container(
-                        //   color: Colors.black12,
-                        //   child: Padding(
-                        //     padding: const EdgeInsets.symmetric(
-                        //         horizontal: 4, vertical: 8),
-                        //     child: RichText(
-                        //       textAlign: TextAlign.center,
-                        //       text: TextSpan(
-                        //         text: '$day\n',
-                        //         style: theme.textTheme.subtitle2
-                        //             ?.copyWith(fontWeight: FontWeight.w800),
-                        //         children: <TextSpan>[
-                        //           TextSpan(
-                        //             text: monthFinal,
-                        //             style: theme.textTheme.subtitle2,
-                        //           ),
-                        //         ],
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                         title: Column(
                           children: [
                             Align(
@@ -148,5 +126,93 @@ class UpcomingAppointmentsWidget extends StatelessWidget {
             ),
           );
         });
+  }
+}
+
+class AppointmentShimmer extends StatelessWidget {
+  const AppointmentShimmer({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      width: double.infinity,
+      child: Card(
+        color: Colors.grey.shade300,
+        elevation: 0,
+        child: Padding(
+          padding: const EdgeInsets.all(8),
+          child: Column(
+            children: [
+              ListTile(
+                leading: SizedBox(
+                  width: 40,
+                  height: 80,
+                  child: Card(
+                    color: Colors.grey.shade400,
+                  ),
+                ),
+                title: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 30,
+                      width: 50,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade400,
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                    Container(
+                      height: 20,
+                      width: 100,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade400,
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                  ],
+                ),
+                subtitle: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      height: 20,
+                      width: 150,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade400,
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                    Container(
+                      height: 20,
+                      width: 150,
+                      decoration: BoxDecoration(
+                          color: Colors.grey.shade400,
+                          borderRadius: BorderRadius.circular(50)),
+                    ),
+                  ],
+                ),
+                trailing: Container(
+                  height: 20,
+                  width: 70,
+                  decoration: BoxDecoration(
+                      color: Colors.grey.shade400,
+                      borderRadius: BorderRadius.circular(50)),
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.01,
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

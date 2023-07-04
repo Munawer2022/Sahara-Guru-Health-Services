@@ -14,25 +14,19 @@ class AllSpeciallzationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBarWidget(
-          readOnly: true,
-          ontap: () {
-            Navigator.pushNamed(context, RoutesName.searchdoctor);
-          },
-          bottom: true,
-          bottomText: 'Find Dectors, Specialities, Disease and Hospital',
-          arrow_back: true,
-          title: 'All Speciallzations',
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
+        body: MyAppBarWidget(
+            readOnly: true,
+            ontap: () {
+              Navigator.pushNamed(context, RoutesName.searchdoctor);
+            },
+            bottomText: 'Find Dectors, Specialities, Disease and Hospital',
+            arrow_back: true,
+            title: 'All Speciallzations',
+            delegate: SliverChildListDelegate([
               Consumer<AllSpeciallzationsProvider>(
                   builder: (context, value, _) {
                 return AllSpeciallzationsWidget(value: value);
               })
-            ],
-          ),
-        ));
+            ])));
   }
 }

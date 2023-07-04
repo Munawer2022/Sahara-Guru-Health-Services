@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../../../core/utils/constants/colors.dart';
 import '../../../core/utils/constants/images.dart';
 import '../../../core/utils/constants/padding.dart';
 import '../../../core/utils/resources/components/app_bar.dart';
@@ -16,11 +17,15 @@ class Profile extends StatelessWidget {
     var mediaQuery = MediaQuery.of(context).size;
 
     return Scaffold(
-      appBar: const MyAppBarWidget(
-        bottom: false,
-        arrow_back: false,
-        title: 'Profile',
-      ),
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: AppColor.textButtonColor,
+          title: text(context, 'Profile')),
+      // const MyAppBarWidget(
+      //   bottom: false,
+      //   arrow_back: false,
+      //   title: 'Profile',
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: screen_padding,

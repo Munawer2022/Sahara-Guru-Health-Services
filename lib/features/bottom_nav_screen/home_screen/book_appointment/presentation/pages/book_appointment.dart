@@ -13,6 +13,7 @@ import 'package:material_dialogs/material_dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 
 import 'package:provider/provider.dart';
+import '../../../../../../core/utils/constants/colors.dart';
 import '../../../../../../core/utils/constants/padding.dart';
 import '../../../../../../core/utils/resources/components/app_bar.dart';
 
@@ -131,11 +132,15 @@ class _BookAppointmentState extends State<BookAppointment> {
         builder: (context, value, child) {
       debugPrint('ChoiceChip');
       return Scaffold(
-          appBar: const MyAppBarWidget(
-            bottom: false,
-            arrow_back: true,
-            title: 'Select a Time Slot',
-          ),
+          appBar: AppBar(
+              automaticallyImplyLeading: false,
+              backgroundColor: AppColor.textButtonColor,
+              leading: arrow(context),
+              title: text(context, 'Select a Time Slot')),
+          //  MyAppBarWidget(
+          //   arrow_back: true,
+          //   title: 'Select a Time Slot',
+          // ),
           body: SingleChildScrollView(
             child: Column(
               children: [
@@ -197,10 +202,10 @@ class _BookAppointmentState extends State<BookAppointment> {
                                   widget.routeData['firstName'].toString(),
                                   style: theme.textTheme.headline6!
                                       .copyWith(fontWeight: FontWeight.bold)),
-                              subtitle:
-                                  Text(widget.routeData['fees'].toString(),
-                                      // box.read('fees').toString(),
-                                      style: theme.textTheme.subtitle2),
+                              subtitle: Text(
+                                  'INS ${widget.routeData['fees'] ?? 'N/A'}',
+                                  // box.read('fees').toString(),
+                                  style: theme.textTheme.subtitle2),
                             ),
 
                             // SizedBox(

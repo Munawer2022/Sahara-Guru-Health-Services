@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:provider/provider.dart';
+import 'package:sahara_guru_health_services/core/utils/constants/colors.dart';
 
 import '../../../../../../core/utils/constants/padding.dart';
 import '../../../../../../core/utils/resources/components/app_bar.dart';
@@ -19,11 +20,10 @@ class AppointmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: const MyAppBarWidget(
-        bottom: false,
-        arrow_back: false,
-        title: 'My Appointments',
-      ),
+      appBar: AppBar(
+          automaticallyImplyLeading: false,
+          backgroundColor: AppColor.textButtonColor,
+          title: text(context, 'My Appointments')),
       body: SingleChildScrollView(
         child: Padding(
           padding: screen_padding,
@@ -35,7 +35,7 @@ class AppointmentScreen extends StatelessWidget {
                     future: value.baseUpcomingAppointments(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
+                        return const AppointmentShimmer();
                       } else if (snapshot.hasError) {
                         return Center(child: Text(snapshot.error.toString()));
                       } else {
@@ -71,7 +71,7 @@ class AppointmentScreen extends StatelessWidget {
                     future: value.baseOldAppointments(),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
+                        return const AppointmentShimmer();
                       } else if (snapshot.hasError) {
                         return Center(child: Text(snapshot.error.toString()));
                       } else {

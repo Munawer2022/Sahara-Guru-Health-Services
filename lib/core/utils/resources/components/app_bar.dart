@@ -1,40 +1,42 @@
 import 'package:flutter/material.dart';
+import 'package:sahara_guru_health_services/core/utils/constants/colors.dart';
 
 import '../../constants/padding.dart';
 import 'search_text_field_component.dart';
 
-class MyAppBarWidget extends StatelessWidget implements PreferredSize {
+class MyAppBarWidget extends StatelessWidget {
   final title;
   final bool arrow_back;
   final actions;
   final bottomText;
-  final bottom;
+
   final controller;
   final readOnly;
   final ontap;
   final suffixIcon;
+  final delegate;
 
-  const MyAppBarWidget({
-    super.key,
-    this.title,
-    required this.arrow_back,
-    this.actions,
-    this.bottomText,
-    this.bottom,
-    this.controller,
-    this.readOnly,
-    this.ontap,
-    this.suffixIcon,
-  });
+  const MyAppBarWidget(
+      {super.key,
+      this.title,
+      required this.arrow_back,
+      this.actions,
+      this.bottomText,
+      this.controller,
+      this.readOnly,
+      this.ontap,
+      this.suffixIcon,
+      this.delegate});
 
   @override
   Widget build(BuildContext context) {
-    var theme = Theme.of(context);
+    var mediaQuery = MediaQuery.of(context).size;
+
     return CustomScrollView(slivers: [
       SliverAppBar(
-        snap: false,
+        snap: true,
         pinned: true,
-        floating: false,
+        floating: true,
 
         // shape: const RoundedRectangleBorder(
         //   borderRadius: BorderRadius.only(
@@ -42,56 +44,43 @@ class MyAppBarWidget extends StatelessWidget implements PreferredSize {
         //     bottomRight: Radius.circular(18.0),
         //   ),
         // ),
-
-        backgroundColor: Color(0xff010066),
-
-        bottom: bottom
-            ? PreferredSize(
-                preferredSize: const Size.fromHeight(56),
-                child: Padding(
-                  padding: card_padding,
-                  child: SearchTextFieldComponent(
+        title: text(context, title),
+        backgroundColor: AppColor.textButtonColor,
+        expandedHeight: 120,
+        flexibleSpace: FlexibleSpaceBar(
+          background: Padding(
+            padding: card_padding,
+            child: Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: mediaQuery.height * 0.11,
+                  ),
+                  SearchTextFieldComponent(
                     suffixIcon: suffixIcon,
                     readOnly: readOnly,
                     ontap: ontap,
                     text: bottomText,
                     controller: controller,
                   ),
-                ),
-              )
-            : null,
+                ],
+              ),
+            ),
+          ),
+        ),
         centerTitle: false,
         elevation: 0,
         // backgroundColor: Colors.transparent,
         automaticallyImplyLeading: false,
-        title: Text(title,
-            style: theme.textTheme.subtitle1?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-                fontSize: 18)),
-        leading: arrow_back
-            ? IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: const Icon(
-                  Icons.arrow_back_ios_new_rounded,
-                  color: Colors.white,
-                ))
-            : null,
+
+        leading: arrow_back ? arrow(context) : null,
         actions: actions,
       ),
+      SliverList(delegate: delegate)
     ]);
   }
-
-  @override
-  // TODO: implement child
-  Widget get child => throw UnimplementedError();
-
-  @override
-  // TODO: implement preferredSize
-  Size get preferredSize =>
-      Size.fromHeight(bottom ? 120 : AppBar().preferredSize.height);
 }
 
 BorderRadius borderRadius = BorderRadius.circular(22.0);
