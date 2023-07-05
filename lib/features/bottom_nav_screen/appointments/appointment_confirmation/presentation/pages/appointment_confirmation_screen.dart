@@ -51,7 +51,180 @@ class AppointmentConfirmationScreen extends StatelessWidget {
                         .baseAppointmentConfirmation(para['id'].toString()),
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return const Center(child: CircularProgressIndicator());
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: double.infinity,
+                              child: Card(
+                                color: Colors.grey.shade300,
+                                elevation: 0,
+                                child: Padding(
+                                  padding: card_padding,
+                                  child: Column(
+                                    children: [
+                                      Align(
+                                          alignment: Alignment.center,
+                                          child: CircleAvatar(
+                                            backgroundColor:
+                                                Colors.grey.shade400,
+                                          )),
+                                      SizedBox(
+                                        height: mediaQuery.height * 0.01,
+                                      ),
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: Container(
+                                          height: 30,
+                                          width: 250,
+                                          decoration: BoxDecoration(
+                                              color: Colors.grey.shade400,
+                                              borderRadius:
+                                                  BorderRadius.circular(50)),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: Card(
+                                color: Colors.grey.shade300,
+                                elevation: 0,
+                                child: Padding(
+                                  padding: card_padding,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 30,
+                                        width: 250,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey.shade400,
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
+                                      ),
+                                      Timeline(
+                                        indicators: <Widget>[
+                                          CircleAvatar(
+                                            backgroundColor:
+                                                Colors.grey.shade400,
+                                          ),
+                                          CircleAvatar(
+                                            backgroundColor:
+                                                Colors.grey.shade400,
+                                          ),
+                                          CircleAvatar(
+                                            backgroundColor:
+                                                Colors.grey.shade400,
+                                          ),
+                                          CircleAvatar(
+                                            backgroundColor:
+                                                Colors.grey.shade400,
+                                          ),
+                                        ],
+                                        children: <Widget>[
+                                          ListTile(
+                                            title: Container(
+                                              height: 20,
+                                              width: 30,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade400,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                            ),
+                                          ),
+                                          ListTile(
+                                            title: Container(
+                                              height: 20,
+                                              width: 30,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade400,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                            ),
+                                          ),
+                                          ListTile(
+                                            title: Container(
+                                              height: 20,
+                                              width: 30,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade400,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                            ),
+                                          ),
+                                          ListTile(
+                                            title: Container(
+                                              height: 20,
+                                              width: 30,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade400,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              child: Card(
+                                color: Colors.grey.shade300,
+                                elevation: 0,
+                                child: Padding(
+                                  padding: card_padding,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Container(
+                                        height: 30,
+                                        width: 250,
+                                        decoration: BoxDecoration(
+                                            color: Colors.grey.shade400,
+                                            borderRadius:
+                                                BorderRadius.circular(50)),
+                                      ),
+                                      Timeline(
+                                        indicators: <Widget>[
+                                          CircleAvatar(
+                                            backgroundColor:
+                                                Colors.grey.shade400,
+                                          ),
+                                        ],
+                                        children: <Widget>[
+                                          ListTile(
+                                            title: Container(
+                                              height: 20,
+                                              width: 30,
+                                              decoration: BoxDecoration(
+                                                  color: Colors.grey.shade400,
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          50)),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        );
                       } else if (snapshot.hasError) {
                         return Center(child: Text(snapshot.error.toString()));
                       } else {
@@ -93,42 +266,6 @@ class AppointmentConfirmationScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            // SizedBox(
-                            //   width: double.infinity,
-                            //   child: Card(
-                            //     elevation: 0,
-                            //     child: Padding(
-                            //       padding: card_padding,
-                            //       child: Column(
-                            //         children: [
-                            //           Text(
-                            //               'Share your medical records with Assist.\nDr. ${snapshot.data?.appointmentDetails?.doctor?.firstName.toString()}',
-                            //               textAlign: TextAlign.center,
-                            //               style: theme.textTheme.subtitle2
-                            //                   ?.copyWith(
-                            //                       fontWeight: FontWeight.bold)),
-                            //           SizedBox(
-                            //             height: mediaQuery.height * 0.01,
-                            //           ),
-                            //           TextButton.icon(
-                            //               style: ButtonStyle(
-                            //                   backgroundColor:
-                            //                       MaterialStateProperty.all(
-                            //                           Colors.amber.shade600)),
-                            //               onPressed: () {},
-                            //               icon: const Icon(
-                            //                 Icons.playlist_add_circle_rounded,
-                            //                 color: Colors.white,
-                            //               ),
-                            //               label: const Text(
-                            //                 'Add Medical Records',
-                            //                 style: TextStyle(color: Colors.white),
-                            //               ))
-                            //         ],
-                            //       ),
-                            //     ),
-                            //   ),
-                            // ),
                             SizedBox(
                               width: double.infinity,
                               child: Card(
@@ -214,205 +351,9 @@ class AppointmentConfirmationScreen extends StatelessWidget {
                           ],
                         );
                       }
-                      // return Padding(
-                      //   padding: screen_padding,
-                      //   child: Column(
-                      //     crossAxisAlignment: CrossAxisAlignment.center,
-                      //     children: [
-                      //       SizedBox(
-                      //         width: double.infinity,
-                      //         child: Card(
-                      //           color: Colors.grey.shade300,
-                      //           elevation: 0,
-                      //           child: Padding(
-                      //             padding: card_padding,
-                      //             child: Column(
-                      //               crossAxisAlignment: CrossAxisAlignment.start,
-                      //               children: [
-                      //                 Align(
-                      //                     alignment: Alignment.center,
-                      //                     child: CircleAvatar(
-                      //                       radius: 25,
-                      //                       backgroundColor: Colors.grey.shade400,
-                      //                     )),
-                      //                 SizedBox(
-                      //                   height: mediaQuery.height * 0.01,
-                      //                 ),
-                      //                 Align(
-                      //                     alignment: Alignment.center,
-                      //                     child: Column(
-                      //                       children: [
-                      //                         SizedBox(
-                      //                           height: 40,
-                      //                           width: 300,
-                      //                           child: Card(
-                      //                             elevation: 0,
-                      //                             color: Colors.grey.shade400,
-                      //                           ),
-                      //                         ),
-                      //                         SizedBox(
-                      //                           height: 40,
-                      //                           width: 180,
-                      //                           child: Card(
-                      //                             elevation: 0,
-                      //                             color: Colors.grey.shade400,
-                      //                           ),
-                      //                         ),
-                      //                       ],
-                      //                     )),
-                      //                 SizedBox(
-                      //                   height: mediaQuery.height * 0.05,
-                      //                 ),
-                      //                 SizedBox(
-                      //                   height: 40,
-                      //                   width: 220,
-                      //                   child: Card(
-                      //                     elevation: 0,
-                      //                     color: Colors.grey.shade400,
-                      //                   ),
-                      //                 ),
-                      //                 SizedBox(
-                      //                   height: mediaQuery.height * 0.02,
-                      //                 ),
-                      //                 ListTile(
-                      //                   title: SizedBox(
-                      //                     height: 25,
-                      //                     child: Card(
-                      //                       elevation: 0,
-                      //                       color: Colors.grey.shade400,
-                      //                     ),
-                      //                   ),
-                      //                   subtitle: SizedBox(
-                      //                     height: 25,
-                      //                     child: Card(
-                      //                       elevation: 0,
-                      //                       color: Colors.grey.shade400,
-                      //                     ),
-                      //                   ),
-                      //                   leading: CircleAvatar(
-                      //                     radius: 15,
-                      //                     backgroundColor: Colors.grey.shade400,
-                      //                   ),
-                      //                 ),
-                      //                 ListTile(
-                      //                   title: SizedBox(
-                      //                     height: 25,
-                      //                     child: Card(
-                      //                       elevation: 0,
-                      //                       color: Colors.grey.shade400,
-                      //                     ),
-                      //                   ),
-                      //                   subtitle: SizedBox(
-                      //                     height: 25,
-                      //                     child: Card(
-                      //                       elevation: 0,
-                      //                       color: Colors.grey.shade400,
-                      //                     ),
-                      //                   ),
-                      //                   leading: CircleAvatar(
-                      //                     radius: 15,
-                      //                     backgroundColor: Colors.grey.shade400,
-                      //                   ),
-                      //                 ),
-                      //                 ListTile(
-                      //                   title: SizedBox(
-                      //                     height: 25,
-                      //                     child: Card(
-                      //                       elevation: 0,
-                      //                       color: Colors.grey.shade400,
-                      //                     ),
-                      //                   ),
-                      //                   subtitle: SizedBox(
-                      //                     height: 25,
-                      //                     child: Card(
-                      //                       elevation: 0,
-                      //                       color: Colors.grey.shade400,
-                      //                     ),
-                      //                   ),
-                      //                   leading: CircleAvatar(
-                      //                     radius: 15,
-                      //                     backgroundColor: Colors.grey.shade400,
-                      //                   ),
-                      //                 ),
-                      //                 ListTile(
-                      //                   title: SizedBox(
-                      //                     height: 25,
-                      //                     child: Card(
-                      //                       elevation: 0,
-                      //                       color: Colors.grey.shade400,
-                      //                     ),
-                      //                   ),
-                      //                   subtitle: SizedBox(
-                      //                     height: 25,
-                      //                     child: Card(
-                      //                       elevation: 0,
-                      //                       color: Colors.grey.shade400,
-                      //                     ),
-                      //                   ),
-                      //                   leading: CircleAvatar(
-                      //                     radius: 15,
-                      //                     backgroundColor: Colors.grey.shade400,
-                      //                   ),
-                      //                 ),
-                      //               ],
-                      //             ),
-                      //           ),
-                      //         ),
-                      //       ),
-                      //     ],
-                      //   ),
-                      // );
                     },
                   );
                 }),
-                // Container(
-                //   width: double.infinity,
-                //   height: mediaQuery.height * 0.12,
-                //   decoration: BoxDecoration(
-                //       gradient: LinearGradient(
-                //     begin: Alignment.topRight,
-                //     end: Alignment.bottomLeft,
-                //     colors: [
-                //       Colors.deepPurple.shade900,
-                //       Colors.blue.shade700,
-                //     ],
-                //   )),
-                //   child: Padding(
-                //     padding: card_padding,
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.center,
-                //       children: [
-                //         Text('Rs.200 OFF on ONLINE PAYMENT',
-                //             style: theme.textTheme.subtitle2
-                //                 ?.copyWith(color: Colors.white)),
-                //         SizedBox(
-                //           width: mediaQuery.width * 0.03,
-                //         ),
-                //         SizedBox(
-                //           height: 50,
-                //           width: 100,
-                //           // width: mediaQuery.width * 0.25,
-                //           child: TextButton(
-                //               style: ButtonStyle(
-                //                   shape: MaterialStateProperty.all<
-                //                           RoundedRectangleBorder>(
-                //                       RoundedRectangleBorder(
-                //                           borderRadius:
-                //                               BorderRadius.circular(5.0),
-                //                           side: const BorderSide(
-                //                               color: Colors.white))),
-                //                   backgroundColor: MaterialStateProperty.all(
-                //                       Colors.transparent)),
-                //               onPressed: () {},
-                //               child: Center(
-                //                   child: Text('Pay Now',
-                //                       style: theme.textTheme.subtitle2
-                //                           ?.copyWith(color: Colors.white)))),
-                //         )
-                //       ],
-                //     ),
-                //   ),
-                // )
               ],
             ),
           ),

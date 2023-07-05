@@ -1,28 +1,33 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_ripple/flutter_ripple.dart';
 
 import 'package:get_storage/get_storage.dart';
+import 'package:provider/provider.dart';
 import 'package:sahara_guru_health_services/core/utils/constants/images.dart';
 
 import '../../../core/utils/resources/components/app_bar.dart';
 
 import '../../../core/utils/constants/padding.dart';
 import '../../../core/utils/utils.dart';
+import 'all_speciallzations/data/models/all_speciallzations_model.dart';
 import 'all_speciallzations/presentation/pages/home_slide_horizontal_list.dart';
 
 import '../../../config/routes/routes_names.dart';
 
 import '../../../core/utils/resources/components/button.dart';
+import 'all_speciallzations/presentation/provider/all_speciallzations_provider.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
   final box = GetStorage();
-//
+  List iamges = [brainstorm, baby, neurology, skin, hospital];
   @override
   Widget build(BuildContext context) {
     debugPrint('home');
     var mediaQuery = MediaQuery.of(context).size;
     var theme = Theme.of(context);
+
     return Scaffold(
       body: MyAppBarWidget(
         readOnly: true,
@@ -238,67 +243,799 @@ class HomeScreen extends StatelessWidget {
                     ),
                   ),
                 ),
-                Card(
-                    elevation: 0,
-                    child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: card_padding,
-                            child: Text("I'm Looking For",
-                                style: theme.textTheme.headline6
-                                    ?.copyWith(fontWeight: FontWeight.bold)),
-                          ),
-                          const HomeSlideHorizontalList(),
-                          Padding(
-                              padding: card_padding,
-                              child: Button(
-                                onTap: () {
-                                  Navigator.pushNamed(
-                                      context, RoutesName.allSpeciallzations);
-                                },
-                                title: 'All Speciallzations',
-                              )),
-                        ])),
-                Card(
-                    elevation: 0,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: card_padding,
-                            child: Text(
-                              "Previous Doctors",
-                              style: theme.textTheme.headline6
-                                  ?.copyWith(fontWeight: FontWeight.bold),
+                Consumer<AllSpeciallzationsProvider>(
+                    builder: (context, value, _) {
+                  return FutureBuilder<AllSpeciallzationsModel>(
+                      future: value.baseAllSpeciallzations(),
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState ==
+                            ConnectionState.waiting) {
+                          return Column(
+                            children: [
+                              Card(
+                                elevation: 0,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: [
+                                    Padding(
+                                      padding: card_padding,
+                                      child: Text("I'm Looking For",
+                                          style: theme.textTheme.headline6
+                                              ?.copyWith(
+                                                  fontWeight: FontWeight.bold)),
+                                    ),
+                                    SizedBox(
+                                      width: double.infinity,
+                                      height: 80,
+                                      child: ListView.builder(
+                                        scrollDirection: Axis.horizontal,
+                                        itemCount: 5,
+                                        itemBuilder: (context, index) =>
+                                            Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 12),
+                                          child: InkWell(
+                                            onTap: () {},
+                                            child: Column(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment.center,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.center,
+                                              children: [
+                                                Container(
+                                                  height: 50,
+                                                  width: 50,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade300,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              50)),
+                                                ),
+                                                SizedBox(
+                                                  height:
+                                                      mediaQuery.height * 0.01,
+                                                ),
+                                                Container(
+                                                  height: 15,
+                                                  width: 70,
+                                                  decoration: BoxDecoration(
+                                                      color:
+                                                          Colors.grey.shade300,
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              12)),
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Padding(
+                                        padding: card_padding,
+                                        child: Button(
+                                          onTap: () {
+                                            Navigator.pushNamed(context,
+                                                RoutesName.allSpeciallzations);
+                                          },
+                                          title: 'All Speciallzations',
+                                        )),
+                                  ],
+                                ),
+                              ),
+                              Card(
+                                  elevation: 0,
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: card_padding,
+                                          child: Text(
+                                            "Previous Doctors",
+                                            style: theme.textTheme.headline6
+                                                ?.copyWith(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: double.infinity,
+                                          height: 80,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: 5,
+                                            itemBuilder: (context, index) =>
+                                                Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: InkWell(
+                                                onTap: () {},
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      height: 50,
+                                                      width: 50,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade300,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      50)),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          mediaQuery.height *
+                                                              0.01,
+                                                    ),
+                                                    Container(
+                                                      height: 15,
+                                                      width: 70,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade300,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12)),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: mediaQuery.height * 0.03,
+                                        ),
+                                      ])),
+                              Card(
+                                  elevation: 0,
+                                  child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Padding(
+                                          padding: card_padding,
+                                          child: Text(
+                                            "Popular Doctors",
+                                            style: theme.textTheme.headline6
+                                                ?.copyWith(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          width: double.infinity,
+                                          height: 80,
+                                          child: ListView.builder(
+                                            scrollDirection: Axis.horizontal,
+                                            itemCount: 5,
+                                            itemBuilder: (context, index) =>
+                                                Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: InkWell(
+                                                onTap: () {},
+                                                child: Column(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      height: 50,
+                                                      width: 50,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade300,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      50)),
+                                                    ),
+                                                    SizedBox(
+                                                      height:
+                                                          mediaQuery.height *
+                                                              0.01,
+                                                    ),
+                                                    Container(
+                                                      height: 15,
+                                                      width: 70,
+                                                      decoration: BoxDecoration(
+                                                          color: Colors
+                                                              .grey.shade300,
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(
+                                                                      12)),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: mediaQuery.height * 0.03,
+                                        ),
+                                      ])),
+                            ],
+                          );
+                        } else if (snapshot.hasError) {
+                          return Center(
+                              child: Padding(
+                            padding: screen_padding,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              children: [
+                                Text(
+                                  '!Oops',
+                                  style: theme.textTheme.displayLarge,
+                                ),
+                                SizedBox(
+                                  height: mediaQuery.height * 0.01,
+                                ),
+                                Text(
+                                  snapshot.error.toString(),
+                                ),
+                              ],
                             ),
-                          ),
-                          const HomeSlideHorizontalList(),
-                          SizedBox(
-                            height: mediaQuery.height * 0.03,
-                          ),
-                        ])),
-                Card(
-                    elevation: 0,
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Padding(
-                            padding: card_padding,
-                            child: Text(
-                              "Popular Doctors",
-                              style: theme.textTheme.headline6
-                                  ?.copyWith(fontWeight: FontWeight.bold),
-                            ),
-                          ),
-                          const HomeSlideHorizontalList(),
-                          SizedBox(
-                            height: mediaQuery.height * 0.03,
-                          ),
-                        ])),
+                          ));
+                        } else {
+                          return snapshot.data!.departments!.isEmpty
+                              ? const Center(child: Text('Empty'))
+                              : Column(
+                                  children: [
+                                    Card(
+                                      elevation: 0,
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        children: [
+                                          Padding(
+                                            padding: card_padding,
+                                            child: Text("I'm Looking For",
+                                                style: theme.textTheme.headline6
+                                                    ?.copyWith(
+                                                        fontWeight:
+                                                            FontWeight.bold)),
+                                          ),
+                                          SizedBox(
+                                            width: double.infinity,
+                                            height: 80,
+                                            child: ListView.builder(
+                                                scrollDirection:
+                                                    Axis.horizontal,
+                                                itemCount: (snapshot
+                                                                .data
+                                                                ?.departments
+                                                                ?.length ??
+                                                            0) >
+                                                        4
+                                                    ? 5
+                                                    : (snapshot
+                                                            .data
+                                                            ?.departments
+                                                            ?.length ??
+                                                        0),
+                                                itemBuilder: (context, index) {
+                                                  if (index < 4) {
+                                                    return Padding(
+                                                      padding: const EdgeInsets
+                                                              .symmetric(
+                                                          horizontal: 12),
+                                                      child: InkWell(
+                                                        onTap: () {
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              RoutesName
+                                                                  .catagoryDoctor,
+                                                              arguments: {
+                                                                'department_id':
+                                                                    snapshot
+                                                                        .data!
+                                                                        .departments![
+                                                                            index]
+                                                                        .id,
+                                                                'name': snapshot
+                                                                    .data!
+                                                                    .departments![
+                                                                        index]
+                                                                    .name
+                                                              });
+                                                        },
+                                                        child: Column(
+                                                          mainAxisAlignment:
+                                                              MainAxisAlignment
+                                                                  .center,
+                                                          crossAxisAlignment:
+                                                              CrossAxisAlignment
+                                                                  .center,
+                                                          children: [
+                                                            // Image(
+                                                            //   image: AssetImage(iamges[index]),
+                                                            //   height: 40,
+                                                            //   width: 40,
+                                                            // ),
+                                                            Container(
+                                                                height: 50,
+                                                                width: 50,
+                                                                decoration:
+                                                                    BoxDecoration(
+                                                                  gradient:
+                                                                      LinearGradient(
+                                                                    begin: Alignment
+                                                                        .topCenter,
+                                                                    end: Alignment
+                                                                        .bottomCenter,
+                                                                    stops: [
+                                                                      0.0,
+                                                                      1.0
+                                                                    ],
+                                                                    colors: [
+                                                                      Colors
+                                                                          .blue
+                                                                          .shade100,
+                                                                      Colors
+                                                                          .grey
+                                                                          .shade200
+                                                                    ],
+                                                                  ),
+
+                                                                  // boxShadow: <BoxShadow>[
+                                                                  //   BoxShadow(
+                                                                  //     color:
+                                                                  //         Colors.black.withOpacity(.2),
+                                                                  //     blurRadius: 10,
+                                                                  //   ),
+                                                                  // ],
+                                                                  color: Colors
+                                                                      .white,
+                                                                  borderRadius:
+                                                                      BorderRadius
+                                                                          .circular(
+                                                                              50),
+                                                                ),
+                                                                child: Center(
+                                                                  child: Image(
+                                                                    image: AssetImage(
+                                                                        iamges[
+                                                                            index]),
+                                                                    height: 30,
+                                                                    width: 30,
+                                                                  ),
+                                                                )),
+                                                            SizedBox(
+                                                              height: mediaQuery
+                                                                      .height *
+                                                                  0.01,
+                                                            ),
+                                                            Text(
+                                                                snapshot
+                                                                    .data!
+                                                                    .departments![
+                                                                        index]
+                                                                    .name
+                                                                    .toString(),
+                                                                style: theme
+                                                                    .textTheme
+                                                                    .subtitle2),
+                                                          ],
+                                                        ),
+                                                      ),
+                                                    );
+                                                  } else if (index == 4 &&
+                                                      (snapshot
+                                                                  .data
+                                                                  ?.departments
+                                                                  ?.length ??
+                                                              0) >
+                                                          4) {
+                                                    return IconButton(
+                                                        onPressed: () {
+                                                          Navigator.pushNamed(
+                                                              context,
+                                                              RoutesName
+                                                                  .allSpeciallzations);
+                                                        },
+                                                        icon: const Icon(
+                                                            CupertinoIcons
+                                                                .arrow_right));
+                                                    // Return an empty widget if index exceeds 4
+                                                  } else {
+                                                    return const SizedBox
+                                                        .shrink();
+                                                  }
+                                                }),
+                                          ),
+                                          Padding(
+                                              padding: card_padding,
+                                              child: Button(
+                                                onTap: () {
+                                                  Navigator.pushNamed(
+                                                      context,
+                                                      RoutesName
+                                                          .allSpeciallzations);
+                                                },
+                                                title: 'All Speciallzations',
+                                              )),
+                                        ],
+                                      ),
+                                    ),
+                                    Card(
+                                        elevation: 0,
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: card_padding,
+                                                child: Text(
+                                                  "Previous Doctors",
+                                                  style: theme
+                                                      .textTheme.headline6
+                                                      ?.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: double.infinity,
+                                                height: 80,
+                                                child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount: (snapshot
+                                                                    .data
+                                                                    ?.departments
+                                                                    ?.length ??
+                                                                0) >
+                                                            4
+                                                        ? 5
+                                                        : (snapshot
+                                                                .data
+                                                                ?.departments
+                                                                ?.length ??
+                                                            0),
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      if (index < 4) {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      12),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              Navigator.pushNamed(
+                                                                  context,
+                                                                  RoutesName
+                                                                      .catagoryDoctor,
+                                                                  arguments: {
+                                                                    'department_id': snapshot
+                                                                        .data!
+                                                                        .departments![
+                                                                            index]
+                                                                        .id,
+                                                                    'name': snapshot
+                                                                        .data!
+                                                                        .departments![
+                                                                            index]
+                                                                        .name
+                                                                  });
+                                                            },
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                // Image(
+                                                                //   image: AssetImage(iamges[index]),
+                                                                //   height: 40,
+                                                                //   width: 40,
+                                                                // ),
+                                                                Container(
+                                                                    height: 50,
+                                                                    width: 50,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      gradient:
+                                                                          LinearGradient(
+                                                                        begin: Alignment
+                                                                            .topCenter,
+                                                                        end: Alignment
+                                                                            .bottomCenter,
+                                                                        stops: [
+                                                                          0.0,
+                                                                          1.0
+                                                                        ],
+                                                                        colors: [
+                                                                          Colors
+                                                                              .blue
+                                                                              .shade100,
+                                                                          Colors
+                                                                              .grey
+                                                                              .shade200
+                                                                        ],
+                                                                      ),
+
+                                                                      // boxShadow: <BoxShadow>[
+                                                                      //   BoxShadow(
+                                                                      //     color:
+                                                                      //         Colors.black.withOpacity(.2),
+                                                                      //     blurRadius: 10,
+                                                                      //   ),
+                                                                      // ],
+                                                                      color: Colors
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              50),
+                                                                    ),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Image(
+                                                                        image: AssetImage(
+                                                                            iamges[index]),
+                                                                        height:
+                                                                            30,
+                                                                        width:
+                                                                            30,
+                                                                      ),
+                                                                    )),
+                                                                SizedBox(
+                                                                  height: mediaQuery
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Text(
+                                                                    snapshot
+                                                                        .data!
+                                                                        .departments![
+                                                                            index]
+                                                                        .name
+                                                                        .toString(),
+                                                                    style: theme
+                                                                        .textTheme
+                                                                        .subtitle2),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      } else if (index == 4 &&
+                                                          (snapshot
+                                                                      .data
+                                                                      ?.departments
+                                                                      ?.length ??
+                                                                  0) >
+                                                              4) {
+                                                        return IconButton(
+                                                            onPressed: () {
+                                                              Navigator.pushNamed(
+                                                                  context,
+                                                                  RoutesName
+                                                                      .allSpeciallzations);
+                                                            },
+                                                            icon: const Icon(
+                                                                CupertinoIcons
+                                                                    .arrow_right));
+                                                        // Return an empty widget if index exceeds 4
+                                                      } else {
+                                                        return const SizedBox
+                                                            .shrink();
+                                                      }
+                                                    }),
+                                              ),
+                                              SizedBox(
+                                                height:
+                                                    mediaQuery.height * 0.03,
+                                              ),
+                                            ])),
+                                    Card(
+                                        elevation: 0,
+                                        child: Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Padding(
+                                                padding: card_padding,
+                                                child: Text(
+                                                  "Popular Doctors",
+                                                  style: theme
+                                                      .textTheme.headline6
+                                                      ?.copyWith(
+                                                          fontWeight:
+                                                              FontWeight.bold),
+                                                ),
+                                              ),
+                                              SizedBox(
+                                                width: double.infinity,
+                                                height: 80,
+                                                child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount: (snapshot
+                                                                    .data
+                                                                    ?.departments
+                                                                    ?.length ??
+                                                                0) >
+                                                            4
+                                                        ? 5
+                                                        : (snapshot
+                                                                .data
+                                                                ?.departments
+                                                                ?.length ??
+                                                            0),
+                                                    itemBuilder:
+                                                        (context, index) {
+                                                      if (index < 4) {
+                                                        return Padding(
+                                                          padding:
+                                                              const EdgeInsets
+                                                                      .symmetric(
+                                                                  horizontal:
+                                                                      12),
+                                                          child: InkWell(
+                                                            onTap: () {
+                                                              Navigator.pushNamed(
+                                                                  context,
+                                                                  RoutesName
+                                                                      .catagoryDoctor,
+                                                                  arguments: {
+                                                                    'department_id': snapshot
+                                                                        .data!
+                                                                        .departments![
+                                                                            index]
+                                                                        .id,
+                                                                    'name': snapshot
+                                                                        .data!
+                                                                        .departments![
+                                                                            index]
+                                                                        .name
+                                                                  });
+                                                            },
+                                                            child: Column(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              crossAxisAlignment:
+                                                                  CrossAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                // Image(
+                                                                //   image: AssetImage(iamges[index]),
+                                                                //   height: 40,
+                                                                //   width: 40,
+                                                                // ),
+                                                                Container(
+                                                                    height: 50,
+                                                                    width: 50,
+                                                                    decoration:
+                                                                        BoxDecoration(
+                                                                      gradient:
+                                                                          LinearGradient(
+                                                                        begin: Alignment
+                                                                            .topCenter,
+                                                                        end: Alignment
+                                                                            .bottomCenter,
+                                                                        stops: [
+                                                                          0.0,
+                                                                          1.0
+                                                                        ],
+                                                                        colors: [
+                                                                          Colors
+                                                                              .blue
+                                                                              .shade100,
+                                                                          Colors
+                                                                              .grey
+                                                                              .shade200
+                                                                        ],
+                                                                      ),
+
+                                                                      // boxShadow: <BoxShadow>[
+                                                                      //   BoxShadow(
+                                                                      //     color:
+                                                                      //         Colors.black.withOpacity(.2),
+                                                                      //     blurRadius: 10,
+                                                                      //   ),
+                                                                      // ],
+                                                                      color: Colors
+                                                                          .white,
+                                                                      borderRadius:
+                                                                          BorderRadius.circular(
+                                                                              50),
+                                                                    ),
+                                                                    child:
+                                                                        Center(
+                                                                      child:
+                                                                          Image(
+                                                                        image: AssetImage(
+                                                                            iamges[index]),
+                                                                        height:
+                                                                            30,
+                                                                        width:
+                                                                            30,
+                                                                      ),
+                                                                    )),
+                                                                SizedBox(
+                                                                  height: mediaQuery
+                                                                          .height *
+                                                                      0.01,
+                                                                ),
+                                                                Text(
+                                                                    snapshot
+                                                                        .data!
+                                                                        .departments![
+                                                                            index]
+                                                                        .name
+                                                                        .toString(),
+                                                                    style: theme
+                                                                        .textTheme
+                                                                        .subtitle2),
+                                                              ],
+                                                            ),
+                                                          ),
+                                                        );
+                                                      } else if (index == 4 &&
+                                                          (snapshot
+                                                                      .data
+                                                                      ?.departments
+                                                                      ?.length ??
+                                                                  0) >
+                                                              4) {
+                                                        return IconButton(
+                                                            onPressed: () {
+                                                              Navigator.pushNamed(
+                                                                  context,
+                                                                  RoutesName
+                                                                      .allSpeciallzations);
+                                                            },
+                                                            icon: const Icon(
+                                                                CupertinoIcons
+                                                                    .arrow_right));
+                                                        // Return an empty widget if index exceeds 4
+                                                      } else {
+                                                        return const SizedBox
+                                                            .shrink();
+                                                      }
+                                                    }),
+                                              ),
+                                              SizedBox(
+                                                height:
+                                                    mediaQuery.height * 0.03,
+                                              ),
+                                            ])),
+                                  ],
+                                );
+                        }
+                      });
+                }),
               ],
             ),
           ),

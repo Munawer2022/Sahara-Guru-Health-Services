@@ -38,15 +38,15 @@ class MyAppBarWidget extends StatelessWidget {
         pinned: true,
         floating: true,
 
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(18.0),
-            bottomRight: Radius.circular(18.0),
-          ),
-        ),
+        // shape: const RoundedRectangleBorder(
+        //   borderRadius: BorderRadius.only(
+        //     bottomLeft: Radius.circular(18.0),
+        //     bottomRight: Radius.circular(18.0),
+        //   ),
+        // ),
         title: text(context, title),
         backgroundColor: AppColor.textButtonColor,
-        expandedHeight: mediaQuery.height * 0.2,
+        expandedHeight: 140,
         flexibleSpace: FlexibleSpaceBar(
           background: Padding(
             padding: card_padding,
@@ -56,7 +56,7 @@ class MyAppBarWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: mediaQuery.height * 0.11,
+                    height: 70,
                   ),
                   SearchTextFieldComponent(
                     suffixIcon: suffixIcon,
