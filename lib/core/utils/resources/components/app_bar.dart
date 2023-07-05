@@ -56,7 +56,7 @@ class MyAppBarWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: mediaQuery.height * 0.11,
+                    height: mediaQuery.height * 0.10,
                     // height: 70,
                   ),
                   SearchTextFieldComponent(
