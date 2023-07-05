@@ -112,13 +112,12 @@ class HomeScreen extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(10),
                                     color: Color(0xffd5d4fe)),
                                 child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
                                     Padding(
-                                      padding: card_padding,
+                                      padding: EdgeInsets.only(
+                                          left: 15, right: 15, top: 15),
                                       child: Align(
                                         alignment: Alignment.centerLeft,
                                         child: Text('Video\nConsultation',
@@ -519,7 +518,8 @@ class HomeScreen extends StatelessWidget {
                                           ),
                                           SizedBox(
                                             width: double.infinity,
-                                            height: 80,
+                                            height: mediaQuery.height * 0.12,
+                                            // height: 80,
                                             child: ListView.builder(
                                                 scrollDirection:
                                                     Axis.horizontal,
@@ -700,7 +700,9 @@ class HomeScreen extends StatelessWidget {
                                               ),
                                               SizedBox(
                                                 width: double.infinity,
-                                                height: 80,
+                                                height:
+                                                    mediaQuery.height * 0.12,
+                                                // height: 80,
                                                 child: ListView.builder(
                                                     scrollDirection:
                                                         Axis.horizontal,
@@ -876,7 +878,9 @@ class HomeScreen extends StatelessWidget {
                                               ),
                                               SizedBox(
                                                 width: double.infinity,
-                                                height: 80,
+                                                height:
+                                                    mediaQuery.height * 0.12,
+                                                // height: 80,
                                                 child: ListView.builder(
                                                     scrollDirection:
                                                         Axis.horizontal,

@@ -46,7 +46,7 @@ class MyAppBarWidget extends StatelessWidget {
         // ),
         title: text(context, title),
         backgroundColor: AppColor.textButtonColor,
-        expandedHeight: 140,
+        expandedHeight: 130,
         flexibleSpace: FlexibleSpaceBar(
           background: Padding(
             padding: card_padding,
@@ -56,7 +56,8 @@ class MyAppBarWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 70,
+                    height: mediaQuery.height * 0.11,
+                    // height: 70,
                   ),
                   SearchTextFieldComponent(
                     suffixIcon: suffixIcon,
