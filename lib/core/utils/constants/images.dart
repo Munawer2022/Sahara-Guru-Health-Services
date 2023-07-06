@@ -17,3 +17,4 @@ String brainstorm = 'assets/images/brainstorm.png';
 String neurology = 'assets/images/neurology.png';
 String skin = 'assets/images/skin.png';
 String hospital = 'assets/images/hospital.png';
+String medical_team = 'assets/images/medical_team.png';

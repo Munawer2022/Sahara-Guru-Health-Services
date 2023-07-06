@@ -8,7 +8,8 @@ import '../../data/models/all_speciallzations_model.dart';
 class HomeSlideHorizontalListWidget extends StatelessWidget {
   final value;
   HomeSlideHorizontalListWidget({super.key, required this.value});
-  List iamges = [brainstorm, baby, neurology, skin, hospital];
+  List iamges = [brainstorm, baby, neurology, skin, hospital, medical_team];
+
   @override
   Widget build(BuildContext context) {
     var mediaQuery = MediaQuery.of(context).size;
@@ -105,14 +106,6 @@ class HomeSlideHorizontalListWidget extends StatelessWidget {
                                               Colors.grey.shade200
                                             ],
                                           ),
-
-                                          // boxShadow: <BoxShadow>[
-                                          //   BoxShadow(
-                                          //     color:
-                                          //         Colors.black.withOpacity(.2),
-                                          //     blurRadius: 10,
-                                          //   ),
-                                          // ],
                                           color: Colors.white,
                                           borderRadius:
                                               BorderRadius.circular(50),
