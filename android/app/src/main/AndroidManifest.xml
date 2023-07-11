@@ -2,7 +2,7 @@
     package="com.example.sahara_guru_health_services">
      <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="sahara_guru_health_services"
+        android:label="Sahara Degital Health Services"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -2,14 +2,15 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 
 class Utils {
-  void snackBarMessage(String message, BuildContext context) {
+  void snackBarMessage(BuildContext context) {
     final snackBar = SnackBar(
       elevation: 0,
       behavior: SnackBarBehavior.floating,
       backgroundColor: Colors.transparent,
       content: AwesomeSnackbarContent(
-        title: 'Success!',
-        message: message.toString(),
+        color: Colors.blueGrey,
+        title: 'Video Calling Feature Coming Soon!!',
+        message: '',
         contentType: ContentType.success,
         // inMaterialBanner: true,
       ),

@@ -18,10 +18,18 @@ import '../../../config/routes/routes_names.dart';
 import '../../../core/utils/resources/components/button.dart';
 import 'all_speciallzations/presentation/provider/all_speciallzations_provider.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final box = GetStorage();
+
   List iamges = [brainstorm, baby, neurology, skin, hospital];
+
   @override
   Widget build(BuildContext context) {
     debugPrint('home');
@@ -73,31 +81,37 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(
                               height: 200,
                               width: mediaQuery.width * 0.4,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Color(0xffffd79c)),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  // crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Padding(
-                                      padding: card_padding,
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text('Doctor\nAppointment',
-                                            style: theme.textTheme.bodyMedium
-                                                ?.copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(10),
+                                onTap: () {
+                                  Utils().snackBarMessage(context);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color(0xffffd79c)),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    // crossAxisAlignment: CrossAxisAlignment.start,
+                                    children: [
+                                      Padding(
+                                        padding: card_padding,
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text('Doctor\nAppointment',
+                                              style: theme.textTheme.bodyMedium
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                        ),
                                       ),
-                                    ),
-                                    Image.asset(
-                                      appointment,
-                                      scale: 7,
-                                    )
-                                  ],
+                                      Image.asset(
+                                        appointment,
+                                        scale: 7,
+                                      )
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -107,40 +121,46 @@ class HomeScreen extends StatelessWidget {
                             SizedBox(
                               height: 200,
                               width: mediaQuery.width * 0.4,
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: Color(0xffd5d4fe)),
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsets.only(
-                                          left: 15, right: 15, top: 15),
-                                      child: Align(
-                                        alignment: Alignment.centerLeft,
-                                        child: Text('Video\nConsultation',
-                                            style: theme.textTheme.bodyMedium
-                                                ?.copyWith(
-                                                    fontWeight:
-                                                        FontWeight.bold)),
+                              child: InkWell(
+                                borderRadius: BorderRadius.circular(10),
+                                onTap: () {
+                                  Utils().snackBarMessage(context);
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      color: Color(0xffd5d4fe)),
+                                  child: Column(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(
+                                            left: 15, right: 15, top: 15),
+                                        child: Align(
+                                          alignment: Alignment.centerLeft,
+                                          child: Text('Video\nConsultation',
+                                              style: theme.textTheme.bodyMedium
+                                                  ?.copyWith(
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                        ),
                                       ),
-                                    ),
-                                    Stack(
-                                        alignment:
-                                            AlignmentDirectional.bottomCenter,
-                                        children: [
-                                          Image.asset(
-                                            mobile,
-                                            height: 130,
-                                          ),
-                                          Image.asset(
-                                            consultation,
-                                            scale: 25,
-                                          )
-                                        ]),
-                                  ],
+                                      Stack(
+                                          alignment:
+                                              AlignmentDirectional.bottomCenter,
+                                          children: [
+                                            Image.asset(
+                                              mobile,
+                                              height: 130,
+                                            ),
+                                            Image.asset(
+                                              consultation,
+                                              scale: 25,
+                                            )
+                                          ]),
+                                    ],
+                                  ),
                                 ),
                               ),
                             ),
@@ -152,76 +172,85 @@ class HomeScreen extends StatelessWidget {
                         SizedBox(
                           height: 110,
                           width: double.infinity,
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Color(0xffc6ddfd)),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: InkWell(
+                            borderRadius: BorderRadius.circular(10),
+                            onTap: () {
+                              Utils().snackBarMessage(context);
+                            },
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Color(0xffc6ddfd)),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
 
-                              // crossAxisAlignment: CrossAxisAlignment.center,
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(left: 6),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text('Instant Video Consultation',
-                                          style: theme.textTheme.bodyMedium
-                                              ?.copyWith(
-                                                  fontWeight: FontWeight.bold,
-                                                  color: Color(0xff010066))),
-                                      SizedBox(
-                                        height: mediaQuery.height * 0.01,
-                                      ),
-                                      Container(
-                                        height: mediaQuery.height * 0.05,
-                                        width: mediaQuery.width * 0.5,
-                                        // height: 30,
-                                        // width: 200,
-                                        decoration: BoxDecoration(
-                                          color: const Color(0xff010066),
-                                          borderRadius:
-                                              BorderRadius.circular(20),
+                                // crossAxisAlignment: CrossAxisAlignment.center,
+                                // mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 6),
+                                    child: Column(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text('Instant Video Consultation',
+                                            style: theme.textTheme.bodyMedium
+                                                ?.copyWith(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Color(0xff010066))),
+                                        SizedBox(
+                                          height: mediaQuery.height * 0.01,
                                         ),
-                                        child: Align(
-                                          alignment: Alignment.centerLeft,
-                                          child: Padding(
-                                            padding: const EdgeInsets.symmetric(
-                                                horizontal: 12),
-                                            child: Row(
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment
-                                                      .spaceBetween,
-                                              children: [
-                                                const Text(
-                                                  '92 doctors online now',
-                                                  style: TextStyle(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      color: Colors.white,
-                                                      fontSize: 11),
-                                                ),
-                                                FlutterRipple(
-                                                  radius: 8,
-                                                  child: null,
-                                                  rippleColor:
-                                                      const Color.fromARGB(
-                                                          255, 35, 245, 42),
-                                                ),
-                                              ],
+                                        Container(
+                                          height: mediaQuery.height * 0.05,
+                                          width: mediaQuery.width * 0.5,
+                                          // height: 30,
+                                          // width: 200,
+                                          decoration: BoxDecoration(
+                                            color: const Color(0xff010066),
+                                            borderRadius:
+                                                BorderRadius.circular(20),
+                                          ),
+                                          child: Align(
+                                            alignment: Alignment.centerLeft,
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.symmetric(
+                                                      horizontal: 12),
+                                              child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment
+                                                        .spaceBetween,
+                                                children: [
+                                                  const Text(
+                                                    '92 doctors online now',
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white,
+                                                        fontSize: 11),
+                                                  ),
+                                                  FlutterRipple(
+                                                    radius: 8,
+                                                    child: null,
+                                                    rippleColor:
+                                                        const Color.fromARGB(
+                                                            255, 35, 245, 42),
+                                                  ),
+                                                ],
+                                              ),
                                             ),
                                           ),
                                         ),
-                                      ),
-                                    ],
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Image.asset(instant)
-                              ],
+                                  Image.asset(instant)
+                                ],
+                              ),
                             ),
                           ),
                         ),
