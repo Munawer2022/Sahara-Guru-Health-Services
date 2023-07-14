@@ -1,4 +1,4 @@
-package com.example.sahara_guru_health_services
+package com.highoncyber.sahara_guru_health_services
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.sahara_guru_health_services">
+    package="com.highoncyber.sahara_guru_health_services">
      <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="Sahara Degital Health Services"
